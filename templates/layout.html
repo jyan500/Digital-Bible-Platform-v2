@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<head>
+	<meta charset = "utf-8">
+	<!-- responsive -->
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<title> Digital Bible Platform </title>
+	<!-- Note: css files go in the static folder in the root folder -->
+	<link rel="stylesheet" href="/static/layout.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- import jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+
+	<script src = "/static/layout.js"></script>
+	
+
+</head>
+<html>
+	<body>
+		<header class = "page-header">
+			<h1> Welcome to Digital Bible Platform </h1>
+		</header>
+		<!-- form area -->
+		<div class = "container form_area">
+			<div class = "well">
+				<h2> Select a Book of the Bible </h2>
+			</div>
+			<div class = "form-group">
+				<form action = "/" method = "POST" id = "bookform">
+					<label for="booklist">Book: </label>
+					<select class = "form-control" id = "booklist" name = "booklist" form = "bookform">
+						<option value="" disabled selected>Choose your option</option>	
+						{% if bookOptions != None %}
+							{% for books in bookOptions %}
+								<!-- if saveSelected is true, and the URL param saveSelected (the bookname) is what we selected earlier -->
+								{%if saveSelectedBook == books[0] %}
+									<option value = "{{saveSelectedBook}}" selected> {{saveSelectedBook}} </option>
+								{%else %}
+									<option value = "{{books[0]}}"> {{books[0]}} </option>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</select>
+					
+				<!-- if the user has selected a book name, allow them to select a chapter -->
+					<!-- Uses AJAX to populate the chapterlist -->
+					<label for ="chapterlist">Chapter: </label>
+					<select class = "form-control" id = "chapterlist" name = "chapterlist" form = "bookform">
+						<option value="" disabled selected>Choose your option</option>
+						{% if saveSelectedChapter != None %}
+							{% for chapter in chapterOptions %}
+								{% if saveSelectedChapter == chapter %}
+									<option value = " {{saveSelectedChapter}} " selected> {{saveSelectedChapter}} </option>
+								{% else %}
+									<option value = " {{chapter}} "> {{chapter}} </option>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</select>
+					<br>
+					<button type = "submit" class = "btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- text display area -->	
+		<div class = "container text_display">
+			<div class = "panel panel-default">
+				<div class = "panel-heading">
+					<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>	
+				</div>
+				<div class = "panel-body">
+					<p id = "verses">
+					 	{% if selectedVerses != None %}
+					 		{% for verses in selectedVerses%}
+					 			<!-- loop.index is a loop counter that is built-in to jinja, 
+					 				use this instead of declaring a counter yourself due to jinja scoping rules -->
+					 			{% if loop.index % 5 == 0 %}
+					 				<br>
+					 				<br>
+								{%endif%}
+								<!-- display the verse number as a bootstrap popover -->
+								<button class = "btn btn-xs verse_btn" title = "your note" data-toggle="popover" data-trigger="focus" data-content = "click to add a note" data-placement="top">{{verses[1]}}</button>
+								<!-- display the verse itself -->
+								<span class= "indiv_verse">{{ verses[0] }}</span>
+							{% endfor %}
+						{% endif %} 
+					</p>
+				</div>
+			</div>
+		</div>
+	
+				
+	</body>
+</html

@@ -1,0 +1,70 @@
+/* page level */
+body {
+	margin-left: 50px;
+	margin-right: 50px;
+	background-color: teal;
+}
+header{
+	text-align: center;	
+}
+label{
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+option[selected] {
+	font-weight: bold;
+}
+
+button{
+	cursor: pointer;
+}
+
+/* By ID */
+#chaptername{
+	text-align:center;
+}
+#verses{
+	margin-left:50px;
+	margin-right:50px;
+}
+/*
+#submit{
+	border-radius: 2px;
+	border-color: green;
+	text-decoration: none;
+	font-size: 16px;
+	text-align: center;
+	margin-top: 16px;
+	padding-left: 15px;
+	padding-right: 30px;
+	margin-bottom: 16px;
+}
+
+*/
+
+/*#submit:hover{
+	transition-duration: 0.4s;
+	background-color:  rgb(200, 255 , 100 );
+	color: blue;
+}
+*/
+
+
+/* by class */
+.verse_btn{
+	border-radius: 4px;
+	/*
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;*/
+	vertical-align: super;
+}
+.indiv_verse{
+	/* rgb(200, 255, 100) = lime green */
+	line-height: 2;
+	font-size: 1.25em;
+
+}
+
