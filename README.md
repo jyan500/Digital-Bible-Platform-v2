@@ -1,5 +1,6 @@
 # Digital-Bible-Platform-v2
-Updated the previous Digital Bible Platform by moving over to Flask from PHP, and from W3 CSS to Bootstrap.
+<h2> An Online Bible Notetaking Web App </h2>
+NOTE: Updated the previous Digital Bible Platform by moving over to Flask from PHP, and from W3 CSS to Bootstrap.
 
 ## Dependencies ##
 <ul>
