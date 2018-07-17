@@ -38,7 +38,27 @@ $(document).ready(function(){
 
 
 	// configure the popover
-	$('[data-toggle="popover"]').popover(); 
+	$('[data-toggle="popover"]').popover({
+		html : true,
+		content : function(){
+			return $('#popover_content').html();
+		}
+		}).on('shown.bs.popover', function(e) {
+		    //get the actual shown popover
+		    var $popover = $(this).data('bs.popover').tip();
+            $popover.find('.OK').click(function(){
+                //console.log('OK triggered');
+                $popover.popover('hide');
+	            console.log('hidden');
+            });
+	}); 
+
+	// workaround for bootstrap glitch where the inState.click variable
+	// is not reset when popover('hide') is called
+	// code by Github user julesongithub 
+	$('body').on('hidden.bs.popover', function (e) {
+	    $(e.target).data("bs.popover").inState.click = false;
+	});
 
 })
 

@@ -82,7 +82,7 @@
 					 				<br>
 								{%endif%}
 								<!-- display the verse number as a bootstrap popover -->
-								<button class = "btn btn-xs verse_btn" title = "your note" data-toggle="popover" data-trigger="focus" data-content = "click to add a note" data-placement="top">{{verses[1]}}</button>
+								<button id = "popover" class = "btn btn-xs verse_btn" title = "your note" data-toggle="popover" data-placement="top">{{verses[1]}}</button>
 								<!-- display the verse itself -->
 								<span class= "indiv_verse">{{ verses[0] }}</span>
 							{% endfor %}
@@ -91,6 +91,14 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- text area that displays in the popover -->
+		<div id = "popover_content" style="display:none">
+			<textarea row = 3>
+			</textarea>
+			<button class = "btn btn-sm OK"> Cancel </button>
+		</div>
+
 	
 				
 	</body>

@@ -49,7 +49,9 @@ button{
 	color: blue;
 }
 */
-
+#popover_content{
+	display:none;
+}
 
 /* by class */
 .verse_btn{
