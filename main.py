@@ -5,18 +5,24 @@ import json
 
 ## yaml reads in serialized information as a key-value pair
 import yaml
-config = yaml.load(open('db.yaml'))
+
+## import our login page
+from login import login
+
+## configurations
+config = yaml.load(open('config.yaml'))
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = config['mysql_host']
 app.config['MYSQL_USER'] = config['mysql_user']
 app.config['MYSQL_PASSWORD'] = config['mysql_password']
 app.config['MYSQL_DB'] = config['mysql_db']
-
-## TODO: change the location of the secret key
-app.secret_key = "sdf898f79d87bs" 
+app.config['SECRET_KEY'] = config['secretkey']
 
 mysql = MySQL(app)
+
+## Register the login controller ## 
+app.register_blueprint(login)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
