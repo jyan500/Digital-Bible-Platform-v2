@@ -9,6 +9,10 @@ import yaml
 ## import our login page
 from login import login
 
+## import our signup page
+from signup import signup
+
+
 ## configurations
 config = yaml.load(open('config.yaml'))
 app = Flask(__name__)
@@ -23,6 +27,9 @@ mysql = MySQL(app)
 
 ## Register the login controller ## 
 app.register_blueprint(login)
+
+## Register the signup controller ##
+app.register_blueprint(signup)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():

@@ -7,5 +7,6 @@ login = Blueprint('login', __name__)
 
 @login.route("/login")
 def loginpage():
-	return "this is our login page"
+	return render_template("login.html") 
+
 
