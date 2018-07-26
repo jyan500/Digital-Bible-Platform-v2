@@ -3,7 +3,7 @@
 	<meta charset = "utf-8">
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
-	<title> Login </title>
+	<title> Signup </title>
 	<!-- Note: css files go in the static folder in the root folder -->
 	<link rel="stylesheet" href="/static/login.css">
 	<!-- Note: css files go in the static folder in the root folder -->
@@ -22,8 +22,8 @@
 			{% with messages = get_flashed_messages() %}
 				{% if messages %}
 					{% for message in messages %}
-						<div class="alert alert-success text-center">
-							<strong> Success! </strong>{{message}}
+						<div class="alert alert-danger text-center">
+							<strong> Error! </strong>{{message}}
 						</div>
 					{% endfor %}
 				{% endif %}
@@ -31,19 +31,23 @@
 			<div class = "row">
 				<div class = "col-sm-4 col-sm-offset-4 card">
 					<h2 class = "header text-center">
-						Welcome to Digital Bible Platform
+						Welcome, please enter the following information to make a user account 	
 					</h2>
-					<form action = "/login" method = "POST">
+					<form action = "/signup" method = "POST">
 						<div class = "form-group">
-							<label class = "form-label"  for = "Username">Username: </label>
-							<input type = "username" class = "form-control"  name = "username" id = "username" placeholder = "Username">
+							<label class = "form-label" for = "Username">Username: </label>
+							<input type = "username" class = "form-control" name = "username" id = "username" placeholder = "Username">
 						</div>
 						<div class = "form-group">
-							<label class = "form-label"  for = "password">Password: </label>
+							<label class = "form-label" for = "password">Password: </label>
 							<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
 						</div>
+						<div class = "form-group">
+							<label class = "form-label" for = "password_confirmation"> Please Re-type Password: </label>
+							<input type = "password" class = "form-control" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
+						</div>
 						<div class = "row">
-							<button type="submit" class = "login-button btn btn-primary">Login</button>
+							<button type="submit" class = "signup-button btn btn-default">Sign Up</button>	
 						</div>	
 					</form>
 				</div>

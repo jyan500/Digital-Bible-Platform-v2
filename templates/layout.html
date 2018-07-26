@@ -19,6 +19,17 @@
 </head>
 <html>
 	<body>
+		<div class = "container">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-success text-center">
+							<strong> Success! </strong>{{message}}
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+		</div>
 		<header class = "page-header">
 			<h1> Welcome to Digital Bible Platform </h1>
 		</header>
@@ -32,7 +43,7 @@
 					<label for="booklist">Book: </label>
 					<select class = "form-control" id = "booklist" name = "booklist" form = "bookform">
 						<option value="" disabled selected>Choose your option</option>	
-						{% if bookOptions != None %}
+						{% if bookOptions%}
 							{% for books in bookOptions %}
 								<!-- if saveSelected is true, and the URL param saveSelected (the bookname) is what we selected earlier -->
 								{%if saveSelectedBook == books[0] %}
@@ -49,7 +60,7 @@
 					<label for ="chapterlist">Chapter: </label>
 					<select class = "form-control" id = "chapterlist" name = "chapterlist" form = "bookform">
 						<option value="" disabled selected>Choose your option</option>
-						{% if saveSelectedChapter != None %}
+						{% if saveSelectedChapter%}
 							{% for chapter in chapterOptions %}
 								{% if saveSelectedChapter == chapter %}
 									<option value = " {{saveSelectedChapter}} " selected> {{saveSelectedChapter}} </option>
@@ -66,14 +77,14 @@
 		</div>
 
 		<!-- text display area -->	
-		<div class = "container text_display">
-			<div class = "panel panel-default">
-				<div class = "panel-heading">
-					<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>	
-				</div>
-				<div class = "panel-body">
-					<p id = "verses">
-					 	{% if selectedVerses != None %}
+		{% if selectedVerses%}
+			<div class = "container text_display">
+				<div class = "panel panel-default">
+					<div class = "panel-heading">
+						<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>	
+					</div>
+					<div class = "panel-body">
+						<p id = "verses">
 					 		{% for verses in selectedVerses%}
 					 			<!-- loop.index is a loop counter that is built-in to jinja, 
 					 				use this instead of declaring a counter yourself due to jinja scoping rules -->
@@ -86,14 +97,14 @@
 								<!-- display the verse itself -->
 								<span class= "indiv_verse">{{ verses[0] }}</span>
 							{% endfor %}
-						{% endif %} 
-					</p>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}
 
 		<!-- text area that displays in the popover -->
-		<div id = "popover_content" style="display:none">
+		<div id = "popover_content">
 			<textarea row = 3>
 			</textarea>
 			<button class = "btn btn-sm OK"> Cancel </button>

@@ -6,6 +6,9 @@ import json
 ## yaml reads in serialized information as a key-value pair
 import yaml
 
+## import our own mysql shared variable 
+from extensions import mysql
+
 ## import our login page
 from login import login
 
@@ -23,7 +26,7 @@ app.config['MYSQL_PASSWORD'] = config['mysql_password']
 app.config['MYSQL_DB'] = config['mysql_db']
 app.config['SECRET_KEY'] = config['secretkey']
 
-mysql = MySQL(app)
+mysql.init_app(app)
 
 ## Register the login controller ## 
 app.register_blueprint(login)
@@ -33,6 +36,10 @@ app.register_blueprint(signup)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+	## user should be able to view the index page without being logged in, but extra features will be available to the user 
+	## if they login
+	if not session.get('username'):
+		flash("Welcome! Please login to make full use of the website's features.")
 	cur = mysql.connection.cursor()
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
@@ -79,9 +86,6 @@ def index():
 					listForJson.append(tup[0])
 				session['chapterlistresult'] = listForJson
 				return json.dumps({"chapterlist": listForJson}) 
-
-				## render the template with the selected attributes and with the chapters
-
 
 	return render_template("layout.html", bookOptions = session['booklistresult'])
 
