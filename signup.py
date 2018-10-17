@@ -17,10 +17,10 @@ def signuppage():
 		password = request.form['password']
 		password_conf = request.form['password_conf']
 		if not (username and password and password_conf):
-			flash("Username or Password cannot be empty.")
+			flash("Username or Password cannot be empty.", "Error")
 			return redirect(url_for('signup.signuppage'))
 		if (password != password_conf):
-			flash("The passwords that were typed did not match, please try again.")
+			flash("The passwords that were typed did not match, please try again.", "Error")
 			return redirect(url_for('signup.signuppage'))
 		else:
 			username = username.strip()
@@ -31,14 +31,14 @@ def signuppage():
 		resultValue = cur.execute("SELECT username from USERS where username = %s", (username, ))
 		## if a user with the username already exists
 		if (resultValue > 0):
-			flash("Sorry, username already exists.")
+			flash("Sorry, username already exists.", "Error")
 			return redirect(url_for('signup.signuppage'))
 		else:
 			## insert the new user 
 			print("Username: " + username +  "hashpassword: " + hashedPassword, file = sys.stderr)
 			cur.execute("INSERT INTO USERS (USERNAME, PASSWORD_HASH) VALUES ( %s, %s )", (username, hashedPassword))
 			mysql.connection.commit()
-			flash("User account has been created. Please login")	
+			flash("User account has been created. Please login", "Success")	
 			return redirect(url_for('login.loginpage'))
 	return render_template("signup.html")
 

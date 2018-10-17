@@ -20,12 +20,14 @@
 <html>
 	<body>
 		<div class = "container">
-			{% with messages = get_flashed_messages() %}
+			{% with messages = get_flashed_messages(with_categories=True) %}
 				{% if messages %}
-					{% for message in messages %}
+					{% for category, message in messages %}
+						{% if category == "Success" %}	
 						<div class="alert alert-success text-center">
 							<strong> Success! </strong>{{message}}
 						</div>
+						{% endif %}
 					{% endfor %}
 				{% endif %}
 			{% endwith %}
@@ -105,9 +107,18 @@
 
 		<!-- text area that displays in the popover -->
 		<div id = "popover_content">
-			<textarea row = 3>
-			</textarea>
-			<button class = "btn btn-sm OK"> Cancel </button>
+			<!-- the popover should contain any content that the user has saved before -->
+			<div id = "existing_notes_section">
+				<p id = "existing_notes">Your Notes here</p>
+				<button class = "btn btn-sm Edit"> Edit </button>
+			</div>
+			<form id = "form_section" method = "POST" action = "/note_process_post">
+				<textarea id = "note_section" name = "note_section" row = 3>
+				</textarea>
+				<button type = "submit" class = "btn btn-sm Save"> Save </button>
+			</form>
+			<button class = "btn btn-sm Cancel"> Cancel </button>
+		
 		</div>
 
 	

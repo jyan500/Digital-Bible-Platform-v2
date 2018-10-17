@@ -53,6 +53,11 @@ button{
 	display:none;
 }
 
+#form_section{
+	display:none;
+}
+
+
 /* by class */
 .verse_btn{
 	border-radius: 4px;

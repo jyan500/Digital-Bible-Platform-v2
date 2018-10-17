@@ -46,7 +46,14 @@ $(document).ready(function(){
 		}).on('shown.bs.popover', function(e) {
 		    //get the actual shown popover
 		    var $popover = $(this).data('bs.popover').tip();
-            $popover.find('.OK').click(function(){
+		    $popover.find('.Edit').click(function(){
+		    	var notes = $("#existing_notes").text();
+		    	$("#note_section").val(notes);
+		    	$("#existing_notes_section").hide();
+		    	$("#form_section").show();
+		    	$("#note_section").show();
+	    	});
+            $popover.find('.Cancel').click(function(){
                 //console.log('OK triggered');
                 $popover.popover('hide');
 	            console.log('hidden');

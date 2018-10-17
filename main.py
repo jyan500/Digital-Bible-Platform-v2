@@ -9,11 +9,14 @@ import yaml
 ## import our own mysql shared variable 
 from extensions import mysql
 
-## import our login page
+## import our login page blueprint variable
 from login import login
 
-## import our signup page
+## import our signup page blueprint variable
 from signup import signup
+
+## import our note_process_page 
+from note_process_post import note_process_post
 
 
 ## configurations
@@ -33,6 +36,9 @@ app.register_blueprint(login)
 
 ## Register the signup controller ##
 app.register_blueprint(signup)
+
+## Register the note_process_post controller
+app.register_blueprint(note_process_post)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -91,7 +97,7 @@ def index():
 
 
 if __name__ == "__main__":
-	app.run(debug=True, host='0.0.0.0', port=80)
+	app.run(debug=True, host='0.0.0.0', port=5000)
 
 
 

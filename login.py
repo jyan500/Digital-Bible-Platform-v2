@@ -15,8 +15,8 @@ def loginpage():
 		username = request.form['username']
 		password = request.form['password']
 		if not (username and password):
-			flash("Username or Password cannot be empty.")
-			return redirect(url_for('login'))
+			flash("Username or Password cannot be empty.", 'Error')
+			return redirect(url_for('login.loginpage'))
 		else:
 			username = username.strip()
 			password = password.strip()
@@ -29,12 +29,21 @@ def loginpage():
 			db_password = userAndPassTuple[1]
 			## if the plaintext password matches a password hash of the user 
 			if (check_password_hash(db_password, password)):
-				flash("Welcome " + username + "!")
+				
+				flash("Welcome " + username + "!", 'Success')
 				## store the username as a key, and value as boolean
 				session["username"] = True
 				return redirect(url_for("index"))
 			else:
-				flash("Invalid Username or Password")
+				## if the password is wrong
+				flash("Invalid Username or Password", 'Error')
+				return redirect(url_for('login.loginpage'))
+
+		else:
+			## if user doesn't exist
+			flash("Invalid Username or Password", 'Error')
+			return redirect(url_for('login.loginpage'))
+
 	return render_template("login.html") 
 
 
