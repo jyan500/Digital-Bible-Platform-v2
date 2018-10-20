@@ -6,6 +6,8 @@
 	<title> Digital Bible Platform </title>
 	<!-- Note: css files go in the static folder in the root folder -->
 	<link rel="stylesheet" href="/static/layout.css">
+	<link rel="stylesheet" href="/static/snackbar.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<!-- import jquery -->
@@ -19,6 +21,17 @@
 </head>
 <html>
 	<body>
+
+		<!-- alert bars -->
+		<div id = "errorbar" class = "snackbar" style="background-color: Red">
+			You must enter text before submit. 
+			<span> <i class = "fa fa-close" aria-hidden="true"></i></span>
+		</div>
+		<!-- snack bar will display when submit button is successful -->
+		<div id = "successbar" class = "snackbar" style="background-color: MediumSeaGreen" >
+			Submission was successful!
+			<span> <i class = "fa fa-check" aria-hidden="true"></i></span>
+		</div>
 		<div class = "container">
 			{% with messages = get_flashed_messages(with_categories=True) %}
 				{% if messages %}
@@ -85,41 +98,57 @@
 					<div class = "panel-heading">
 						<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>	
 					</div>
-					<div class = "panel-body">
-						<p id = "verses">
-					 		{% for verses in selectedVerses%}
-					 			<!-- loop.index is a loop counter that is built-in to jinja, 
-					 				use this instead of declaring a counter yourself due to jinja scoping rules -->
-					 			{% if loop.index % 5 == 0 %}
-					 				<br>
-					 				<br>
-								{%endif%}
-								<!-- display the verse number as a bootstrap popover -->
-								<button id = "popover" class = "btn btn-xs verse_btn" title = "your note" data-toggle="popover" data-placement="top">{{verses[1]}}</button>
-								<!-- display the verse itself -->
-								<span class= "indiv_verse">{{ verses[0] }}</span>
-							{% endfor %}
-						</p>
+					<div id = "verses" class = "panel-body">
+				 		{% for verses in selectedVerses%}
+				 			<!-- loop.index is a loop counter that is built-in to jinja, 
+				 				use this instead of declaring a counter yourself due to jinja scoping rules -->
+				 			{% if loop.index % 5 == 0 %}
+				 				<br>
+				 				<br>
+							{%endif%}
+							<!-- display the verse number as a bootstrap popover -->
+							<button id = "popover_{{verses[2]}}" class = "btn btn-xs verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses[1]}}" data-toggle="popover" data-placement="top" data-verse= "{{ verses[2] }}">{{verses[1]}}</button>
+							<!-- display the verse itself -->
+							<span class= "indiv_verse">{{ verses[0] }}</span>
+
+							<!-- text area that displays in the popover -->
+							<div id = "popover_content_{{verses[2]}}">
+								<!-- the popover should contain any content that the user has saved before -->
+								<div id = "existing_notes_section_{{verses[2]}}">
+									<p id = "existing_notes_{{verses[2]}}"></p>
+									<button class = "btn btn-sm Edit"> Edit </button>
+								</div>
+								<form id = "form_section_{{verses[2]}}" method = "POST" >
+									<textarea id = "note_section_{{verses[2]}}" name = "note_section" row = 3>
+									</textarea>
+									<button id = "submit-btn" type = "submit" class = "btn btn-sm Save"> Save </button>
+									<input id = "verse-id_{{verses[2]}}" name = "verse-id" type = "hidden">
+								</form>
+								<button class = "btn btn-sm Cancel"> Cancel </button>
+							</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
 		{% endif %}
 
-		<!-- text area that displays in the popover -->
-		<div id = "popover_content">
-			<!-- the popover should contain any content that the user has saved before -->
+		<!-- text area that displays in the popover
+		<!-- <div id = "popover_content">
+			<!-- the popover should contain any content that the user has saved before 
 			<div id = "existing_notes_section">
-				<p id = "existing_notes">Your Notes here</p>
+				<p id = "existing_notes"></p>
 				<button class = "btn btn-sm Edit"> Edit </button>
 			</div>
-			<form id = "form_section" method = "POST" action = "/note_process_post">
+			<form id = "form_section" method = "POST" >
 				<textarea id = "note_section" name = "note_section" row = 3>
 				</textarea>
-				<button type = "submit" class = "btn btn-sm Save"> Save </button>
+				<button id = "submit-btn" type = "submit" class = "btn btn-sm Save"> Save </button>
+				<input id = "verse-id" name = "verse-id" type = "hidden">
 			</form>
 			<button class = "btn btn-sm Cancel"> Cancel </button>
-		
-		</div>
+		</div> -->
+
+
 
 	
 				

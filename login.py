@@ -32,7 +32,7 @@ def loginpage():
 				
 				flash("Welcome " + username + "!", 'Success')
 				## store the username as a key, and value as boolean
-				session["username"] = True
+				session["username"] = username 
 				return redirect(url_for("index"))
 			else:
 				## if the password is wrong

@@ -16,7 +16,10 @@ from login import login
 from signup import signup
 
 ## import our note_process_page 
-from note_process_post import note_process_post
+from note_process_controller import note_process_controller
+
+## import our logout page
+from logout import logout
 
 
 ## configurations
@@ -34,11 +37,13 @@ mysql.init_app(app)
 ## Register the login controller ## 
 app.register_blueprint(login)
 
+## Register the logout controller ##
+app.register_blueprint(logout)
 ## Register the signup controller ##
 app.register_blueprint(signup)
 
-## Register the note_process_post controller
-app.register_blueprint(note_process_post)
+## Register the note_process controller
+app.register_blueprint(note_process_controller)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -69,7 +74,7 @@ def index():
 			print(selectedBook, file = sys.stderr)
 			## you have to pass the parameter values as a tuple for the execute statement
 			## pass the chapter in for now
-			resultValue = cur.execute("SELECT ESV, verse from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
+			resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
 			if (resultValue > 0):
 				selectedVerses = cur.fetchall()
 				print(selectedChapter, file = sys.stderr)

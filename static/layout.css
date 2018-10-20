@@ -27,6 +27,7 @@ button{
 #verses{
 	margin-left:50px;
 	margin-right:50px;
+	padding-top:30px;
 }
 /*
 #submit{
@@ -49,11 +50,11 @@ button{
 	color: blue;
 }
 */
-#popover_content{
+[id*=popover_content]{
 	display:none;
 }
 
-#form_section{
+[id*=form_section]{
 	display:none;
 }
 
