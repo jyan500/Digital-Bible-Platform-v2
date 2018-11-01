@@ -22,34 +22,50 @@
 <html>
 	<body>
 
-		<!-- alert bars -->
-		<div id = "errorbar" class = "snackbar" style="background-color: Red">
-			You must enter text before submit. 
-			<span> <i class = "fa fa-close" aria-hidden="true"></i></span>
+		<!-- show this sidebar button when the width of the screen is less than 800px -->	
+
+		<div class = "sidebar">
+			<h2 class = "Welcome">
+				<!-- &times is representing X -->
+				Welcome {{ session['username']}} <button class = "close-sidebar"> &times </button></h2>
+			<hr class = "sidebar-separate">
+			<a href = "/"> Home</a>
+			<a href = "/login"> Login </a>
+			<a href = "#"> Notes </a>
+			<a href = "/logout"> Logout </a>
 		</div>
-		<!-- snack bar will display when submit button is successful -->
-		<div id = "successbar" class = "snackbar" style="background-color: MediumSeaGreen" >
-			Submission was successful!
-			<span> <i class = "fa fa-check" aria-hidden="true"></i></span>
-		</div>
-		<div class = "container">
-			{% with messages = get_flashed_messages(with_categories=True) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						{% if category == "Success" %}	
-						<div class="alert alert-success text-center">
-							<strong> Success! </strong>{{message}}
-						</div>
-						{% endif %}
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-		</div>
-		<header class = "page-header">
-			<h1> Welcome to Digital Bible Platform </h1>
-		</header>
 		<!-- form area -->
-		<div class = "container form_area">
+		<!-- <div class = "container form_area"> -->
+		<button class = "show-sidebar">
+			&#9776
+		</button>	
+		<div class = "main">
+			<!-- alert bars -->
+			<div id = "errorbar" class = "snackbar" style="background-color: Red">
+				You must enter text before submit. 
+				<span> <i class = "fa fa-close" aria-hidden="true"></i></span>
+			</div>
+			<!-- snack bar will display when submit button is successful -->
+			<div id = "successbar" class = "snackbar" style="background-color: MediumSeaGreen" >
+				Submission was successful!
+				<span> <i class = "fa fa-check" aria-hidden="true"></i></span>
+			</div>
+			<div class = "container">
+				{% with messages = get_flashed_messages(with_categories=True) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							{% if category == "Success" %}	
+							<div class="alert alert-success text-center">
+								<strong> Success! </strong>{{message}}
+							</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+			</div>
+			<header class = "page-header">
+				<h1> Welcome to Digital Bible Platform </h1>
+			</header>
 			<div class = "well">
 				<h2> Select a Book of the Bible </h2>
 			</div>
@@ -89,15 +105,38 @@
 					<button type = "submit" class = "btn btn-primary">Submit</button>
 				</form>
 			</div>
-		</div>
+		<!-- </div> -->
 
 		<!-- text display area -->	
 		{% if selectedVerses%}
-			<div class = "container text_display">
+			<!-- <div class = "container text_display"> -->
 				<div class = "panel panel-default">
 					<div class = "panel-heading">
 						<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>	
 					</div>
+
+					<form id = "pagination" method = "GET" action = "/paginate">
+						{% if saveSelectedChapter - 1 > 0 %}
+							<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "fa fa-arrow-left btn btn-md">
+								Previous 
+							</button>
+						{% else %}
+							<button disabled id = "prev" class = "fa fa-arrow-left btn btn-md"> Previous </button>
+
+						{% endif %}
+
+						{% if saveSelectedChapter + 1 < chapterOptions|length %}
+							<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "fa fa-arrow-right btn btn-md"> 
+								Next
+							</button>
+						{% else %}
+							<button disabled id = "next" class = "fa fa-arrow-right btn btn-md">  Next 
+							</button>
+
+						{% endif %}
+						<input type = "hidden" name = "selectedBook" value = "{{ saveSelectedBook }}"/>
+						<!-- <input type = "hidden" name = "selectedChapter" value = "{{ saveSelectedChapter }}"/> -->
+					</form>
 					<div id = "verses" class = "panel-body">
 				 		{% for verses in selectedVerses%}
 				 			<!-- loop.index is a loop counter that is built-in to jinja, 
@@ -129,8 +168,11 @@
 						{% endfor %}
 					</div>
 				</div>
-			</div>
-		{% endif %}
+			<!-- </div> -->
+		{% endif %}	
+		</div>
+		
+		
 
 		<!-- text area that displays in the popover
 		<!-- <div id = "popover_content">

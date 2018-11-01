@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
 from flask_mysqldb import MySQL
 import sys
 import json
@@ -47,10 +47,10 @@ app.register_blueprint(note_process_controller)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-	## user should be able to view the index page without being logged in, but extra features will be available to the user 
-	## if they login
-	if not session.get('username'):
-		flash("Welcome! Please login to make full use of the website's features.")
+	## users should be prompted to login before going to the index page 
+	if session.get('username') == None:
+		print("should redirect to login", file = sys.stderr)
+		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
@@ -99,6 +99,23 @@ def index():
 				return json.dumps({"chapterlist": listForJson}) 
 
 	return render_template("layout.html", bookOptions = session['booklistresult'])
+
+@app.route("/paginate", methods = ["GET"])
+def paginate():
+	if (request.method == "GET"):
+		cur = mysql.connection.cursor()
+		selectedBook = request.args.get('selectedBook')
+		selectedChapter = request.args.get('chapter')
+		print("selectedBook: " + selectedBook, file = sys.stderr)
+		print("selectedChapter: " + str(selectedChapter), file = sys.stderr)
+		resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
+		if (resultValue > 0):
+			selectedVerses = cur.fetchall()
+			print(selectedChapter, file = sys.stderr)
+			integerChapter = int(selectedChapter)
+			## render the template with the saved attributes and with the verses
+			return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, 
+				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses) 
 
 
 if __name__ == "__main__":
