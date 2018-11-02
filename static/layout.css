@@ -1,6 +1,11 @@
 /* page level */
+h1, h2{
+	font-family:"Roboto";
+}
 body {
 	height: 100%;
+	/* light pastel green, overwrite bootstrap white default background */
+	background-color: #ABE1D9 !important;
 }
 header{
 	text-align: center;	
@@ -39,52 +44,66 @@ button{
 }
 
 /* by class  */
+.alert-panel{
+	/* lime green */
+	background-color: #8EE918;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:20px;
+	margin-bottom:20px;
+	text-align:center;
+	border-radius:5px;
+	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+-moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+}
 
-.sidebar {
-	position: fixed;
-	width: 200px;
+.header{
+	/* light blue */
+	background-color: #5EE1D9;
+	/*margin-top: 10px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
 	height: 100%;
-	/* light gray */
-	background-color: #ccc;
-	top: 0;
-	left: 0;
-	z-index: 1;
-} 
-
-.sidebar-separate{
-	height: 1px;
-	border: 0;
-	box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
-	padding-top:20px;
+	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+-moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
 }
-.sidebar h2{
-	padding-left:5px;
+.header h1{
+	/* Dark Blue */
+	color: #292E4C;
 }
 
-.sidebar a {
-	padding: 15px;
-	display: block;	
-	font-size:1.2em;
-}
 
-.sidebar a:hover{
-	color: #f1f1f1;
-	text-decoration: none;
-	background-color: black;
-}
-
-.show-sidebar{
-	display:none;
-	
-}
-.close-sidebar{
-	display:none;
-}
 .main{
 	margin-left:200px;
 	padding-left: 20px;
 	padding-right: 20px;
 } 
+
+.select-card{
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.text-display-card{
+
+}
+
+.text-display-header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background-color: #5EE1D9;
+	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+	-moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+	box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+}
+.text-display-header h2{
+	/* Dark Blue */
+	color: #292E4C;
+}
 /*#submit{
 	border-radius: 2px;
 	border-color: green;
@@ -114,16 +133,20 @@ button{
 
 /* by class */
 .verse_btn{
-	border-radius: 4px;
+	background-color: #241122 !important;
+	color: #FFF ;
+	border-radius: 5px !important;
 	/*
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
 	font-size: 16px;*/
-	vertical-align: super;
+	vertical-align: super !important;
+}
+.verse_btn:hover{
+	background-color: #29E191 !important ;	
 }
 .indiv_verse{
-	/* rgb(200, 255, 100) = lime green */
 	line-height: 2;
 	font-size: 1.25em;
 
@@ -132,20 +155,8 @@ button{
 
 /* Media Queries */
 @media screen and (max-width:800px){
-	.sidebar {
-		display:none;
-	}
-	.show-sidebar{
-		display:block;	
-		font-size: 2em;
-		margin-left: 40px;
-	}
-	.close-sidebar{
-		display:block;
-	}
-	.main{
-		margin-left:20px;	
-	}
+	/* we account for the margin of the hidden sidebar here */
+	/* see sidebar.css for more details */
 	#verses{
 		margin-left: 20px;
 		margin-right:20px;
