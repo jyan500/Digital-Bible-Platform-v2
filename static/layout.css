@@ -1,15 +1,5 @@
 /* page level */
-h1, h2{
-	font-family:"Roboto";
-}
-body {
-	height: 100%;
-	/* light pastel green, overwrite bootstrap white default background */
-	background-color: #ABE1D9 !important;
-}
-header{
-	text-align: center;	
-}
+
 label{
 	margin-top: 16px;
 	margin-bottom: 16px;
@@ -44,31 +34,9 @@ button{
 }
 
 /* by class  */
-.alert-panel{
-	/* lime green */
-	background-color: #8EE918;
-	padding-top:10px;
-	padding-bottom:10px;
-	margin-top:20px;
-	margin-bottom:20px;
-	text-align:center;
-	border-radius:5px;
-	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
--moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-}
 
-.header{
-	/* light blue */
-	background-color: #5EE1D9;
-	/*margin-top: 10px;*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	height: 100%;
-	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
--moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-}
+
+
 .header h1{
 	/* Dark Blue */
 	color: #292E4C;
@@ -96,9 +64,7 @@ box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
 	margin-left: 50px;
 	margin-right: 50px;
 	background-color: #5EE1D9;
-	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-	-moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
-	box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+	
 }
 .text-display-header h2{
 	/* Dark Blue */
@@ -133,22 +99,26 @@ box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
 
 /* by class */
 .verse_btn{
-	background-color: #241122 !important;
+	background-color: #241122;
 	color: #FFF ;
-	border-radius: 5px !important;
-	/*
+	border-radius:5px;
+	font-size:10px;	
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
-	font-size: 16px;*/
-	vertical-align: super !important;
+	vertical-align: super;
+	border:none;
 }
 .verse_btn:hover{
-	background-color: #29E191 !important ;	
+	background-color: #29E191 ;	
+}
+.verse_btn:active{
+	background-color: #29E191 ;	
 }
 .indiv_verse{
 	line-height: 2;
 	font-size: 1.25em;
+	font-weight: 500;
 
 }
 

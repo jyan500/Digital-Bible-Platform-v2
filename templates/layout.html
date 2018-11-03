@@ -4,18 +4,13 @@
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
 	<title> Digital Bible Platform </title>
+	{% include 'external_includes.html' %}
 	<!-- Note: css files go in the static folder in the root folder -->
 	<link rel="stylesheet" href="/static/layout.css">
 	<link rel="stylesheet" href="/static/snackbar.css">
+	<!-- shared includes styling to body and main -->
+	<link rel = "stylesheet" href = "/static/shared.css">
 	<!-- <link rel = "stylesheet" href = "/static/sidebar.css"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!-- import jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Latest compiled bootstrap JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-
 	<script src = "/static/layout.js"></script>
 	<!-- <script src = "/static/sidebar.js"> </script> -->
 	
@@ -25,6 +20,7 @@
 	<body>
 
 		{% include 'sidebar.html' %}	
+		<!-- the main content of each page has the class 'main' -->
 		<div class = "main">
 			<!-- alert bars -->
 			<div id = "errorbar" class = "snackbar" style="background-color: Red">
@@ -40,14 +36,14 @@
 				{% if messages %}
 					{% for category, message in messages %}
 						{% if category == "Success" %}	
-						<div class="alert-panel">
-							<span class = "alert"><strong> Success! </strong>{{message}}</span>
+						<div class="alert-panel success shadow">
+							<span class = "success"><strong> Success! </strong>{{message}}</span>
 						</div>
 						{% endif %}
 					{% endfor %}
 				{% endif %}
 			{% endwith %}
-			<header class = "header">
+			<header class = "header shadow">
 				<h1> Welcome to Digital Bible Platform </h1>
 			</header>	
 			<!-- <div class = "well">
@@ -94,25 +90,28 @@
 		<!-- text display area -->	
 		{% if selectedVerses%}
 			<div class = "text-display-card">
-				<div class = "text-display-header">
+				<div class = "text-display-header shadow">
 					<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>
 				</div>
 				<form id = "pagination" method = "GET" action = "/paginate">
 					{% if saveSelectedChapter - 1 > 0 %}
-						<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "fa fa-arrow-left btn btn-md">
-							Previous 
+						<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "btn btn-md">
+							<i class = "fas fa-arrow-left"></i> Previous 
 						</button>
 					{% else %}
-						<button disabled id = "prev" class = "fa fa-arrow-left btn btn-md"> Previous </button>
+						<button disabled id = "prev" class = "btn btn-md"> <i class = "fas fa-arrow-left"></i> Previous </button>
+
 
 					{% endif %}
 
-					{% if saveSelectedChapter + 1 < chapterOptions|length %}
-						<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "fa fa-arrow-right btn btn-md"> 
+					{% if saveSelectedChapter + 1 <= chapterOptions|length %}
+						<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "btn btn-md"> 
 							Next
+							<i class = "fas fa-arrow-right fa-fw"></i>
 						</button>
 					{% else %}
-						<button disabled id = "next" class = "fa fa-arrow-right btn btn-md">  Next 
+						<button disabled id = "next" class = "btn btn-md">  Next  
+							<i class = "fas fa-arrow-right fa-fw"></i>
 						</button>
 
 					{% endif %}
@@ -127,7 +126,7 @@
 			 				<br>
 						{%endif%}
 						<!-- display the verse number as a bootstrap popover -->
-						<button id = "popover_{{verses[2]}}" class = "btn btn-xs verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses[1]}}" data-toggle="popover" data-placement="top" data-verse= "{{ verses[2] }}">{{verses[1]}}</button>
+						<button id = "popover_{{verses[2]}}" class = "verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses[1]}}" data-toggle="popover" data-placement="top" data-verse= "{{ verses[2] }}">{{verses[1]}}</button>
 						<!-- display the verse itself -->
 						<span class= "indiv_verse">{{ verses[0] }}</span>
 
@@ -150,7 +149,8 @@
 				</div>
 			</div>
 		{% endif %}	
-		</div>
 
+		{% include 'footer.html' %}
+		</div>
 	</body>
 </html

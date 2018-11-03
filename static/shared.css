@@ -1,0 +1,59 @@
+/* shared.css contains styling for the body, main and header 
+for each template file in the Digital Bible Platform V2/templates folder */
+h1, h2{
+}
+body {
+	height: 100%;
+	/* light pastel green */
+	background-color: #ABE1D9;
+	font-family:"Sans Serif";
+}
+.header{
+	text-align:center;
+	/* light blue */
+	background-color: #5EE1D9;
+	/*margin-top: 10px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 100%;
+	
+}
+.main{
+	margin-left:200px;
+	padding-left: 20px;
+	padding-right: 20px;
+} 
+/* apply shadow to elements */
+.shadow{
+	-webkit-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+	-moz-box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+	box-shadow: 8px 7px 7px 1px rgba(168,168,168,0.53);
+}
+
+.alert-panel{
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:20px;
+	margin-bottom:20px;
+	text-align:center;
+	border-radius:5px;
+	
+}
+
+.success{
+	/* lime green */
+	background-color: #8EE918;
+}
+
+.error{
+	/* red */
+	background-color: #FF2B34;
+}
+
+
+/* Media Queries */
+@media screen and (max-width:800px){
+	.main{
+		margin-left:20px;	
+	}
+}
