@@ -18,6 +18,11 @@ body {
 	height: 100%;
 	
 }
+.header h1{
+	/* Dark Blue */
+	color: #292E4C;
+}
+
 .main{
 	margin-left:200px;
 	padding-left: 20px;

@@ -76,9 +76,8 @@ $(document).ready(function(){
 		   	var $hasText = false;	
 		   	var $verseID = this.getAttribute('data-verse'); 
 		   	console.log("verseID here within shown.bs.popover: " + $verseID);
-		    $popover.find('.Edit').click(function(){
+		    $popover.find('.edit').click(function(){
 		    	// existing notes should show in the text area upon clicking edit
-		    	console.log("Edit button??");
 		    	console.log("verseID within edit: " + $verseID);
 		    	var notes = $("#existing_notes_" + $verseID).text();
 		    	$("#note_section_" + $verseID).val(notes);
@@ -88,7 +87,7 @@ $(document).ready(function(){
 
 	    	});
 	    	console.log('existing notes: ' + $('#existing_notes').text());
-	    	$popover.find('.Save').click(function(e){
+	    	$popover.find('.save').click(function(e){
 	    		e.preventDefault();	
 	    		// check to make sure user doesn't save an empty note
 		    	console.log('existing notes in save: ' + $('#existing_notes').text());
@@ -132,7 +131,7 @@ $(document).ready(function(){
 					}
 				});
 	    	});
-            $popover.find('.Cancel').click(function(){
+            $popover.find('.cancel').click(function(){
                 //console.log('OK triggered');
                 $popover.popover('hide');
 	            console.log('hidden');

@@ -1,29 +1,15 @@
 .form-label{
 	color:black  
 }
-.card{
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	transition: 0.3s;
+.login-card{
+	margin-top: 20px;
 	padding: 60px;
 }
+
 .login-button{
-	float: left;
-	margin-left: 25px;
-}
-.signup-button{
-	float: right;	
-	margin-right: 25px;
+	margin-left: 15px;
 }
 
-.header{
-	text-align:center;
-	/* light blue */
-	background-color: #5EE1D9;
-	/*margin-top: 10px;*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	height: 100%;
-	
-}
+
 
 

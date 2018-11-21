@@ -135,15 +135,15 @@
 							<!-- the popover should contain any content that the user has saved before -->
 							<div id = "existing_notes_section_{{verses[2]}}">
 								<p id = "existing_notes_{{verses[2]}}"></p>
-								<button class = "btn btn-sm Edit"> Edit </button>
+								<button class = "btn btn-sm edit"> Edit </button>
 							</div>
 							<form id = "form_section_{{verses[2]}}" method = "POST" >
-								<textarea id = "note_section_{{verses[2]}}" name = "note_section" row = 3>
+								<textarea id = "note_section_{{verses[2]}}" class = "note-text-area" name = "note_section" row = 3>
 								</textarea>
-								<button id = "submit-btn" type = "submit" class = "btn btn-sm Save"> Save </button>
+								<button id = "submit-btn" type = "submit" class = "btn btn-sm save"> Save </button>
 								<input id = "verse-id_{{verses[2]}}" name = "verse-id" type = "hidden">
 							</form>
-							<button class = "btn btn-sm Cancel"> Cancel </button>
+							<button class = "btn btn-sm cancel"> Cancel </button>
 						</div>
 					{% endfor %}
 				</div>

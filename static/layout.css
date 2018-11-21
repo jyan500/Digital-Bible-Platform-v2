@@ -36,13 +36,6 @@ button{
 /* by class  */
 
 
-
-.header h1{
-	/* Dark Blue */
-	color: #292E4C;
-}
-
-
 .main{
 	margin-left:200px;
 	padding-left: 20px;
@@ -121,7 +114,17 @@ button{
 	font-weight: 500;
 
 }
-
+.edit{
+	float: left;
+	margin-right:15px;
+}
+.save{
+	float:left;
+	margin-right:15px;
+}
+.note-text-area{
+	width: 100%;
+}
 
 /* Media Queries */
 @media screen and (max-width:800px){

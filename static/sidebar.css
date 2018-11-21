@@ -39,6 +39,17 @@
 }
 .sidebar a:hover i {
 	color:#29E191;
+	/* adding 5px and setting position relative 
+	to the right shifts the i to the left of where it should be  */
+	right: 5px;
+	position: relative;
+}
+.sidebar a:hover span{
+	color:#29E191;
+	/* adding 5px and setting position relative 
+	to the right shifts the span to the left of where it should be  */
+	right: 5px;
+	position: relative;
 }
 .sidebar i {
 	display:inline-block;

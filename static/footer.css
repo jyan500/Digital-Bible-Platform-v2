@@ -2,7 +2,8 @@
 	margin-top: 40px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	border-top: solid;
+	border-top: solid #292E4C;
+	border-width: 3px;
 	bottom: 0;
 }
 .copyright{
