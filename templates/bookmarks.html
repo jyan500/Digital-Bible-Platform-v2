@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<head>
+	<meta charset = "utf-8">
+	<!-- responsive -->
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<title> Digital Bible Platform </title>
+	{% include 'external_includes.html' %}
+	<!-- Note: css files go in the static folder in the root folder -->
+	<!-- shared includes styling to body and main -->
+	<link rel = "stylesheet" href = "/static/shared.css">
+	<link rel = "stylesheet" href = "/static/bookmarks.css">
+	
+
+</head>
+<html>
+	<body>
+		{% include 'sidebar.html' %}			
+		<div class = "main">
+			<header class = "header shadow">
+				<h1> Bookmarks </h1>
+			</header>	
+			<div class = "bookmarks-list">
+				{% for bookmark in bookmark_list %}
+					<form id = 'bookmarks' method = "GET" action = "/paginate">
+						<button class = "btn btn-md bookmark"><i class = "fas fa-bookmark fa-fw"></i>{{bookmark.book}} {{bookmark.chapter}}</button>
+						<input type="hidden" name = "selectedBook" value ="{{bookmark.book}}">
+						<input type = "hidden" name = "chapter" value = "{{bookmark.chapter}}">
+					</form>
+				{% endfor %}
+			</div>
+		</div>
+	</body>	
+</html>

@@ -7,6 +7,7 @@ import json
 import yaml
 
 ## import our own mysql shared variable 
+import extensions
 from extensions import mysql
 
 ## import our login page blueprint variable
@@ -21,6 +22,8 @@ from note_process_controller import note_process_controller
 ## import our logout page
 from logout import logout
 
+## import our bookmarks page
+from bookmarks import bookmarks
 
 ## configurations
 config = yaml.load(open('config.yaml'))
@@ -45,6 +48,9 @@ app.register_blueprint(signup)
 ## Register the note_process controller
 app.register_blueprint(note_process_controller)
 
+## Register the bookmarks controller
+app.register_blueprint(bookmarks)
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
 	## users should be prompted to login before going to the index page 
@@ -52,8 +58,10 @@ def index():
 		print("should redirect to login", file = sys.stderr)
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
+
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
+
 		## resultValue is an integer 
 		resultValue = cur.execute("SELECT book from esv group by book order by id")
 		if (resultValue > 0):
@@ -71,7 +79,14 @@ def index():
 			selectedBook = request.form['booklist']
 			## the selectedChapter needs to be a string for the resultvalue, but passed in as an integer to the form
 			selectedChapter = request.form['chapterlist']
+			if (request.form.get('bookmark')):
+				ifBookmark = request.form['bookmark']
+				if (ifBookmark == '1'):
+					user_id = extensions.getUserID(cur, str(session['username']))
+					handleBookmarks(cur, selectedBook, selectedChapter, user_id)
+
 			print(selectedBook, file = sys.stderr)
+
 			## you have to pass the parameter values as a tuple for the execute statement
 			## pass the chapter in for now
 			resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
@@ -117,6 +132,11 @@ def paginate():
 			return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses) 
 
+## helper function to handle user bookmarks
+def handleBookmarks(cur: 'mysql', book: str, chapter: int, user_id: int):
+	query = "INSERT INTO bookmarks (user_id, book, chapter) VALUES (%s, %s, %s)"
+	cur.execute(query, (str(user_id), book, str(chapter)))
+	mysql.connection.commit()
 
 if __name__ == "__main__":
 	app.run(debug=True, host='0.0.0.0', port=5000)
