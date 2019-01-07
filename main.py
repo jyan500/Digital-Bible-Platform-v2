@@ -132,6 +132,12 @@ def paginate():
 			return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses) 
 
+
+@app.errorhandler(404)
+# function which takes error as parameter
+def not_found(error):
+	return render_template("404.html")
+
 ## helper function to handle user bookmarks
 def handleBookmarks(cur: 'mysql', book: str, chapter: int, user_id: int):
 	query = "INSERT INTO bookmarks (user_id, book, chapter) VALUES (%s, %s, %s)"

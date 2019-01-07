@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<head>
+	<meta charset = "utf-8">
+	<!-- responsive -->
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<title> Page Not Found </title>
+	{% include 'external_includes.html' %}
+	<!-- Note: css files go in the static folder in the root folder -->
+	<!-- shared includes styling to body and main -->
+	<link rel = "stylesheet" href = "/static/shared.css">
+</head>
+{% include "sidebar.html" %}
+<div class = "main">
+	<h1> Oops! Looks like the page doesn't exist. </h1>
+	<a href = "{{ url_for('index') }}"> Back to Home </a>
+	{% include "footer.html" %}
+</div>
+
+
