@@ -25,6 +25,9 @@ from logout import logout
 ## import our bookmarks page
 from bookmarks import bookmarks
 
+## import our memory verse page
+from memory_verse_controller import memory_verse_controller
+
 ## configurations
 config = yaml.load(open('config.yaml'))
 app = Flask(__name__)
@@ -50,6 +53,9 @@ app.register_blueprint(note_process_controller)
 
 ## Register the bookmarks controller
 app.register_blueprint(bookmarks)
+
+## Register the memory verse controller
+app.register_blueprint(memory_verse_controller)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():

@@ -82,9 +82,11 @@
 						{% endif %}
 					</select>
 					<br>
-					<input class = "form-check-input" type="checkbox" value = '1' name = 'bookmark' id = "bookmark">
-					<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
-					<br>
+					{% if saveSelectedChapter and saveSelectedBook %}
+						<input class = "form-check-input" type="checkbox" value = '1' name = 'bookmark' id = "bookmark">
+						<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
+						<br>
+					{% endif %}
 					<button type = "submit" class = "btn btn-primary">Submit</button>
 
 				</form>
