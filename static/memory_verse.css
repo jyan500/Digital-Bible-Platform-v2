@@ -1,0 +1,32 @@
+.search-bar-section{
+	/* same dark purple as in sidebar.css */
+	background-color: #241122;;
+	margin-top: 20px;
+	width: 100%;
+}
+.search-bar{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 90%;
+	font-size: 1.2em;
+	padding: 10px;
+	border: none;
+	outline: none;
+}
+.search-icon{
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 1.2em;
+	/* same light green color */
+	color: #29E191;
+}
+/* Media Queries */
+@media screen and (max-width:800px){
+	.search-bar-section{
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	.search-bar{
+		width: 70%;
+	}
+}
