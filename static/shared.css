@@ -7,6 +7,7 @@ body {
 	/* light pastel green */
 	background-color: #ABE1D9;
 	font-family:"Sans Serif";
+	box-sizing: border-box;
 }
 .header{
 	text-align:center;

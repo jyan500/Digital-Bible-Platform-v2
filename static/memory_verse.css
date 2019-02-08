@@ -20,6 +20,74 @@
 	/* same light green color */
 	color: #29E191;
 }
+.select-flip{
+	margin: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	position: relative;
+}
+.arrow-left{
+	position:absolute;
+	top: 50%;
+	left: 0;
+	margin-left: 50px;
+	font-size: 2em;
+}
+.arrow-right{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	margin-right: 50px;
+	font-size: 2em;
+}
+.flip-container{
+	margin: 50px;
+	padding: 30px;
+	text-align: center;
+	background-color: #29E191;
+	border-radius: 5px;
+	/* center h2 */
+	width: 500px;
+	height: 260px;
+	perspective: 600px;
+}
+.flipme{
+	transform: rotateY(180deg);
+}
+.flippable{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transition: .5s;
+	transform-style: preserve-3d;
+}
+.flippable-card-face{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	backface-visibility: hidden;
+	text-align: center;
+	color: white;
+}
+.front{
+	padding: 30px;
+	background: red;
+}
+.back{
+	padding: 30px;
+	background: blue;
+	transform: rotateY( 180deg );
+}
+.individual-verse{
+	font-size: 1.2em;
+	line-height: 2em;
+	font-weight: 500;
+}
+.verse-number{
+	vertical-align: super;
+}
 /* Media Queries */
 @media screen and (max-width:800px){
 	.search-bar-section{
