@@ -1,94 +1,100 @@
 .search-bar-section{
 	/* same dark purple as in sidebar.css */
-	background-color: #241122;;
+	background-color: #241122;
 	margin-top: 20px;
 	width: 100%;
+	display: flex;
 }
 .search-bar{
+	flex: 85%;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 90%;
+	margin-right: 10px;
+	width: 70%;
 	font-size: 1.2em;
 	padding: 10px;
 	border: none;
 	outline: none;
 }
 .search-icon{
-	margin-left: 10px;
-	margin-right: 10px;
-	font-size: 1.2em;
+	flex: 5%;
+	margin-top: 10px;
+	margin-left: 10px;	
+	font-size: 2em;
 	/* same light green color */
 	color: #29E191;
+}
+.search-bar-submit{
+	flex: 10%;
+	margin-bottom: 10px;
+	margin-top: 15px;
+	margin-right: 15px;
 }
 .select-flip{
 	margin: 20px;
 	display: flex;
+	/*flex-direction: column*/
 	justify-content: center;
 	align-items: center;
-	background-color: white;
-	position: relative;
 }
 .arrow-left{
-	position:absolute;
-	top: 50%;
-	left: 0;
 	margin-left: 50px;
 	font-size: 2em;
 }
 .arrow-right{
-	position: absolute;
-	top: 50%;
-	right: 0;
 	margin-right: 50px;
 	font-size: 2em;
 }
 .flip-container{
+	flex: 100%;
 	margin: 50px;
 	padding: 30px;
 	text-align: center;
-	background-color: #29E191;
+	/* dark purple*/
+	background-color: #241122;
+	/* background-color: #29E191; */
 	border-radius: 5px;
-	/* center h2 */
-	width: 500px;
-	height: 260px;
-	perspective: 600px;
-}
-.flipme{
-	transform: rotateY(180deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .flippable{
-	width: 100%;
-	height: 100%;
+	flex: 100%;
 	position: relative;
-	transition: .5s;
-	transform-style: preserve-3d;
 }
 .flippable-card-face{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	backface-visibility: hidden;
 	text-align: center;
-	color: white;
+	color: #241122;
 }
 .front{
 	padding: 30px;
-	background: red;
+	/* pastel green */
+	background-color: #29E191;
+	height: 100%;
+	width: 100%;
 }
 .back{
+	height: auto;
+	width: 100%;
 	padding: 30px;
-	background: blue;
-	transform: rotateY( 180deg );
+	/* light blue */
+	background: #5EE1D9;
 }
 .individual-verse{
+	opacity: 0;
+	visibility: hidden;
 	font-size: 1.2em;
 	line-height: 2em;
 	font-weight: 500;
+	transition: visibility 0.3s linear, opacity 0.3s linear;
 }
 .verse-number{
+	opacity: 0;
+	visibility: hidden;
 	vertical-align: super;
+	transition: visibility 0.3s linear, opacity 0.3s linear;
 }
-/* Media Queries */
+
 @media screen and (max-width:800px){
 	.search-bar-section{
 		margin-right: 10px;

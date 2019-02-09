@@ -35,7 +35,7 @@
 			<form name = "memory-verse-form" method = "POST" action = '/memory_verse' class = "search-bar-section shadow">
 				<span class = "search-icon"><i class = "fa fa-search fa-fw"></i></span>
 				<input value = "{{ saved_verse }}" name = "verse-input" type = "text" class = "search-bar" placeholder = "Search for a specific passage...">
-				<button type = 'submit'> Submit </button>
+				<button class = "search-bar-submit" type = 'submit'> Submit </button>
 			</form>
 			{% if selected_verses and saved_verse %}
 			<div class = 'select-flip'>

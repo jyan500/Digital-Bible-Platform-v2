@@ -38,6 +38,12 @@ def memory_verse_page():
 				if (start_verse != None and end_verse != None):
 					start_verse = start_verse.replace(':','')
 					end_verse = end_verse.replace('-', '')
+					difference = int(end_verse) - int(start_verse);
+					print("Difference: " , difference, file = sys.stderr)
+					# if (difference > 4):
+					# 	flash('''We are very sorry, as can only provide flashcards with a maximum of 4 verses at a time.
+					# 		Please save multiple flashcards to break the verses into smaller chunks ''', 'Error')
+					# 	return redirect(url_for('memory_verse_controller.memory_verse_page'));
 					range_query = ' AND verse BETWEEN %s AND %s'
 					param_list.append(start_verse)
 					param_list.append(end_verse)
