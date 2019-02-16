@@ -16,18 +16,21 @@
 	<body>
 		{% include 'sidebar.html' %}			
 		<div class = "main">
-			<header class = "header shadow">
-				<h1> Bookmarks </h1>
-			</header>	
-			<div class = "bookmarks-list">
-				{% for bookmark in bookmark_list %}
-					<form id = 'bookmarks' method = "GET" action = "/paginate">
-						<button class = "btn btn-md bookmark"><i class = "fas fa-bookmark fa-fw"></i>{{bookmark.book}} {{bookmark.chapter}}</button>
-						<input type="hidden" name = "selectedBook" value ="{{bookmark.book}}">
-						<input type = "hidden" name = "chapter" value = "{{bookmark.chapter}}">
-					</form>
-				{% endfor %}
+			<div class = "wrapper">
+				<header class = "header shadow">
+					<h1> Bookmarks </h1>
+				</header>	
+				<div class = "bookmarks-list">
+					{% for bookmark in bookmark_list %}
+						<form id = 'bookmarks' method = "GET" action = "/paginate">
+							<button class = "btn btn-md bookmark"><i class = "fas fa-bookmark fa-fw"></i>{{bookmark.book}} {{bookmark.chapter}}</button>
+							<input type="hidden" name = "selectedBook" value ="{{bookmark.book}}">
+							<input type = "hidden" name = "chapter" value = "{{bookmark.chapter}}">
+						</form>
+					{% endfor %}
+				</div>
 			</div>
+			{% include 'footer.html' %}
 		</div>
 	</body>	
 </html>

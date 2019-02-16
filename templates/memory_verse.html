@@ -16,46 +16,54 @@
 	<body>
 		{% include 'sidebar.html' %}	
 		<div class = "main">
-			{% with messages = get_flashed_messages(with_categories=true) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						{% if category == "Error" %}
-							<div class="alert-panel error shadow">
-						{% endif %}
-							<strong> {{ category }}! </strong>{{message}}
-						</div>
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-			<div class = "header shadow">
-				<h1>
-					Memory Verses
-				</h1>			
-			</div>
-			<form name = "memory-verse-form" method = "POST" action = '/memory_verse' class = "search-bar-section shadow">
-				<span class = "search-icon"><i class = "fa fa-search fa-fw"></i></span>
-				<input value = "{{ saved_verse }}" name = "verse-input" type = "text" class = "search-bar" placeholder = "Search for a specific passage...">
-				<button class = "search-bar-submit" type = 'submit'> Submit </button>
-			</form>
-			{% if selected_verses and saved_verse %}
-			<div class = 'select-flip'>
-				<span class = "arrow-left"><i class = "fa fa-arrow-left"></i></span>
-				<div class = 'flip-container'>
-					<div class = "flippable">
-						<div class = "flippable-card-face front">
-							<h2> {{ saved_verse }} </h2>		
-						</div>
-						<div class = "flippable-card-face back">
-							{% for verses in selected_verses %}
-								<span class = 'verse-number'> {{verses[1]}} </span>
-								<span class = 'individual-verse'> {{ verses[0] }} </span>
-							{% endfor %}	
+			<div class = "wrapper">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							{% if category == "Error" %}
+								<div class="alert-panel error shadow">
+							{% elif category == "Success" %}
+								<div class="alert-panel success shadow">
+							{% endif %}
+								<strong> {{ category }}! </strong>{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<div class = "header shadow">
+					<h1>
+						Memory Verses
+					</h1>			
+				</div>
+				<form name = "memory-verse-form" method = "POST" action = '/memory_verse' class = "search-bar-section shadow">
+					<span class = "search-icon"><i class = "fa fa-search fa-fw"></i></span>
+					<input value = "{{ saved_verse }}" name = "verse-input" type = "text" class = "search-bar" placeholder = "Search for a specific passage...">
+					<button class = "search-bar-submit" type = 'submit'> Submit </button>
+				</form>
+				{% if selected_verses and saved_verse %}
+				<div class = "save-checkbox">
+					<input type = "checkbox" value = '1' name = "save-verse">
+					<label for = "save-verse"> Bookmark this Verse (Click submit again to save) </label>
+				</div>
+				<div class = 'select-flip'>
+					<span class = "arrow-left"><i class = "fa fa-arrow-left"></i></span>
+					<div class = 'flip-container'>
+						<div class = "flippable">
+							<div class = "flippable-card-face front">
+								<h2> {{ saved_verse }} </h2>		
+							</div>
+							<div class = "flippable-card-face back">
+								{% for verses in selected_verses %}
+									<span class = 'verse-number'> {{verses[1]}} </span>
+									<span class = 'individual-verse'> {{ verses[0] }} </span>
+								{% endfor %}	
+							</div>
 						</div>
 					</div>
+					<span class = "arrow-right"><i class = "fa fa-arrow-right"></i></span>
 				</div>
-				<span class = "arrow-right"><i class = "fa fa-arrow-right"></i></span>
+				{% endif %}	
 			</div>
-			{% endif %}
 			{% include 'footer.html' %}
 		</div>
 	</body>

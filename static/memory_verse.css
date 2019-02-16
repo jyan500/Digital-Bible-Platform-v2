@@ -72,6 +72,7 @@
 	background-color: #29E191;
 	height: 100%;
 	width: 100%;
+	cursor: pointer;
 }
 .back{
 	height: auto;

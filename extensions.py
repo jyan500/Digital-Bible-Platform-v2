@@ -15,4 +15,13 @@ def getUserID(cur: 'mysql', username: str):
 	else:
 		return -1
 
+def handleBookmarks(cur: 'mysql', user_id: int, book: str, chapter: int, start_verse: int = 0, end_verse: int = 0, is_memory_verse: bool = False):
+	if (is_memory_verse):
+		query = "INSERT INTO bookmarks (user_id, book, chapter, start_verse, end_verse, is_memory_verse) VALUES (%s, %s, %s, %s, %s, %s)"
+		cur.execute(query, (str(user_id), book, str(chapter), str(start_verse), str(end_verse), str(is_memory_verse)))
+	else:
+		query = "INSERT INTO bookmarks (user_id, book, chapter) VALUES (%s, %s, %s)"
+		cur.execute(query, (str(user_id), book, str(chapter)))
+	mysql.connection.commit()
+
 

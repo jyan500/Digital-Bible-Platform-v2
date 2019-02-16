@@ -17,7 +17,7 @@ def bookmarks_page():
 	return render_template('bookmarks.html', bookmark_list = bookmarks_list)
 
 def getUserBookMarks(cur, user_id: int):
-	result = cur.execute("SELECT * FROM bookmarks where user_id = %s", (str(user_id), ))
+	result = cur.execute("SELECT * FROM bookmarks where user_id = %s AND is_memory_verse != 1", (str(user_id), ))
 	bookmarks_dict_list = [] 
 	if (result > 0):
 		bookmarks_tuple = cur.fetchall()

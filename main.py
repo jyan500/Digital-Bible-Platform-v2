@@ -89,7 +89,7 @@ def index():
 				ifBookmark = request.form['bookmark']
 				if (ifBookmark == '1'):
 					user_id = extensions.getUserID(cur, str(session['username']))
-					handleBookmarks(cur, selectedBook, selectedChapter, user_id)
+					extensions.handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
 
 			print(selectedBook, file = sys.stderr)
 
@@ -144,11 +144,6 @@ def paginate():
 def not_found(error):
 	return render_template("404.html")
 
-## helper function to handle user bookmarks
-def handleBookmarks(cur: 'mysql', book: str, chapter: int, user_id: int):
-	query = "INSERT INTO bookmarks (user_id, book, chapter) VALUES (%s, %s, %s)"
-	cur.execute(query, (str(user_id), book, str(chapter)))
-	mysql.connection.commit()
 
 if __name__ == "__main__":
 	app.run(debug=True, host='0.0.0.0', port=5000)

@@ -16,6 +16,8 @@ memory_verse_controller = Blueprint('memory_verse_controller', __name__)
 
 @memory_verse_controller.route("/memory_verse", methods = ["GET", "POST"])
 def memory_verse_page():
+	if (request.method == "GET"):
+		return render_template('memory_verse.html')
 	if (request.method == "POST"):
 		## regex format: James 1:2-2
 		regex = re.compile('^([a-zA-Z]+)(\\s\\d+)([:]?\\d+)?([-]?\\d+)?$')
@@ -40,10 +42,10 @@ def memory_verse_page():
 					end_verse = end_verse.replace('-', '')
 					difference = int(end_verse) - int(start_verse);
 					print("Difference: " , difference, file = sys.stderr)
-					# if (difference > 4):
-					# 	flash('''We are very sorry, as can only provide flashcards with a maximum of 4 verses at a time.
-					# 		Please save multiple flashcards to break the verses into smaller chunks ''', 'Error')
-					# 	return redirect(url_for('memory_verse_controller.memory_verse_page'));
+					if (difference > 10):
+						flash('''We are sorry, as can only provide flashcards with a maximum of 10 verses at a time.
+							Please save multiple flashcards to break the verses into smaller chunks ''', 'Error')
+						return redirect(url_for('memory_verse_controller.memory_verse_page'));
 					range_query = ' AND verse BETWEEN %s AND %s'
 					param_list.append(start_verse)
 					param_list.append(end_verse)
@@ -57,6 +59,20 @@ def memory_verse_page():
 
 				## establish connection with mysql
 				cur = mysql.connection.cursor()
+
+				## handle bookmarks 	
+				if (request.form.get('save-verse')):
+					is_bookmark = request.form['save-verse']
+					if (is_bookmark == '1'):
+						user_id = extensions.getUserID(cur, str(session['username']))
+						is_memory_verse = True;
+						extensions.handleBookmarks(cur, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
+						flash("Saved " + verse + " Successfully!", 'Success')
+						return redirect(url_for('memory_verse_controller.memory_verse_page'))
+					else:
+						flash("Oops something went wrong! Please Try Again", 'Error')
+						return redirect(url_for('memory_verse_controller.memory_verse_page'))
+
 				query = 'SELECT ESV, verse, id from esv WHERE book = %s AND chapter = %s'
 
 				if (range_query != ''):
@@ -73,7 +89,8 @@ def memory_verse_page():
 				# if no regex match
 				flash("Please enter like so: James 1:2-3, James 1, James 1:2", 'Error')
 				return redirect(url_for('memory_verse_controller.memory_verse_page'))
-	return render_template('memory_verse.html')
+
+
 
 
 

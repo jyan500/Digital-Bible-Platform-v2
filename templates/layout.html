@@ -22,140 +22,142 @@
 		{% include 'sidebar.html' %}	
 		<!-- the main content of each page has the class 'main' -->
 		<div class = "main">
-			<!-- alert bars -->
-			<div id = "errorbar" class = "snackbar" style="background-color: Red">
-				You must enter text before submit. 
-				<span> <i class = "fa fa-close" aria-hidden="true"></i></span>
-			</div>
-			<!-- snack bar will display when submit button is successful -->
-			<div id = "successbar" class = "snackbar" style="background-color: MediumSeaGreen" >
-				Submission was successful!
-				<span> <i class = "fa fa-check" aria-hidden="true"></i></span>
-			</div>
-			{% with messages = get_flashed_messages(with_categories=True) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						{% if category == "Success" %}	
-						<div class="alert-panel success shadow">
-							<span class = "success"><strong> Success! </strong>{{message}}</span>
-						</div>
-						{% endif %}
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-			<header class = "header shadow">
-				<h1> Welcome to Digital Bible Platform </h1>
-			</header>	
-			<!-- <div class = "well">
-				<h2> Select a Book of the Bible </h2>
-			</div> -->
-			<div class = "select-card form-group">
-				<form action = "/" method = "POST" id = "bookform">
-					<label for="booklist">Book: </label>
-					<select class = "form-control" id = "booklist" name = "booklist" form = "bookform">
-						<option value="" disabled selected>Choose your option</option>	
-						{% if bookOptions%}
-							{% for books in bookOptions %}
-								<!-- if saveSelected is true, and the URL param saveSelected (the bookname) is what we selected earlier -->
-								{%if saveSelectedBook == books[0] %}
-									<option value = "{{saveSelectedBook}}" selected> {{saveSelectedBook}} </option>
-								{%else %}
-									<option value = "{{books[0]}}"> {{books[0]}} </option>
-								{% endif %}
-							{% endfor %}
-						{% endif %}
-					</select>
-					
-				<!-- if the user has selected a book name, allow them to select a chapter -->
-					<!-- Uses AJAX to populate the chapterlist -->
-					<label for ="chapterlist">Chapter: </label>
-					<select class = "form-control" id = "chapterlist" name = "chapterlist" form = "bookform">
-						<option value="" disabled selected>Choose your option</option>
-						{% if saveSelectedChapter%}
-							{% for chapter in chapterOptions %}
-								{% if saveSelectedChapter == chapter %}
-									<option value = " {{saveSelectedChapter}} " selected> {{saveSelectedChapter}} </option>
-								{% else %}
-									<option value = " {{chapter}} "> {{chapter}} </option>
-								{% endif %}
-							{% endfor %}
-						{% endif %}
-					</select>
-					<br>
-					{% if saveSelectedChapter and saveSelectedBook %}
-						<input class = "form-check-input" type="checkbox" value = '1' name = 'bookmark' id = "bookmark">
-						<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
-						<br>
-					{% endif %}
-					<button type = "submit" class = "btn btn-primary">Submit</button>
-
-				</form>
-			</div>
-		<!-- </div> -->
-
-		<!-- text display area -->	
-		{% if selectedVerses%}
-			<div class = "text-display-card">
-				<div class = "text-display-header shadow">
-					<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>
+			<div class = "wrapper">
+				
+				<!-- alert bars -->
+				<div id = "errorbar" class = "snackbar" style="background-color: Red">
+					You must enter text before submit. 
+					<span> <i class = "fa fa-close" aria-hidden="true"></i></span>
 				</div>
-				<form id = "pagination" method = "GET" action = "/paginate">
-					{% if saveSelectedChapter - 1 > 0 %}
-						<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "btn btn-md">
-							<i class = "fas fa-arrow-left"></i> Previous 
-						</button>
-					{% else %}
-						<button disabled id = "prev" class = "btn btn-md"> <i class = "fas fa-arrow-left"></i> Previous </button>
-
-
-					{% endif %}
-
-					{% if saveSelectedChapter + 1 <= chapterOptions|length %}
-						<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "btn btn-md"> 
-							Next
-							<i class = "fas fa-arrow-right fa-fw"></i>
-						</button>
-					{% else %}
-						<button disabled id = "next" class = "btn btn-md">  Next  
-							<i class = "fas fa-arrow-right fa-fw"></i>
-						</button>
-
-					{% endif %}
-					<input type = "hidden" name = "selectedBook" value = "{{ saveSelectedBook }}"/>
-				</form>
-				<div id = "verses" class = "panel-body">
-			 		{% for verses in selectedVerses%}
-			 			<!-- loop.index is a loop counter that is built-in to jinja, 
-			 				use this instead of declaring a counter yourself due to jinja scoping rules -->
-			 			{% if loop.index % 5 == 0 %}
-			 				<br>
-			 				<br>
-						{%endif%}
-						<!-- display the verse number as a bootstrap popover -->
-						<button id = "popover_{{verses[2]}}" class = "verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses[1]}}" data-toggle="popover" data-placement="top" data-verse= "{{ verses[2] }}">{{verses[1]}}</button>
-						<!-- display the verse itself -->
-						<span class= "indiv_verse">{{ verses[0] }}</span>
-
-						<!-- text area that displays in the popover -->
-						<div id = "popover_content_{{verses[2]}}">
-							<!-- the popover should contain any content that the user has saved before -->
-							<div id = "existing_notes_section_{{verses[2]}}">
-								<p id = "existing_notes_{{verses[2]}}"></p>
-								<button class = "btn btn-sm edit"> Edit </button>
+				<!-- snack bar will display when submit button is successful -->
+				<div id = "successbar" class = "snackbar" style="background-color: MediumSeaGreen" >
+					Submission was successful!
+					<span> <i class = "fa fa-check" aria-hidden="true"></i></span>
+				</div>
+				{% with messages = get_flashed_messages(with_categories=True) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							{% if category == "Success" %}	
+							<div class="alert-panel success shadow">
+								<span class = "success"><strong> Success! </strong>{{message}}</span>
 							</div>
-							<form id = "form_section_{{verses[2]}}" method = "POST" >
-								<textarea id = "note_section_{{verses[2]}}" class = "note-text-area" name = "note_section" row = 3>
-								</textarea>
-								<button id = "submit-btn" type = "submit" class = "btn btn-sm save"> Save </button>
-								<input id = "verse-id_{{verses[2]}}" name = "verse-id" type = "hidden">
-							</form>
-							<button class = "btn btn-sm cancel"> Cancel </button>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-		{% endif %}	
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<header class = "header shadow">
+					<h1> Welcome to Digital Bible Platform </h1>
+				</header>	
+				<!-- <div class = "well">
+					<h2> Select a Book of the Bible </h2>
+				</div> -->
+				<div class = "select-card form-group">
+					<form action = "/" method = "POST" id = "bookform">
+						<label for="booklist">Book: </label>
+						<select class = "form-control" id = "booklist" name = "booklist" form = "bookform">
+							<option value="" disabled selected>Choose your option</option>	
+							{% if bookOptions%}
+								{% for books in bookOptions %}
+									<!-- if saveSelected is true, and the URL param saveSelected (the bookname) is what we selected earlier -->
+									{%if saveSelectedBook == books[0] %}
+										<option value = "{{saveSelectedBook}}" selected> {{saveSelectedBook}} </option>
+									{%else %}
+										<option value = "{{books[0]}}"> {{books[0]}} </option>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+						</select>
+						
+					<!-- if the user has selected a book name, allow them to select a chapter -->
+						<!-- Uses AJAX to populate the chapterlist -->
+						<label for ="chapterlist">Chapter: </label>
+						<select class = "form-control" id = "chapterlist" name = "chapterlist" form = "bookform">
+							<option value="" disabled selected>Choose your option</option>
+							{% if saveSelectedChapter%}
+								{% for chapter in chapterOptions %}
+									{% if saveSelectedChapter == chapter %}
+										<option value = " {{saveSelectedChapter}} " selected> {{saveSelectedChapter}} </option>
+									{% else %}
+										<option value = " {{chapter}} "> {{chapter}} </option>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+						</select>
+						<br>
+						{% if saveSelectedChapter and saveSelectedBook %}
+							<input class = "form-check-input" type="checkbox" value = '1' name = 'bookmark' id = "bookmark">
+							<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
+							<br>
+						{% endif %}
+						<button type = "submit" class = "btn btn-primary">Submit</button>
 
+					</form>
+				</div>
+				<!-- </div> -->
+
+				<!-- text display area -->	
+				{% if selectedVerses%}
+					<div class = "text-display-card">
+						<div class = "text-display-header shadow">
+							<h2 id = "chaptername"> Chapter {{saveSelectedChapter}} </h2>
+						</div>
+						<form id = "pagination" method = "GET" action = "/paginate">
+							{% if saveSelectedChapter - 1 > 0 %}
+								<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "btn btn-md">
+									<i class = "fas fa-arrow-left"></i> Previous 
+								</button>
+							{% else %}
+								<button disabled id = "prev" class = "btn btn-md"> <i class = "fas fa-arrow-left"></i> Previous </button>
+
+
+							{% endif %}
+
+							{% if saveSelectedChapter + 1 <= chapterOptions|length %}
+								<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "btn btn-md"> 
+									Next
+									<i class = "fas fa-arrow-right fa-fw"></i>
+								</button>
+							{% else %}
+								<button disabled id = "next" class = "btn btn-md">  Next  
+									<i class = "fas fa-arrow-right fa-fw"></i>
+								</button>
+
+							{% endif %}
+							<input type = "hidden" name = "selectedBook" value = "{{ saveSelectedBook }}"/>
+						</form>
+						<div id = "verses" class = "panel-body">
+					 		{% for verses in selectedVerses%}
+					 			<!-- loop.index is a loop counter that is built-in to jinja, 
+					 				use this instead of declaring a counter yourself due to jinja scoping rules -->
+					 			{% if loop.index % 5 == 0 %}
+					 				<br>
+					 				<br>
+								{%endif%}
+								<!-- display the verse number as a bootstrap popover -->
+								<button id = "popover_{{verses[2]}}" class = "verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses[1]}}" data-toggle="popover" data-placement="top" data-verse= "{{ verses[2] }}">{{verses[1]}}</button>
+								<!-- display the verse itself -->
+								<span class= "indiv_verse">{{ verses[0] }}</span>
+
+								<!-- text area that displays in the popover -->
+								<div id = "popover_content_{{verses[2]}}">
+									<!-- the popover should contain any content that the user has saved before -->
+									<div id = "existing_notes_section_{{verses[2]}}">
+										<p id = "existing_notes_{{verses[2]}}"></p>
+										<button class = "btn btn-sm edit"> Edit </button>
+									</div>
+									<form id = "form_section_{{verses[2]}}" method = "POST" >
+										<textarea id = "note_section_{{verses[2]}}" class = "note-text-area" name = "note_section" row = 3>
+										</textarea>
+										<button id = "submit-btn" type = "submit" class = "btn btn-sm save"> Save </button>
+										<input id = "verse-id_{{verses[2]}}" name = "verse-id" type = "hidden">
+									</form>
+									<button class = "btn btn-sm cancel"> Cancel </button>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}	
+			</div>
 		{% include 'footer.html' %}
 		</div>
 	</body>
