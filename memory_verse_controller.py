@@ -62,6 +62,7 @@ def memory_verse_page():
 
 				## handle bookmarks 	
 				if (request.form.get('save-verse')):
+					print('is bookmark', file =sys.stderr)
 					is_bookmark = request.form['save-verse']
 					if (is_bookmark == '1'):
 						user_id = extensions.getUserID(cur, str(session['username']))
