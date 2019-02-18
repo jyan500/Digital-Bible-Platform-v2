@@ -18,12 +18,11 @@
 </head>
 <html>
 	<body>
-
-		{% include 'sidebar.html' %}	
+		{% include 'navbar.html' %}	
 		<!-- the main content of each page has the class 'main' -->
 		<div class = "main">
+			{% include 'sidebar.html' %}
 			<div class = "wrapper">
-				
 				<!-- alert bars -->
 				<div id = "errorbar" class = "snackbar" style="background-color: Red">
 					You must enter text before submit. 
@@ -45,9 +44,9 @@
 						{% endfor %}
 					{% endif %}
 				{% endwith %}
-				<header class = "header shadow">
+				<!-- <header class = "header shadow">
 					<h1> Welcome to Digital Bible Platform </h1>
-				</header>	
+				</header> -->	
 				<!-- <div class = "well">
 					<h2> Select a Book of the Bible </h2>
 				</div> -->
@@ -158,7 +157,7 @@
 					</div>
 				{% endif %}	
 			</div>
-		{% include 'footer.html' %}
 		</div>
+		{% include 'footer.html' %}
 	</body>
 </html

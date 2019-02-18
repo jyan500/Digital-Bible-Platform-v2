@@ -10,6 +10,7 @@ from flask import Blueprint
 
 
 ## own files
+import extensions
 from extensions import mysql 
 
 memory_verse_controller = Blueprint('memory_verse_controller', __name__)
@@ -17,11 +18,13 @@ memory_verse_controller = Blueprint('memory_verse_controller', __name__)
 @memory_verse_controller.route("/memory_verse", methods = ["GET", "POST"])
 def memory_verse_page():
 	if (request.method == "GET"):
+
 		return render_template('memory_verse.html')
 	if (request.method == "POST"):
 		## regex format: James 1:2-2
 		regex = re.compile('^([a-zA-Z]+)(\\s\\d+)([:]?\\d+)?([-]?\\d+)?$')
 		verse = request.form.get('verse-input')
+		print(request.form, file = sys.stderr)
 		print('Within post method', file = sys.stderr)
 		if (verse != None):
 			match = regex.match(verse)
@@ -69,7 +72,7 @@ def memory_verse_page():
 						is_memory_verse = True;
 						extensions.handleBookmarks(cur, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
 						flash("Saved " + verse + " Successfully!", 'Success')
-						return redirect(url_for('memory_verse_controller.memory_verse_page'))
+						return render_template('memory_verse.html', saved_verse = verse, selected_verses = selectedVerse)
 					else:
 						flash("Oops something went wrong! Please Try Again", 'Error')
 						return redirect(url_for('memory_verse_controller.memory_verse_page'))
@@ -90,6 +93,11 @@ def memory_verse_page():
 				# if no regex match
 				flash("Please enter like so: James 1:2-3, James 1, James 1:2", 'Error')
 				return redirect(url_for('memory_verse_controller.memory_verse_page'))
+
+
+def getSavedMemoryVerses(cur: 'mysql'):
+	query = 'SELECT id, book, chapter, start_verse, end_verse FROM bookmarks WHERE user_id = %s AND is_memory_verse = 1'
+
 
 
 

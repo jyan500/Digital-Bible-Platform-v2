@@ -14,12 +14,10 @@
 </head>
 <html>
 	<body>
-		{% include 'sidebar.html' %}			
+		{% include 'navbar.html' %}			
 		<div class = "main">
+			{% include 'sidebar.html' %}
 			<div class = "wrapper">
-				<header class = "header shadow">
-					<h1> Bookmarks </h1>
-				</header>	
 				<div class = "bookmarks-list">
 					{% for bookmark in bookmark_list %}
 						<form id = 'bookmarks' method = "GET" action = "/paginate">
@@ -30,7 +28,7 @@
 					{% endfor %}
 				</div>
 			</div>
-			{% include 'footer.html' %}
 		</div>
+		{% include 'footer.html' %}
 	</body>	
 </html>

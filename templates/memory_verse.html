@@ -14,8 +14,9 @@
 </head>
 <html>
 	<body>
-		{% include 'sidebar.html' %}	
+		{% include 'navbar.html' %}
 		<div class = "main">
+			{% include 'sidebar.html' %}
 			<div class = "wrapper">
 				{% with messages = get_flashed_messages(with_categories=true) %}
 					{% if messages %}
@@ -30,11 +31,11 @@
 						{% endfor %}
 					{% endif %}
 				{% endwith %}
-				<div class = "header shadow">
-					<h1>
-						Memory Verses
-					</h1>			
-				</div>
+				<!-- <div class = "hero-image">
+					<div class = "hero-text">
+						Memory Verses						
+					</div>
+				</div> -->
 				<form name = "memory-verse-form" method = "POST" action = '/memory_verse'>
 					<div class = "search-bar-section shadow">
 						<div class = "search-bar">
@@ -45,15 +46,16 @@
 							<input type = 'submit' class = 'submit-button'></input>
 							{% if selected_verses and saved_verse %}
 								<div class = "save-checkbox">
-									<input form = "memory-verse-form" type = "checkbox" value = '1' name = "save-verse">
+									<input type = "checkbox" value = '1' name = "save-verse">
 									<label for = "save-verse"> Bookmark this Verse (Click submit again to save) </label>
 								</div>
 							{% endif %}
 						</div>
 					</div>
 				</form>
+				{% if selected_verses and saved_verse %}
 				<div class = 'select-flip'>
-					<span class = "arrow-left"><i class = "fa fa-arrow-left"></i></span>
+					<button class = "arrow-left"><i class = "fa fa-arrow-left"></i></button>
 					<div class = 'flip-container'>
 						<div class = "flippable">
 							<div class = "flippable-card-face front">
@@ -67,10 +69,11 @@
 							</div>
 						</div>
 					</div>
-					<span class = "arrow-right"><i class = "fa fa-arrow-right"></i></span>
+					<button class = "arrow-right"><i class = "fa fa-arrow-right"></i></button>
 				</div>
+				{% endif %}
 			</div>
-			{% include 'footer.html' %}
 		</div>
+		{% include 'footer.html' %}
 	</body>
 </html>

@@ -22,4 +22,10 @@ $(document).ready(function(){
 			$('.sidebar').show();
 		}
 	};
+	// adds active class to the current link 
+    $('a').each(function(){
+        if ($(this).prop('href') == window.location.href) {
+            $(this).addClass('active'); $(this).parents('li').addClass('active');
+        }
+    });
 })

@@ -1,13 +1,9 @@
 .sidebar {
-	position: fixed;
-	width: 200px;
-	height: 100%;
+	flex: 0 0 14em;
 	/* dark purple */
-	background-color: #241122;
-	top: 0;
-	left: 0;
+	background-color: var(--dark-purple);
 	z-index: 1;
-	border-bottom: 5px solid #29E191;
+	/*border-bottom: 5px solid var(--hover-green);*/
 } 
 
 .sidebar-separate{
@@ -15,7 +11,7 @@
 	border: 0;
 	box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
 	padding-top:5px;
-	background-color:#29E191;
+	background-color: var(--hover-green);
 }
 .sidebar h2{
 	color: #FFF;
@@ -33,19 +29,18 @@
 .sidebar a:hover{
 	color: #f1f1f1;
 	text-decoration: none;
-	background-color: black;
 	/* light green */
-	border-left: 5px solid #29E191;
+	border-left: 5px solid var(--hover-green);
 }
 .sidebar a:hover i {
-	color:#29E191;
+	color: var(--hover-green);
 	/* adding 5px and setting position relative 
 	to the right shifts the i to the left of where it should be  */
 	right: 5px;
 	position: relative;
 }
 .sidebar a:hover span{
-	color:#29E191;
+	color: var(--hover-green);
 	/* adding 5px and setting position relative 
 	to the right shifts the span to the left of where it should be  */
 	right: 5px;
@@ -57,12 +52,27 @@
 	margin-right: 15px;
 }
 
-.sidebar span{
-	font-size:1.2em;
+.sidebar .active{
+	background-color: var(--primary);
 }
 .show-sidebar{
-	display:none;
-	
+	display: none;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	outline: none;
+	cursor: pointer;
+	margin: 15px;
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}
+.show-sidebar > span{
+	display: block;
+	background-color:#484848; 
+    height:3px; 
+    width:26px; 
+    position:relative; 
+    margin:0 auto 5px;
 }
 .close-sidebar{
 	display:none;

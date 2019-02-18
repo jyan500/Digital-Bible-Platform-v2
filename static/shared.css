@@ -2,39 +2,50 @@
 for each template file in the Digital Bible Platform V2/templates folder */
 h1, h2{
 }
+html, body{
+	min-height: 100vh;
+}
 body {
-	height: 100%;
 	/* light pastel green */
-	background-color: #ABE1D9;
+	background-color: var(--background);
 	font-family:"Sans Serif";
 	box-sizing: border-box;
+	--light-pastel-green:#ABE1D9;
+	--light-blue: #5EE1D9;
+	--dark-blue: #292E4C;
+	--lime-green: #8EE918;
+	--error-red: #FF2B34;
+	--hover-green: #29E191;
+	--dark-purple: #3700B3;
+	--primary: #4a26fd;
+	--secondary: #714cfe;
+	--background: #BBDEFB;
+	display: flex;
+	flex-direction: column;
 }
+
 .header{
 	text-align:center;
 	/* light blue */
-	background-color: #5EE1D9;
+	background-color: var(--secondary);
 	/*margin-top: 10px;*/
 	padding-top: 10px;
 	padding-bottom: 10px;
-	height: 100%;
 	
 }
 .header h1{
 	/* Dark Blue */
-	color: #292E4C;
+	color: white;
 }
 
 .main{
-	margin-left:200px;
-	padding-left: 20px;
-	padding-right: 20px;
-	height: 100%;
 	display: flex;
-	flex-direction: column;
+	flex: 1 0 auto;
+	min-height: 100vh;
 } 
 .wrapper {
-	min-height: 100vh;
-	flex: 1 1 0 auto;
+	padding: 10px;
+	flex: 2;
 }
 /* apply shadow to elements */
 .shadow{
@@ -55,18 +66,17 @@ body {
 
 .success{
 	/* lime green */
-	background-color: #8EE918;
+	background-color: var(--lime-green);
 }
 
 .error{
 	/* red */
-	background-color: #FF2B34;
+	background-color: var(--error-red);
 }
 
 
 /* Media Queries */
 @media screen and (max-width:800px){
 	.main{
-		margin-left:20px;	
 	}
 }

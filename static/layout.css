@@ -36,12 +36,6 @@ button{
 /* by class  */
 
 
-.main{
-	margin-left:200px;
-	padding-left: 20px;
-	padding-right: 20px;
-} 
-
 .select-card{
 	margin-top: 10px;
 	padding: 10px;
@@ -103,10 +97,10 @@ button{
 	border:none;
 }
 .verse_btn:hover{
-	background-color: #29E191 ;	
+	background-color: var(--hover-green) ;	
 }
 .verse_btn:active{
-	background-color: #29E191 ;	
+	background-color: var(--hover-green) ;	
 }
 .indiv_verse{
 	line-height: 2;

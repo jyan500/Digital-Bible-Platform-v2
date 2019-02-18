@@ -11,8 +11,9 @@
 </head>
 <html>
 	<body>
-		{% include('sidebar.html') %}
+		{% include('navbar.html') %}
 		<div class = 'main'>
+			{% include('sidebar.html') %}
 			<div class = "wrapper">
 				{% with messages = get_flashed_messages(with_categories=true) %}
 					{% if messages %}
@@ -48,7 +49,7 @@
 					</form>
 				</div>
 			</div>
-			{% include 'footer.html' %}
 		</div>
+		{% include 'footer.html' %}
 	</body>
 </html>
