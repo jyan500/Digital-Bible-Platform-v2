@@ -31,11 +31,6 @@
 						{% endfor %}
 					{% endif %}
 				{% endwith %}
-				<!-- <div class = "hero-image">
-					<div class = "hero-text">
-						Memory Verses						
-					</div>
-				</div> -->
 				<form name = "memory-verse-form" method = "POST" action = '/memory_verse'>
 					<div class = "search-bar-section shadow">
 						<div class = "search-bar">
@@ -45,10 +40,14 @@
 						<div class = "search-bar-submit">
 							<input type = 'submit' class = 'submit-button'></input>
 							{% if selected_verses and saved_verse %}
-								<div class = "save-checkbox">
-									<input type = "checkbox" value = '1' name = "save-verse">
-									<label for = "save-verse"> Bookmark this Verse (Click submit again to save) </label>
-								</div>
+								{% if not is_bookmark %}
+									<div class = "save-checkbox">
+										<input type = "checkbox" value = '1' name = "save-verse">
+										<label for = "save-verse"> Bookmark this Verse (Click submit again to save) </label>
+									</div>
+								{% elif is_bookmark %}
+									<span> You've already bookmarked this verse! </span>
+								{% endif %}
 							{% endif %}
 						</div>
 					</div>
@@ -63,13 +62,32 @@
 							</div>
 							<div class = "flippable-card-face back">
 								{% for verses in selected_verses %}
-									<span class = 'verse-number'> {{verses[1]}} </span>
-									<span class = 'individual-verse'> {{ verses[0] }} </span>
+									<span class = 'verse-number'> {{verses['verse_num']}} </span>
+									<span class = 'individual-verse'> {{ verses['body'] }} </span>
 								{% endfor %}	
 							</div>
 						</div>
 					</div>
 					<button class = "arrow-right"><i class = "fa fa-arrow-right"></i></button>
+				</div>
+				{% elif memory_dict %}
+				<div class = "memory-verse-cards">
+					{% for verses in memory_dict %}
+						<div class = "memory-card">
+							<form method = 'GET' action = '/saved_memory_verse'>
+								{% if verses['end_verse'] != 0 %}
+									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }}-{{verses['end_verse']}} </button>
+								{% else %}
+									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }} </button>
+								{% endif %}
+								<input type = 'hidden' name = 'book' value = "{{verses['book']}}">
+								<input type = 'hidden' name = 'chapter' value = "{{verses['chapter']}}">
+								<input type = 'hidden' name = 'start_verse' value = "{{verses['start_verse']}}">
+								<!-- if there's no end verse, the value will be zero -->
+								<input type = 'hidden' name = 'end_verse' value = "{{verses['end_verse']}}">
+							</form>
+						</div>
+					{% endfor %}
 				</div>
 				{% endif %}
 			</div>
