@@ -83,8 +83,9 @@
 								<input type = 'hidden' name = 'book' value = "{{verses['book']}}">
 								<input type = 'hidden' name = 'chapter' value = "{{verses['chapter']}}">
 								<input type = 'hidden' name = 'start_verse' value = "{{verses['start_verse']}}">
-								<!-- if there's no end verse, the value will be zero -->
-								<input type = 'hidden' name = 'end_verse' value = "{{verses['end_verse']}}">
+								{% if verses['end_verse'] != 0 %}
+									<input type = 'hidden' name = 'end_verse' value = "{{verses['end_verse']}}">
+								{% endif %}
 							</form>
 						</div>
 					{% endfor %}

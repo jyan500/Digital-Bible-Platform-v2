@@ -16,10 +16,11 @@ body {
 	--lime-green: #8EE918;
 	--error-red: #FF2B34;
 	--hover-green: #29E191;
-	--dark-purple: #3700B3;
+	--dark-purple: #044f7a;
 	--primary: #4a26fd;
 	--secondary: #714cfe;
-	--background: #BBDEFB;
+	--background: #FFFFFF;
+	--tertiary: #FAFAFA;
 	display: flex;
 	flex-direction: column;
 }

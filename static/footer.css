@@ -1,9 +1,8 @@
 .footer{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	border-top: solid #292E4C;
-	border-width: 3px;
-	/*background-color: var(--secondary);*/
+	color: white;
+	background-color: var(--dark-purple);
 }
 .copyright{
 	font-size: 1.5em;
