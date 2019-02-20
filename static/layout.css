@@ -21,6 +21,7 @@ button{
 	margin-left:50px;
 	margin-right:50px;
 	padding-top:30px;
+	margin-bottom: 20px;
 }
 
 #prev{
@@ -37,8 +38,8 @@ button{
 
 
 .select-card{
-	margin-top: 10px;
-	padding: 10px;
+	margin: 10px 50px 0px 50px;
+	padding: 20px;
 }
 
 .text-display-card{
@@ -54,6 +55,7 @@ button{
 	
 }
 .text-display-header h2{
+	font-family: 'Merriweather', sans-serif;
 	/* Dark Blue */
 	/*color: #292E4C;*/
 }
@@ -97,10 +99,10 @@ button{
 	border:none;
 }
 .verse_btn:hover{
-	background-color: var(--hover-green) ;	
+	background-color: var(--hover) ;	
 }
 .verse_btn:active{
-	background-color: var(--hover-green) ;	
+	background-color: var(--hover) ;	
 }
 .indiv_verse{
 	line-height: 2;
@@ -124,16 +126,19 @@ button{
 @media screen and (max-width:800px){
 	/* we account for the margin of the hidden sidebar here */
 	/* see sidebar.css for more details */
+	.select-card{
+		margin: 0;
+	}
 	#verses{
 		margin: 0px 5px 0px 5px;
 		/*margin-left: 20px;
 		margin-right:20px;*/
 	}
 	#prev{
-		margin-left:45px;
+		margin-left:15px;
 	}
 	#next{
-		margin-right:45px;
+		margin-right:15px;
 	}
 
 }

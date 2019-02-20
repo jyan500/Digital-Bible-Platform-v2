@@ -1,11 +1,11 @@
 // SIDENAV
 $(document).ready(function(){
-	// adds active class to the current link 
-    $('a').each(function(){
-        if ($(this).prop('href') == window.location.href) {
-            $(this).addClass('active'); $(this).parents('li').addClass('active');
-        }
-    });
+	// // adds active class to the current link 
+ //    $('a').each(function(){
+ //        if ($(this).prop('href') == window.location.href) {
+ //            $(this).addClass('active'); $(this).parents('li').addClass('active');
+ //        }
+ //    });
 	$('.show-sidebar').click(function(){
 		$('.mobile-sidebar').toggle(300);
 	});

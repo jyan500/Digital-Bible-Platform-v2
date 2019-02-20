@@ -1,14 +1,14 @@
 .sidebar {
 	flex: 0 0 14em;
 	/* dark purple */
-	background-color: var(--dark-purple);
+	background-color: var(--primary);
 	z-index: 1;
 	border-bottom: 5px solid var(--tertiary);
 } 
 
 .mobile-sidebar{
 	display: none;
-	background-color: var(--dark-purple);
+	background-color: var(--primary);
 	z-index: 1;
 	text-align: center;
 }
@@ -48,17 +48,17 @@
 	color: #f1f1f1;
 	text-decoration: none;
 	/* light green */
-	border-left: 5px solid var(--hover-green);
+	border-left: 5px solid var(--hover);
 }
 .sidebar a:hover i {
-	color: var(--hover-green);
+	color: var(--hover);
 	/* adding 5px and setting position relative 
 	to the right shifts the i to the left of where it should be  */
 	right: 5px;
 	position: relative;
 }
 .sidebar a:hover span{
-	color: var(--hover-green);
+	color: var(--hover);
 	/* adding 5px and setting position relative 
 	to the right shifts the span to the left of where it should be  */
 	right: 5px;

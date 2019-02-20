@@ -1,6 +1,5 @@
 .search-bar-section{
-	/* same dark purple as in sidebar.css */
-	background-color: var(--dark-purple);
+	background-color: var(--primary);
 	margin-top: 20px;
 }
 .search-bar{
@@ -22,7 +21,7 @@
 	vertical-align: center;
 	font-size: 2em;
 	/* same light green color */
-	color: var(--hover-green);
+	color: var(--hover);
 }
 .search-bar-submit{
 	margin-bottom: 10px;
@@ -52,7 +51,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.arrow-left{
+/*.arrow-left{
 	margin-left: 50px;
 	font-size: 2em;
 	background: transparent;
@@ -71,7 +70,7 @@
 	outline: none;
 	cursor: pointer;
 	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
-}
+}*/
 .flip-container{
 	flex: 100%;
 	margin: 50px;
@@ -130,7 +129,7 @@
 }
 .memory-verse-button{
 	text-align: center;
-	background-color: var(--dark-purple);
+	background-color: var(--primary);
 	width: 100%;
 	height: 100px;
 	color: white;
@@ -139,6 +138,10 @@
 	outline: none;
 	cursor: pointer;
 	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+
+}
+.memory-verse-button:hover{
+	background-color: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.25));
 }
 .memory-card{
 	/*text-align: center;

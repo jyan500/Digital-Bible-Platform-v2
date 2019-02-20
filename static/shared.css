@@ -10,15 +10,23 @@ body {
 	background-color: var(--background);
 	font-family:"Sans Serif";
 	box-sizing: border-box;
+
+	/* these are unused at the moment */
+
 	--light-pastel-green:#ABE1D9;
 	--light-blue: #5EE1D9;
 	--dark-blue: #292E4C;
+
+	/* *************** */
+
 	--lime-green: #8EE918;
 	--error-red: #FF2B34;
-	--hover-green: #25BBFF;
-	--dark-purple: #044f7a;
-	--primary: #4a26fd;
-	--secondary: #714cfe;
+	--hover: #25BBFF;
+
+	/* dark blue */
+	--primary: #044f7a;
+	/* light blue */
+	--secondary: #4a26fd;
 	--background: #EEEEEE;
 	--tertiary: #EEEEEE;
 	display: flex;
