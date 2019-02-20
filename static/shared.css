@@ -15,12 +15,12 @@ body {
 	--dark-blue: #292E4C;
 	--lime-green: #8EE918;
 	--error-red: #FF2B34;
-	--hover-green: #29E191;
+	--hover-green: #25BBFF;
 	--dark-purple: #044f7a;
 	--primary: #4a26fd;
 	--secondary: #714cfe;
-	--background: #FFFFFF;
-	--tertiary: #FAFAFA;
+	--background: #EEEEEE;
+	--tertiary: #EEEEEE;
 	display: flex;
 	flex-direction: column;
 }

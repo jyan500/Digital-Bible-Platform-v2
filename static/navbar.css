@@ -7,9 +7,10 @@ body, html{
 	width: 100%;
 }
 .hero-image{
-	background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("jesus_feeding_5000.jpg");
-	/*background-position: center;*/
-	height: 40vh;
+	 background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.25)), url("jesus_feeding_5000.jpg"); 
+	/*background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("sermon_on_the_mount_henrik_olrik.jpg");*/
+/*	background-position: center;*/
+	height: 45vh;
 	/*background-repeat: no-repeat;*/
 	background-size: cover;
 	position: relative;

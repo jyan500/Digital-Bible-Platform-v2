@@ -73,7 +73,7 @@
 				{% elif memory_dict %}
 				<div class = "memory-verse-cards">
 					{% for verses in memory_dict %}
-						<div class = "memory-card">
+						<!-- <div class = "memory-card"> -->
 							<form method = 'GET' action = '/saved_memory_verse'>
 								{% if verses['end_verse'] != 0 %}
 									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }}-{{verses['end_verse']}} </button>
@@ -83,11 +83,9 @@
 								<input type = 'hidden' name = 'book' value = "{{verses['book']}}">
 								<input type = 'hidden' name = 'chapter' value = "{{verses['chapter']}}">
 								<input type = 'hidden' name = 'start_verse' value = "{{verses['start_verse']}}">
-								{% if verses['end_verse'] != 0 %}
-									<input type = 'hidden' name = 'end_verse' value = "{{verses['end_verse']}}">
-								{% endif %}
+								<input type = 'hidden' name = 'end_verse' value = "{{verses['end_verse']}}">
 							</form>
-						</div>
+						<!-- </div> -->
 					{% endfor %}
 				</div>
 				{% endif %}

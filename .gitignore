@@ -1,3 +1,5 @@
 *.sql
 *.csv
 *.yaml
+
+unused_images/
