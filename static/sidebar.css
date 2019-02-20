@@ -6,6 +6,24 @@
 	border-bottom: 5px solid var(--tertiary);
 } 
 
+.mobile-sidebar{
+	display: none;
+	background-color: var(--dark-purple);
+	z-index: 1;
+	text-align: center;
+}
+.mobile-sidebar > a{
+	display: block;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	text-decoration: none;
+}
+.mobile-sidebar > a:hover{
+	text-decoration: none;
+}
+
+
 .sidebar-separate{
 	height: 1px;
 	border: 0;
@@ -71,7 +89,6 @@
 	background-color:#484848; 
     height:3px; 
     width:26px; 
-    position:relative; 
     margin:0 auto 5px;
 }
 .close-sidebar{
@@ -81,7 +98,6 @@
 /* Media Queries */
 @media screen and (max-width:800px){
 	.main{
-		margin-left:20px;	
 	}
 	.sidebar {
 		display:none;
@@ -89,9 +105,5 @@
 	.show-sidebar{
 		display:block;	
 		font-size: 2em;
-		margin-left: 40px;
-	}
-	.close-sidebar{
-		display:block;
 	}
 }

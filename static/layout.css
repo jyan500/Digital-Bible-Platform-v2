@@ -125,8 +125,9 @@ button{
 	/* we account for the margin of the hidden sidebar here */
 	/* see sidebar.css for more details */
 	#verses{
-		margin-left: 20px;
-		margin-right:20px;
+		margin: 0px 5px 0px 5px;
+		/*margin-left: 20px;
+		margin-right:20px;*/
 	}
 	#prev{
 		margin-left:45px;

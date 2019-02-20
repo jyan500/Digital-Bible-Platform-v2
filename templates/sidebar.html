@@ -9,10 +9,25 @@
 </head>
 <html>
 	<body>
+		<div class = "hamburger">
+			<button class = "show-sidebar">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+		<div class = "mobile-sidebar">
+			<a href = "/"><span>Home</span> </a>
+			<a href = "/login"><span> Login</span> </a>
+			<a href = "#"><span> Notes</span> </a>
+			<a href = "/bookmarks"><span> Bookmarks</span> </a>
+			<a href = "/memory_verse"><span> Memory Verses </span></a>
+			<a href = "/logout"></i> <span> Logout</span> </a>
+		</div>
 		<div class = "sidebar">
 			<h2 class = "Welcome">
 				<!-- &times is representing X -->
-				Welcome {{ session['username']}} <button class = "close-sidebar"> &times </button></h2>
+				Welcome {{ session['username']}}</h2>
 			<hr class = "sidebar-separate">
 			<a href = "/"><i class = "fa fa-home fa-fw" aria-hidden="true"></i> <span>Home</span> </a>
 			<a href = "/login"><i class = "fas fa-sign-in-alt fa-fw" aria-hidden="true"></i> <span> Login</span> </a>
@@ -23,11 +38,7 @@
 		</div>
 		<!-- form area -->
 		<!-- <div class = "container form_area"> -->
-		<button class = "show-sidebar">
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
+		
 
 	</body>
 </html>
