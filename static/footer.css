@@ -25,5 +25,8 @@
 	padding: 10px;
 	margin-right:10px;
 }
+.social-media .fab:hover{
+	color: var(--hover);
+}
 
 

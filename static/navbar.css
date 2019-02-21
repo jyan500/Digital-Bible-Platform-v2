@@ -7,12 +7,11 @@ body, html{
 	width: 100%;
 }
 .hero-image{
-	 background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.25)), url("jesus_feeding_5000.jpg"); 
-	/*background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("sermon_on_the_mount_henrik_olrik.jpg");*/
-/*	background-position: center;*/
-	height: 45vh;
-	/*background-repeat: no-repeat;*/
+	/* Credit for the image: http://fumcdeming.org/upcoming-events/bible-and-ipod/ */
+	background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bible_ipod_compressed.jpg"); 
+	height: 60vh;
 	background-size: cover;
+	background-position: bottom;
 	position: relative;
 	text-align: center;
 	display: flex;
@@ -20,7 +19,7 @@ body, html{
 	align-items: center;
 }
 .hero-text{
-	border: 1px solid white;
+	border: 2px solid white;
 	padding: 10px;
 	color: white;
 	font-size: 2em;
@@ -46,4 +45,11 @@ body, html{
 }
 .nav a:hover i {
 	text-decoration: none;
+}
+
+/* Media Queries */
+@media screen and (max-width:800px){
+	.hero-image{
+		height: 40vh;
+	}
 }

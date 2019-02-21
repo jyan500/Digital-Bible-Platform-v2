@@ -1,3 +1,6 @@
+body{
+	background-color: var(--gradient-top);
+}
 .sidebar {
 	flex: 0 0 14em;
 	/* dark purple */
@@ -74,6 +77,8 @@
 .sidebar .active{
 	background-color: var(--primary);
 }
+.hamburger{
+}
 .show-sidebar{
 	display: none;
 	border: 0;
@@ -87,7 +92,7 @@
 }
 .show-sidebar > span{
 	display: block;
-	background-color:#484848; 
+	background-color: black; 
     height:3px; 
     width:26px; 
     margin:0 auto 5px;
