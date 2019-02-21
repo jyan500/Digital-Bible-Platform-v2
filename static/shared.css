@@ -21,14 +21,17 @@ body {
 
 	--lime-green: #8EE918;
 	--error-red: #FF2B34;
-	--hover: #25BBFF;
 
+	/* baby blue */
+	--hover: #25BBFF;
 	/* dark blue */
 	--primary: #044f7a;
 	/* light blue */
 	--secondary: #4a26fd;
+
 	--background: #EEEEEE;
-	--tertiary: #EEEEEE;
+	--tertiary: #E0E0E0;
+	--button-hover: #066FAB;
 	display: flex;
 	flex-direction: column;
 }

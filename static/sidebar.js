@@ -20,6 +20,7 @@ $(document).ready(function(){
 		else{
 			console.log("greater than 800px");
 			$('.sidebar').show();
+			$('.mobile-sidebar').hide();
 		}
 	};
 	

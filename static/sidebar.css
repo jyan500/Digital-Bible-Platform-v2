@@ -20,6 +20,7 @@
 	text-decoration: none;
 }
 .mobile-sidebar > a:hover{
+	background-color: var(--button-hover);
 	text-decoration: none;
 }
 

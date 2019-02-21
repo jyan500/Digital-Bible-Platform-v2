@@ -5,7 +5,6 @@
 .search-bar{
 	width: 95%;
 	margin-top: 10px;
-	margin-bottom: 10px;
 	font-size: 1.1em;
 	padding: 10px;
 	border: none;
@@ -25,7 +24,6 @@
 }
 .search-bar-submit{
 	margin-bottom: 10px;
-	margin-top: 15px;
 	margin-right: 15px;
 }
 .search-bar-submit > span{
@@ -77,7 +75,7 @@
 	padding: 30px;
 	text-align: center;
 	/* dark purple*/
-	background-color: #241122;
+	background-color: var(--primary);
 	/* background-color: #29E191; */
 	border-radius: 5px;
 	display: flex;
@@ -137,11 +135,12 @@
 	cursor: pointer;
 	outline: none;
 	cursor: pointer;
+	font-size: 1.2em;
 	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 
 }
 .memory-verse-button:hover{
-	background-color: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.25));
+	background-color: var(--button-hover);
 }
 .memory-card{
 	/*text-align: center;
