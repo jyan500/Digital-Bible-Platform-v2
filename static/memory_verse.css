@@ -33,6 +33,11 @@
 .submit-button{
 	display: inline-block;
 	margin: 10px;
+	padding: 5px 10px 5px 10px;
+	border: 0;
+	color: var(--background);
+	border-radius: 4px;
+	background: var(--hover);
 }
 .save-checkbox{
 	display: inline-block;

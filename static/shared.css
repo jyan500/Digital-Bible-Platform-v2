@@ -80,6 +80,16 @@ body {
 	
 }
 
+.submit-button{
+	display: inline-block;
+	padding: 5px 10px 5px 10px;
+	margin: 0;
+	border: 0;
+	color: var(--background);
+	border-radius: 4px;
+	background: var(--hover);
+}
+
 .success{
 	/* lime green */
 	background-color: var(--lime-green);

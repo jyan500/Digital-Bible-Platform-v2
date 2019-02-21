@@ -88,7 +88,7 @@
 							<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
 							<br>
 						{% endif %}
-						<button type = "submit" class = "btn btn-primary">Submit</button>
+						<button type = "submit" class = "submit-button">Submit</button>
 
 					</form>
 				</div>
@@ -102,22 +102,22 @@
 						</div>
 						<form id = "pagination" method = "GET" action = "/paginate">
 							{% if saveSelectedChapter - 1 > 0 %}
-								<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "btn btn-md">
+								<button id = "prev" name = "chapter" value = "{{ saveSelectedChapter - 1}}" class = "submit-button">
 									<i class = "fas fa-arrow-left"></i> Previous 
 								</button>
 							{% else %}
-								<button disabled id = "prev" class = "btn btn-md"> <i class = "fas fa-arrow-left"></i> Previous </button>
+								<button disabled id = "prev" class = "submit-button"> <i class = "fas fa-arrow-left"></i> Previous </button>
 
 
 							{% endif %}
 
 							{% if saveSelectedChapter + 1 <= chapterOptions|length %}
-								<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "btn btn-md"> 
+								<button id = "next" name = "chapter" value = "{{ saveSelectedChapter + 1}}" class = "submit-button"> 
 									Next
 									<i class = "fas fa-arrow-right fa-fw"></i>
 								</button>
 							{% else %}
-								<button disabled id = "next" class = "btn btn-md">  Next  
+								<button disabled id = "next" class = "submit-button">  Next  
 									<i class = "fas fa-arrow-right fa-fw"></i>
 								</button>
 
