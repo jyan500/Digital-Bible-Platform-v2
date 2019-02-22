@@ -3,6 +3,8 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 import json
 import sys
 
+
+#### global variables ####
 mysql = MySQL()
 
 def isUserLoggedIn():

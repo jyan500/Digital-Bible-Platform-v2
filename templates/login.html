@@ -25,14 +25,8 @@
 			{% endif %}
 		{% endwith %}
 		<div class = "login-main">
-			
-			<!-- <header class = "header shadow">
-				<h1>
-					Welcome to Digital Bible Platform, Please Login.
-				</h1>
-			</header> -->
 			<div class = "login-card">
-				<h2> Welcome to Digital Bible Platform, Please Login </h2>
+				<h2> Welcome to {{ company() }}, Please Login </h2>
 				<form action = "/login" method = "POST">
 					<div class = "form-group">
 						<label class = "form-label"  for = "Username">Username: </label>

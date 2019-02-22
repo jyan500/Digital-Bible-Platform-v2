@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from flask_mysqldb import MySQL
 import sys
 import json
+import datetime
 
 ## yaml reads in serialized information as a key-value pair
 import yaml
@@ -27,6 +28,7 @@ from bookmarks import bookmarks
 
 ## import our memory verse page
 from memory_verse_controller import memory_verse_controller
+
 
 ## configurations
 config = yaml.load(open('config.yaml'))
@@ -56,6 +58,7 @@ app.register_blueprint(bookmarks)
 
 ## Register the memory verse controller
 app.register_blueprint(memory_verse_controller)
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -147,6 +150,16 @@ def paginate():
 def not_found(error):
 	return render_template("404.html")
 
+@app.context_processor
+def utility_processor():
+
+    def date_now(format="%d.m.%Y %H:%M:%S"):
+        return datetime.datetime.now().strftime(format)
+
+    def name():
+        return "BibleJourney"
+
+    return dict(date_now=date_now, company=name)
 
 if __name__ == "__main__":
 	app.run(debug=True, host='0.0.0.0', port=5000)
