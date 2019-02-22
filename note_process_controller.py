@@ -18,6 +18,10 @@ note_process_controller = Blueprint('note_process_controller', __name__)
 
 @note_process_controller.route("/note_insert", methods = ["POST"])
 def insert():
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+
 	if (request.method == "POST"):
 		## create notes table
 		## take the text from the popover
@@ -54,6 +58,10 @@ def insert():
 
 @note_process_controller.route("/note_show", methods=["GET"])
 def show():
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+
 	if (request.method == "GET"):
 		## show Notes 
 		## take the text from the popover
@@ -87,6 +95,10 @@ def show():
 
 @note_process_controller.route("/note_update", methods=["POST"])
 def update():
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+		
 	if (request.method == "POST"):
 		## create notes table
 		## take the text from the popover

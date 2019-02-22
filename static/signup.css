@@ -4,7 +4,7 @@ body{
 	background-size: cover;
 	background-position: bottom center;
 }
-.login-main{
+.signup-main{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,32 +12,24 @@ body{
 .form-label{
 	color: var(--hover); 
 }
-.login-card{
+.signup-card{
 	margin-top: 20px;
 	padding: 40px;
 	background-color: var(--primary);
 	border-radius: 10px;
 }
-.login-card > h2{
+.signup-card > h2{
 	font-family: 'Merriweather', sans-serif;
 	text-align: center;
 	color: var(--hover);
 }
-.login-card > h3{
-	font-family: 'Merriweather', sans-serif;
-	color: var(--hover);
-}
-.link:hover{
-	text-decoration: none;
-	color: var(--background);
+
+.signup-button{
+	margin-left: 15px;
 }
 
 @media only screen and (max-width: 800px){
-	.login-card{
+	.signup-card{
 		margin: 20px 20px 20px 20px;
 	}	
 }
-
-
-
-

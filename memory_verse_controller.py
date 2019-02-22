@@ -18,6 +18,9 @@ memory_verse_controller = Blueprint('memory_verse_controller', __name__)
 @memory_verse_controller.route("/memory_verse", methods = ["GET", "POST"])
 def memory_verse_page():
 
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
 	## establish connection with mysql
 	cur = mysql.connection.cursor()	
 	user_id = extensions.getUserID(cur, str(session['username']))
@@ -91,6 +94,10 @@ def memory_verse_page():
 @memory_verse_controller.route("/saved_memory_verse", methods = ["GET"])
 def get_existing_memory_verse():
 
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+		
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
 

@@ -4,56 +4,44 @@
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
 	<title> Signup </title>
-	<!-- Note: css files go in the static folder in the root folder -->
-	<link rel="stylesheet" href="/static/login.css">
-	<!-- Note: css files go in the static folder in the root folder -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!-- import jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Latest compiled bootstrap JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-
-	<script src = "/static/layout.js"></script>
+	{% include 'external_includes.html' %}
+	<link rel="stylesheet" href="/static/signup.css">
+	<link rel = "stylesheet" href = "/static/shared.css">	
 </head>
 <html>
 	<body>
-		<div class = "container">
-			{% with messages = get_flashed_messages(with_categories=true) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						{% if category == "Error" %}
-							<div class="alert alert-danger text-center">
-								<strong> Error! </strong>{{message}}
-							</div>
-						{% endif %}
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-			<div class = "row">
-				<div class = "col-sm-4 col-sm-offset-4 card">
-					<h2 class = "header text-center">
-						Welcome, please enter the following information to make a user account 	
-					</h2>
-					<form action = "/signup" method = "POST">
-						<div class = "form-group">
-							<label class = "form-label" for = "Username">Username: </label>
-							<input type = "username" class = "form-control" name = "username" id = "username" placeholder = "Username">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "Error" %}
+						<div class="alert alert-danger text-center">
+							<strong> Error! </strong>{{message}}
 						</div>
-						<div class = "form-group">
-							<label class = "form-label" for = "password">Password: </label>
-							<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
-						</div>
-						<div class = "form-group">
-							<label class = "form-label" for = "password_confirmation"> Please Re-type Password: </label>
-							<input type = "password" class = "form-control" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
-						</div>
-						<div class = "row">
-							<button type="submit" class = "signup-button btn btn-default">Sign Up</button>	
-						</div>	
-					</form>
-				</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<div class = "signup-main">
+			<div class = "signup-card">
+				<h2>
+					Welcome, please enter the following information to make a user account 	
+				</h2>
+				<form action = "/signup" method = "POST">
+					<div class = "form-group">
+						<label class = "form-label" for = "Username">Username: </label>
+						<input type = "username" class = "form-control" name = "username" id = "username" placeholder = "Username">
+					</div>
+					<div class = "form-group">
+						<label class = "form-label" for = "password">Password: </label>
+						<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
+					</div>
+					<div class = "form-group">
+						<label class = "form-label" for = "password_confirmation"> Please Re-type Password: </label>
+						<input type = "password" class = "form-control" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
+					</div>
+					<button type="submit" class = "submit-button">Sign Up</button>	
+				</form>
 			</div>
-		</div>	
+		</div>
 	</body>
 </html>

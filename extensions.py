@@ -5,6 +5,10 @@ import sys
 
 mysql = MySQL()
 
+def isUserLoggedIn():
+	## users should be prompted to login before going to the index page 
+	return session.get('username') != None
+
 def getUserID(cur: 'mysql', username: str):
 	resultValue = cur.execute('SELECT uid FROM users WHERE username = %s', (username,))
 	if (resultValue > 0):

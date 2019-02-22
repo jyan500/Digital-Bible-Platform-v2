@@ -11,45 +11,41 @@
 </head>
 <html>
 	<body>
-		{% include('navbar.html') %}
-		<div class = 'main'>
-			{% include('sidebar.html') %}
-			<div class = "wrapper">
-				{% with messages = get_flashed_messages(with_categories=true) %}
-					{% if messages %}
-						{% for category, message in messages %}
-							{% if category == "Error" %}
-								<div class="alert-panel error shadow">
-							{% else %}
-								<div class = "alert-panel success shadow">
-							{% endif %}
-								<strong> {{ category }}! </strong>{{message}}
-							</div>
-						{% endfor %}
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					{% if category == "Error" %}
+						<div class="alert-panel error shadow">
+					{% else %}
+						<div class = "alert-panel success shadow">
 					{% endif %}
-				{% endwith %}
-				<!-- <header class = "header shadow">
-					<h1>
-						Welcome to Digital Bible Platform, Please Login.
-					</h1>
-				</header> -->
-				<div class = "login-card">
-					<form action = "/login" method = "POST">
-						<div class = "form-group">
-							<label class = "form-label"  for = "Username">Username: </label>
-							<input type = "username" class = "form-control"  name = "username" id = "username" placeholder = "Username">
-						</div>
-						<div class = "form-group">
-							<label class = "form-label"  for = "password">Password: </label>
-							<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
-						</div>
-						<div class = "row">
-							<button type="submit" class = "login-button btn btn-primary">Login</button>
-						</div>	
-					</form>
-				</div>
+						<strong> {{ category }}! </strong>{{message}}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<div class = "login-main">
+			
+			<!-- <header class = "header shadow">
+				<h1>
+					Welcome to Digital Bible Platform, Please Login.
+				</h1>
+			</header> -->
+			<div class = "login-card">
+				<h2> Welcome to Digital Bible Platform, Please Login </h2>
+				<form action = "/login" method = "POST">
+					<div class = "form-group">
+						<label class = "form-label"  for = "Username">Username: </label>
+						<input type = "username" class = "form-control"  name = "username" id = "username" placeholder = "Username">
+					</div>
+					<div class = "form-group">
+						<label class = "form-label"  for = "password">Password: </label>
+						<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
+					</div>
+					<button type="submit" class = "submit-button">Login</button>
+					<a class = "submit-button link" href = "/signup">Signup</a>
+				</form>
 			</div>
 		</div>
-		{% include 'footer.html' %}
 	</body>
 </html>

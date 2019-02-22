@@ -60,14 +60,12 @@ app.register_blueprint(memory_verse_controller)
 @app.route("/", methods=['GET', 'POST'])
 def index():
 	## users should be prompted to login before going to the index page 
-	if session.get('username') == None:
-		print("should redirect to login", file = sys.stderr)
+	if (not extensions.isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
 
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
-
 		## resultValue is an integer 
 		resultValue = cur.execute("SELECT book from esv group by book order by id")
 		if (resultValue > 0):

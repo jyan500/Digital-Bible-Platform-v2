@@ -11,6 +11,9 @@ bookmarks = Blueprint('bookmarks', __name__)
 
 @bookmarks.route("/bookmarks", methods=['GET', 'POST'])
 def bookmarks_page():
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
 	## get the user's bookmarks
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
