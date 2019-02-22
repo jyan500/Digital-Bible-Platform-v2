@@ -1,5 +1,4 @@
 .search-bar-section{
-	background-color: var(--primary);
 	margin-top: 20px;
 }
 .search-bar{
@@ -11,6 +10,8 @@
 	outline: none;
 	position: relative;
 	left: 30px;
+}
+.search-bar > input:focus{
 }
 .search-icon{
 	position: absolute;
@@ -30,14 +31,10 @@
 
 	color: white;
 }
-.submit-button{
-	display: inline-block;
-	margin: 10px;
-	padding: 5px 10px 5px 10px;
-	border: 0;
-	color: var(--background);
-	border-radius: 4px;
-	background: var(--hover);
+
+.search-sbt{
+	margin-top:10px;
+	margin-left: 20px;
 }
 .save-checkbox{
 	display: inline-block;
@@ -179,5 +176,9 @@
 		display: block;
 		margin: 10px;
 		padding: 10px;
+	}
+	.search-sbt{
+		margin-top:10px;
+		margin-left:10px;
 	}
 }

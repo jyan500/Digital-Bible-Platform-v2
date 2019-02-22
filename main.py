@@ -63,6 +63,7 @@ def index():
 	if (not extensions.isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
+	user_id = extensions.getUserID(cur, session.get('username'))
 
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
@@ -79,14 +80,16 @@ def index():
 	if (request.method == "POST"):
 		## if user has selected a book..
 		## if user has selected a book and chapter, 
+		isBookmark = True
 		if (request.form.get('booklist') != None and request.form.get('chapterlist') != None):
+
 			selectedBook = request.form['booklist']
 			## the selectedChapter needs to be a string for the resultvalue, but passed in as an integer to the form
 			selectedChapter = request.form['chapterlist']
+			is_bookmark = extensions.isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
 			if (request.form.get('bookmark')):
 				ifBookmark = request.form['bookmark']
 				if (ifBookmark == '1'):
-					user_id = extensions.getUserID(cur, str(session['username']))
 					extensions.handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
 
 			print(selectedBook, file = sys.stderr)
@@ -99,7 +102,7 @@ def index():
 				print(selectedChapter, file = sys.stderr)
 				integerChapter = int(selectedChapter)
 				## render the template with the saved attributes and with the verses
-				return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, saveSelectedChapter = integerChapter, selectedVerses = selectedVerses) 
+				return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 	## for the AJAX request to get the chapters within each book			
 	if request.method == "GET":
@@ -123,8 +126,10 @@ def index():
 def paginate():
 	if (request.method == "GET"):
 		cur = mysql.connection.cursor()
+		user_id = extensions.getUserID(cur, session.get('username'))
 		selectedBook = request.args.get('selectedBook')
 		selectedChapter = request.args.get('chapter')
+		is_bookmark = extensions.isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
 		print("selectedBook: " + selectedBook, file = sys.stderr)
 		print("selectedChapter: " + str(selectedChapter), file = sys.stderr)
 		resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
@@ -134,7 +139,7 @@ def paginate():
 			integerChapter = int(selectedChapter)
 			## render the template with the saved attributes and with the verses
 			return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, 
-				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses) 
+				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 
 @app.errorhandler(404)

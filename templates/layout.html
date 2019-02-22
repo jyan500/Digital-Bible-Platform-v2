@@ -83,10 +83,13 @@
 							{% endif %}
 						</select>
 						<br>
-						{% if saveSelectedChapter and saveSelectedBook %}
+						{% if not is_bookmark %}
 							<input class = "form-check-input" type="checkbox" value = '1' name = 'bookmark' id = "bookmark">
 							<label class = "form-check-label" for = "bookmark"> Bookmark this Chapter </label>	
 							<br>
+						{% elif is_bookmark %}
+							<span> You've already bookmarked this chapter! </span>
+							<br><br>
 						{% endif %}
 						<button type = "submit" class = "submit-button">Submit</button>
 

@@ -32,13 +32,13 @@
 					{% endif %}
 				{% endwith %}
 				<form name = "memory-verse-form" method = "POST" action = '/memory_verse'>
-					<div class = "search-bar-section shadow">
+					<div class = "search-bar-section">
 						<div class = "search-bar">
 							<span class = "search-icon"><i class = "fa fa-search fa-fw"></i></span>
 							<input value = "{{ saved_verse }}" name = "verse-input" type = "text" class = "search-bar" placeholder = "Search for a specific passage...">
 						</div>
 						<div class = "search-bar-submit">
-							<input type = 'submit' class = 'submit-button'></input>
+							<input type = 'submit' class = 'submit-button search-sbt' ></input>
 							{% if selected_verses and saved_verse %}
 								{% if not is_bookmark %}
 									<div class = "save-checkbox">

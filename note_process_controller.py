@@ -6,6 +6,7 @@ from datetime import datetime
 import bleach
 import sys
 import json
+import extensions
 
 
 ## yaml reads in serialized information as a key-value pair

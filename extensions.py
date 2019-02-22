@@ -28,4 +28,12 @@ def handleBookmarks(cur: 'mysql', user_id: int, book: str, chapter: int, start_v
 		cur.execute(query, (str(user_id), book, str(chapter)))
 	mysql.connection.commit()
 
+def isExistingBookmark(cur: 'mysql', user_id: int, book: str, chapter: int, start_verse: int = 0, end_verse: int = 0, is_memory_verse: bool = False):
+	query = 'SELECT count(*) as cnt FROM bookmarks WHERE user_id = %s AND book = %s AND chapter = %s AND start_verse = %s AND end_verse = %s AND is_memory_verse = %s'
+	resultValue = cur.execute(query, (user_id, book, chapter, start_verse, end_verse, is_memory_verse))
+	if (resultValue > 0):
+		count = cur.fetchall()
+		print('count: ', count[0][0], file = sys.stderr)
+		return count[0][0] == 1
+	return False
 
