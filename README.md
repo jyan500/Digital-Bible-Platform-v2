@@ -1,4 +1,4 @@
-# Digital-Bible-Platform-v2
+# BibleJourney
 <strong> An Online Bible Notetaking Web App </strong>
 <br>
 NOTE: Updated the previous Digital Bible Platform by moving over to Flask from PHP, and from W3 CSS to Bootstrap.
@@ -8,4 +8,10 @@ NOTE: Updated the previous Digital Bible Platform by moving over to Flask from P
 	<li> Bootstrap </li>
 	<li> MySQLdb  </li>
 	<li> Flask    </li>
+</ul>
+
+## Image Credits ##
+<ul>
+	<li> Hero Image: http://fumcdeming.org/upcoming-events/bible-and-ipod/ </li>
+	<li> Icon: https://www.freeiconspng.com/img/7860 </li>
 </ul>
