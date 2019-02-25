@@ -6,7 +6,7 @@ body{
 	/* dark purple */
 	background-color: var(--primary);
 	z-index: 1;
-	border-bottom: 5px solid var(--tertiary);
+	border-bottom: 5px solid var(--border-color);
 } 
 
 .mobile-sidebar{
@@ -31,9 +31,9 @@ body{
 .sidebar-separate{
 	height: 1px;
 	border: 0;
-	box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+	/*box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);*/
 	padding-top:5px;
-	background-color: var(--tertiary);
+	background-color: white;
 }
 .sidebar h2{
 	color: #FFF;
@@ -78,6 +78,7 @@ body{
 	background-color: var(--primary);
 }
 .hamburger{
+	display: none;
 }
 .show-sidebar{
 	display: none;
@@ -108,8 +109,19 @@ body{
 	.sidebar {
 		display:none;
 	}
+	.hamburger{
+		display: flex;
+	}
 	.show-sidebar{
 		display:block;	
 		font-size: 2em;
+	}
+	.welcome{
+		flex: 1;
+		text-align: center;
+		margin: 0px 40px 15px 0px;
+		font-family: 'Merriweather', sans-serif;
+	}
+	.welcome > h2{
 	}
 }

@@ -31,6 +31,7 @@ body {
 
 	--background: #EEEEEE;
 	--tertiary: #E0E0E0;
+	--border-color: #7e7e7e;
 	--button-hover: #066FAB;
 	--gradient-top: #dcebf1;
 	display: flex;
