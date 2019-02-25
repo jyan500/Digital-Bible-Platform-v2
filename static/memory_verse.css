@@ -92,7 +92,7 @@
 .front{
 	padding: 30px;
 	/* pastel green */
-	background-color: #29E191;
+	background-color: var(--background);
 	height: 100%;
 	width: 100%;
 	cursor: pointer;

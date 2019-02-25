@@ -87,7 +87,12 @@ body {
 	border: 0;
 	color: var(--background);
 	border-radius: 4px;
-	background: var(--hover);
+	background: var(--primary);
+	outline: none;
+}
+
+.submit-button:hover{
+	background: var(--button-hover);
 }
 
 .success{

@@ -79,6 +79,7 @@ def memory_verse_page():
 						flash("Oops something went wrong! Please Try Again", 'Error')
 						return redirect(url_for('memory_verse_controller.memory_verse_page'))
 				is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
+
 				verseBody = getVerseBody(cur, book, chapter, start_verse, end_verse)	
 				if (verseBody):
 					return render_template('memory_verse.html', saved_verse = verse, selected_verses = verseBody, is_bookmark = is_bookmark)
@@ -107,7 +108,7 @@ def get_existing_memory_verse():
 	end_verse = request.args.get('end_verse')
 
 	verse_body = getVerseBody(cur, book, int(chapter), int(start_verse), int(end_verse))
-	is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse)
+	is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
 	saved_verse = ''
 	print('end_verse in saved_memory_verse: ' , end_verse, file = sys.stderr)	
 	if (end_verse == '0'):
