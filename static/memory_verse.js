@@ -13,7 +13,6 @@ $(document).ready(function(){
 			$(".verse-number").css('opacity', 0);
 			$(".individual-verse").css('opacity', 0);
 		}
-		console.log('hello');
 	});
 
 

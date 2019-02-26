@@ -1,10 +1,46 @@
 .bookmarks-list{
 	margin-top:30px;
 }
-.bookmark{
-	margin-top:10px;
+.bookmarks-list > form{
+	display: inline-block;
+	margin:10px;
+	padding: 10px;
+	width: 30%;
 }
 
+.bookmark{
+	width: 100%;
+	height: 100px;
+	font-size: 1.2em;
+	border: 0;
+	background-color: var(--primary);
+	color: white;
+	outline: none;
+	border-radius: 10px;
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+	position: relative;
+}
+.delete-bookmark{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.8em;
+	margin-right: 10px;
+}
+.delete-bookmark:hover{
+	color: var(--hover);
+}
+.bookmark:hover{
+	background-color: var(--button-hover);
+}
 .bookmark i{
 	margin-right:15px;
+}
+
+/* Media Queries */
+@media screen and (max-width:800px){
+	.bookmarks-list > form{
+		display: block;
+		width: 95%;
+	}
 }

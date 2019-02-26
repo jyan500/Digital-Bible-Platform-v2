@@ -102,7 +102,7 @@
 	width: 100%;
 	padding: 30px;
 	/* light blue */
-	background: #5EE1D9;
+	background-color: var(--gradient-top);
 }
 .individual-verse{
 	opacity: 0;
@@ -135,8 +135,8 @@
 	outline: none;
 	cursor: pointer;
 	font-size: 1.2em;
+	border-radius: 15px;
 	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
-
 }
 .memory-verse-button:hover{
 	background-color: var(--button-hover);
@@ -163,6 +163,7 @@
 	.search-bar{
 		left: 0;
 		font-size: 1em;
+		width: 100%;
 	}
 	.memory-card{
 		display: block;
@@ -177,5 +178,9 @@
 	.search-sbt{
 		margin-top:10px;
 		margin-left:10px;
+	}
+	.flip-container {
+		margin: 0;
+		padding: 20px;
 	}
 }
