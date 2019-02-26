@@ -10,7 +10,6 @@
 	<link rel = "stylesheet" href = "/static/shared.css">
 	<link rel = "stylesheet" href = "/static/bookmarks.css">
 	<script type = "text/javascript" src = "/static/bookmarks.js"></script>
-	
 
 </head>
 <html>
@@ -23,10 +22,10 @@
 				<h2> Bookmarks </h2>
 				<div class = "bookmarks-list">
 					{% for bookmark in bookmark_list %}
-						<form id = 'bookmarks' method = "GET" action = "/paginate">
-							<button class = "bookmark"><i class = "fas fa-bookmark fa-fw"></i>{{bookmark.book}} {{bookmark.chapter}}<span class = "delete-bookmark"> &times;</span></button>
-							<input type="hidden" name = "selectedBook" value ="{{bookmark.book}}">
-							<input type = "hidden" name = "chapter" value = "{{bookmark.chapter}}">
+						<form id = 'bookmarks_{{bookmark.bookmark_id}}' method = "GET" action = "/paginate">
+							<button class = "bookmark"><i class = "fas fa-bookmark fa-fw"></i>{{bookmark.book}} {{bookmark.chapter}}<span id = '{{bookmark.bookmark_id}}' class = "delete-bookmark"> &times;</span></button>
+							<input type="hidden" id = "{{bookmark.book}}" name = "selectedBook" value ="{{bookmark.book}}">
+							<input type = "hidden" id = "{{bookmark.chapter}}" name = "chapter" value = "{{bookmark.chapter}}">
 						</form>
 					{% endfor %}
 				</div>

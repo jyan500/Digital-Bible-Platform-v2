@@ -3,7 +3,7 @@ from flask import Blueprint
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
-
+import json 
 import extensions
 from extensions import mysql 
 
@@ -14,11 +14,17 @@ def bookmarks_page():
 	## users should be prompted to login before going to the index page 
 	if (not extensions.isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
-	## get the user's bookmarks
+
+
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
 	bookmarks_list = getUserBookMarks(cur, user_id)
-	return render_template('bookmarks.html', bookmark_list = bookmarks_list)
+
+	if request.method == 'GET':
+		## get the user's bookmarks
+		return render_template('bookmarks.html', bookmark_list = bookmarks_list)
+	elif request.method == 'POST':
+		return json.dumps({'finished': 1})
 
 def getUserBookMarks(cur, user_id: int):
 	result = cur.execute("SELECT * FROM bookmarks where user_id = %s AND is_memory_verse != 1", (str(user_id), ))
@@ -33,5 +39,8 @@ def getUserBookMarks(cur, user_id: int):
 			bookmarks_dict['chapter'] = bookmarks_tuple[i][3]
 			bookmarks_dict_list.append(bookmarks_dict)
 	return bookmarks_dict_list
+
+def deleteUserBookmark(cur, user_id, bookmark_id):
+	pass
 
 		
