@@ -83,7 +83,7 @@ def index():
 	if (request.method == "POST"):
 		## if user has selected a book..
 		## if user has selected a book and chapter, 
-		isBookmark = True
+		is_bookmark = False
 		if (request.form.get('booklist') != None and request.form.get('chapterlist') != None):
 
 			selectedBook = request.form['booklist']
@@ -94,6 +94,8 @@ def index():
 				ifBookmark = request.form['bookmark']
 				if (ifBookmark == '1'):
 					extensions.handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
+					flash("Bookmarked Successfully!", "Success")
+					is_bookmark = True 
 
 			print(selectedBook, file = sys.stderr)
 

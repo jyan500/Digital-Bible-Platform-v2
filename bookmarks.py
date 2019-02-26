@@ -17,7 +17,7 @@ def bookmarks_page():
 	## get the user's bookmarks
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
-	bookmarks_list = getUserBookMarks(cur, user_id )
+	bookmarks_list = getUserBookMarks(cur, user_id)
 	return render_template('bookmarks.html', bookmark_list = bookmarks_list)
 
 def getUserBookMarks(cur, user_id: int):
