@@ -16,7 +16,12 @@ $(document).ready(function(){
 		$('.submit-modal').attr('action', path);
 		$('.submit-modal').submit();
 	});
-	$('.cancel-modal').click(function(){
+	$('.cancel-modal').click(function(e){
+		e.preventDefault();
+		$('.modal').hide();
+	});
+	$('.close-modal').click(function(e){
+		e.preventDefault();
 		$('.modal').hide();
 	});
 });
