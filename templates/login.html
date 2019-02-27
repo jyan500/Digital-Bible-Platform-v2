@@ -15,9 +15,9 @@
 			{% if messages %}
 				{% for category, message in messages %}
 					{% if category == "Error" %}
-						<div class="alert-panel error shadow">
+						<div class="alert-panel error shadow fade-in">
 					{% else %}
-						<div class = "alert-panel success shadow">
+						<div class = "alert-panel success shadow fade-in">
 					{% endif %}
 						<strong> {{ category }}! </strong>{{message}}
 					</div>

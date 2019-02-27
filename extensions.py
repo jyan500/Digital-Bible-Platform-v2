@@ -39,3 +39,54 @@ def isExistingBookmark(cur: 'mysql', user_id: int, book: str, chapter: int, star
 		return count[0][0] == 1
 	return False
 
+## get all chapters for one book 
+def getAllChaptersBook(cur: 'mysql', book: str):
+	## get the last chapter
+	query = 'SELECT chapter FROM esv WHERE book = %s GROUP BY chapter'
+	result_value = cur.execute(query, (book,))
+	if (result_value > 0):
+		listForJson = []
+		for tup in cur.fetchall():
+			## append all the chapter names to the list
+			listForJson.append(tup[0])
+		return listForJson
+		# last_chapter = cur.fetchall()[0][0]
+		# return [i for i in range(1, last_chapter+1)]
+
+## get all books in the bible
+def getAllBooks(cur:'mysql'):
+	query = 'SELECT book FROM esv GROUP BY book ORDER BY id'
+	result_value = cur.execute(query)
+	if (result_value > 0):
+		results_tuple = cur.fetchall()
+		return results_tuple
+		# return [results_tuple[i] for i in range(len(results_tuple))]
+
+## get verse body
+def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, end_verse: int = 0):
+	rangeQuery = ''
+	query = 'SELECT ESV, verse, id from esv WHERE book = %s AND chapter = %s'
+	param_list = [book, chapter]
+	assoc = []
+	if (start_verse != 0 and end_verse != 0):
+		range_query = ' AND verse BETWEEN %s AND %s'
+		param_list.append(start_verse)
+		param_list.append(end_verse)
+	elif (start_verse != 0):
+		range_query = ' AND verse = %s'
+		param_list.append(start_verse)
+
+	if (range_query != ''):
+		query += range_query
+
+	resultValue = cur.execute(query, tuple(param_list))
+	if (resultValue > 0):
+		selectedVerse = cur.fetchall()
+		print(selectedVerse, file = sys.stderr)
+		for i in range(len(selectedVerse)):
+			verses_dict = dict()
+			verses_dict['body'] = selectedVerse[i][0]
+			verses_dict['verse_num'] = selectedVerse[i][1]
+			verses_dict['verse_id'] = selectedVerse[i][2]
+			assoc.append(verses_dict)
+	return assoc 

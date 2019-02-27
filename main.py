@@ -143,7 +143,11 @@ def paginate():
 			print(selectedChapter, file = sys.stderr)
 			integerChapter = int(selectedChapter)
 			## render the template with the saved attributes and with the verses
-			return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, 
+			if (session.get('booklistresult') == None):
+				session['booklistresult'] = extensions.getAllBooks(cur)
+			if (session.get('chapterlistresult')):
+				session['chapterlistresult'] = extensions.getAllChaptersBook(cur, selectedBook)
+			return render_template("layout.html", bookOptions = session['booklistresult'] , chapterOptions =  session['chapterlistresult'], saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 

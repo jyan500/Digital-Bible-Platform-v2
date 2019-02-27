@@ -80,7 +80,7 @@ def memory_verse_page():
 						return redirect(url_for('memory_verse_controller.memory_verse_page'))
 				is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
 
-				verseBody = getVerseBody(cur, book, chapter, start_verse, end_verse)	
+				verseBody = extensions.getVerseBody(cur, book, chapter, start_verse, end_verse)	
 				if (verseBody):
 					return render_template('memory_verse.html', saved_verse = verse, selected_verses = verseBody, is_bookmark = is_bookmark)
 				else:
@@ -107,7 +107,7 @@ def get_existing_memory_verse():
 	start_verse = request.args.get('start_verse')
 	end_verse = request.args.get('end_verse')
 	print('start_verse: ', start_verse, 'end_verse: ' , end_verse, file =sys.stderr)
-	verse_body = getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
+	verse_body = extensions.getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
 	is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
 	saved_verse = ''
 	print('end_verse in saved_memory_verse: ' , end_verse, file = sys.stderr)	
@@ -162,33 +162,7 @@ def getSavedMemoryVerses(cur: 'mysql', user_id: int ):
 	print(assoc, file = sys.stderr)
 	return assoc
 
-def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, end_verse: int = 0):
-	rangeQuery = ''
-	query = 'SELECT ESV, verse, id from esv WHERE book = %s AND chapter = %s'
-	param_list = [book, chapter]
-	assoc = []
-	if (start_verse != 0 and end_verse != 0):
-		range_query = ' AND verse BETWEEN %s AND %s'
-		param_list.append(start_verse)
-		param_list.append(end_verse)
-	elif (start_verse != 0):
-		range_query = ' AND verse = %s'
-		param_list.append(start_verse)
 
-	if (range_query != ''):
-		query += range_query
-
-	resultValue = cur.execute(query, tuple(param_list))
-	if (resultValue > 0):
-		selectedVerse = cur.fetchall()
-		print(selectedVerse, file = sys.stderr)
-		for i in range(len(selectedVerse)):
-			verses_dict = dict()
-			verses_dict['body'] = selectedVerse[i][0]
-			verses_dict['verse_num'] = selectedVerse[i][1]
-			verses_dict['verse_id'] = selectedVerse[i][2]
-			assoc.append(verses_dict)
-	return assoc 
 
 
 
