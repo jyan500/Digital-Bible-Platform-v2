@@ -10,7 +10,7 @@ $(document).ready(function(){
 			path = '/bookmarks_post';
 		}	
 		else if ($('.id-to-submit').hasClass('modal-memory-verse')){
-			path = '/memory_verse';
+			path = '/memory_verse_post';
 		}
 		console.log("clicked on modal-bookmark");
 		$('.submit-modal').attr('action', path);

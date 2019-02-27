@@ -14,6 +14,13 @@ $(document).ready(function(){
 			$(".individual-verse").css('opacity', 0);
 		}
 	});
-
+	// when user clicks on span, get the id of the span
+	$(".delete-verse").click(function(e){
+		e.preventDefault();
+		let id = $(this).attr('id');
+		$('.modal').show();
+		$('.id-to-submit').val(id);
+		$('.id-to-submit').addClass('modal-memory-verse');
+	});
 
 });

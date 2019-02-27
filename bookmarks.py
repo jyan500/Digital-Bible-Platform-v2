@@ -29,11 +29,10 @@ def deleteUserBookmark():
 
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
-	bookmarks_list = getUserBookMarks(cur, user_id)
 
 	if request.method == 'POST':
 		bookmark_id = request.form.get('id-to-submit')
-		if (bookmark_id != None):
+		if (bookmark_id != None and bookmark_id.isdigit()):
 			print('bookmark_id: ' , bookmark_id, file =sys.stderr)
 			query = "DELETE FROM bookmarks WHERE bookmarks.user_id = %s AND bookmarks.id = %s"
 			result_value = cur.execute(query, (user_id, bookmark_id))

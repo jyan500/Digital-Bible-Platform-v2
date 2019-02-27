@@ -14,6 +14,7 @@
 </head>
 <html>
 	<body>
+		{% include 'modal.html' %}
 		{% include 'navbar.html' %}
 		<div class = "main">
 			{% include 'sidebar.html' %}
@@ -77,9 +78,9 @@
 						<!-- <div class = "memory-card"> -->
 							<form method = 'GET' action = '/saved_memory_verse'>
 								{% if verses['end_verse'] != 0 %}
-									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }}-{{verses['end_verse']}} </button>
+									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }}-{{verses['end_verse']}}<span id = "{{verses['id']}}" class = "delete-verse"> &times;</span></button>
 								{% else %}
-									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }} </button>
+									<button type = "submit" class = "memory-verse-button"> {{ verses['book'] }} {{ verses['chapter']}}:{{ verses['start_verse'] }} <span id = "{{verses['id']}}" class = "delete-verse"> &times;</span></button>
 								{% endif %}
 								<input type = 'hidden' id = "{{verses['book']}}"" name = 'book' value = "{{verses['book']}}">
 								<input type = 'hidden' id = "{{verses['chapter']}}" name = 'chapter' value = "{{verses['chapter']}}">

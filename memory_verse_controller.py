@@ -119,7 +119,28 @@ def get_existing_memory_verse():
 	print('saved_verse: ' , saved_verse, file = sys.stderr)
 	return render_template('memory_verse.html', saved_verse = saved_verse, selected_verses = verse_body, is_bookmark=is_bookmark)
 		
+@memory_verse_controller.route("/memory_verse_post", methods = ["POST"])
+def memoryVerseDelete():
+	## users should be prompted to login before going to the index page 
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
 
+	cur = mysql.connection.cursor()
+	user_id = extensions.getUserID(cur, str(session['username']))
+
+	if (request.method == "POST"):
+		memory_verse_id = request.form.get('id-to-submit')
+		print("memory_verse_id: ", memory_verse_id, file = sys.stderr)
+		if (memory_verse_id != None and memory_verse_id.isdigit()):
+			query = "DELETE FROM bookmarks WHERE bookmarks.id = %s AND bookmarks.user_id = %s"	
+			print('delete memory_verse query: ' , query, file = sys.stderr)
+			result_value = cur.execute(query, (memory_verse_id, user_id))
+			mysql.connection.commit()
+			if (result_value > 0):
+				flash("Deleted Successfully", "Success")
+			else:
+				flash("Failed to delete", "Error")
+	return redirect(url_for('memory_verse_controller.memory_verse_page'))
 
 def getSavedMemoryVerses(cur: 'mysql', user_id: int ):
 	query = 'SELECT id, book, chapter, start_verse, end_verse FROM bookmarks WHERE user_id = %s AND is_memory_verse = 1'
