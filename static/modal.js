@@ -1,19 +1,20 @@
 $(document).ready(function(){
 	// this is confusing ... delete bookmark is located bookmarks html where this file is being imported
-
+	let path = "";
 	$('.close-modal').click(function(){
 		console.log('modal close');
 		$('.modal').hide();
 	});
 	$('.ok-modal').click(function(){
-		alert($('.ok-modal').attr('id'));
-		let bookmark_id = $('.ok-modal').attr('id');
-		if ($('.ok-modal').hasClass('modal-bookmark')){
-			console.log("clicked on modal-bookmark");
-			$.post('/bookmarks', {'bookmark_id' : bookmark_id}).done(function(){
-				console.log();
-			});
+		if ($('.id-to-submit').hasClass('modal-bookmark')){
+			path = '/bookmarks_post';
 		}	
+		else if ($('.id-to-submit').hasClass('modal-memory-verse')){
+			path = '/memory_verse';
+		}
+		console.log("clicked on modal-bookmark");
+		$('.submit-modal').attr('action', path);
+		$('.submit-modal').submit();
 	});
 	$('.cancel-modal').click(function(){
 		$('.modal').hide();

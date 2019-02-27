@@ -106,8 +106,8 @@ def get_existing_memory_verse():
 	chapter = request.args.get('chapter')
 	start_verse = request.args.get('start_verse')
 	end_verse = request.args.get('end_verse')
-
-	verse_body = getVerseBody(cur, book, int(chapter), int(start_verse), int(end_verse))
+	print('start_verse: ', start_verse, 'end_verse: ' , end_verse, file =sys.stderr)
+	verse_body = getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
 	is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
 	saved_verse = ''
 	print('end_verse in saved_memory_verse: ' , end_verse, file = sys.stderr)	

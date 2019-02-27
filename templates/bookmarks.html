@@ -19,6 +19,19 @@
 		<div class = "main">
 			{% include 'sidebar.html' %}
 			<div class = "wrapper">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							{% if category == "Error" %}
+								<div class="alert-panel error shadow">
+							{% elif category == "Success" %}
+								<div class="alert-panel success shadow">
+							{% endif %}
+								<strong> {{ category }}! </strong>{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
 				<h2> Bookmarks </h2>
 				<div class = "bookmarks-list">
 					{% for bookmark in bookmark_list %}

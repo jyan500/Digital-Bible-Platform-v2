@@ -14,8 +14,6 @@ def bookmarks_page():
 	## users should be prompted to login before going to the index page 
 	if (not extensions.isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
-
-
 	cur = mysql.connection.cursor()
 	user_id = extensions.getUserID(cur, str(session['username']))
 	bookmarks_list = getUserBookMarks(cur, user_id)
@@ -23,8 +21,29 @@ def bookmarks_page():
 	if request.method == 'GET':
 		## get the user's bookmarks
 		return render_template('bookmarks.html', bookmark_list = bookmarks_list)
-	elif request.method == 'POST':
-		return json.dumps({'finished': 1})
+
+@bookmarks.route("/bookmarks_post", methods = ['POST'])
+def deleteUserBookmark():
+	if (not extensions.isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+
+	cur = mysql.connection.cursor()
+	user_id = extensions.getUserID(cur, str(session['username']))
+	bookmarks_list = getUserBookMarks(cur, user_id)
+
+	if request.method == 'POST':
+		bookmark_id = request.form.get('id-to-submit')
+		if (bookmark_id != None):
+			print('bookmark_id: ' , bookmark_id, file =sys.stderr)
+			query = "DELETE FROM bookmarks WHERE bookmarks.user_id = %s AND bookmarks.id = %s"
+			result_value = cur.execute(query, (user_id, bookmark_id))
+			mysql.connection.commit()
+			if (result_value > 0):
+				flash("Deleted successfully", "Success")
+			else:
+				flash("Error, failed to delete.", "Error")
+	return redirect(url_for('bookmarks.bookmarks_page'))
+
 
 def getUserBookMarks(cur, user_id: int):
 	result = cur.execute("SELECT * FROM bookmarks where user_id = %s AND is_memory_verse != 1", (str(user_id), ))
@@ -40,7 +59,5 @@ def getUserBookMarks(cur, user_id: int):
 			bookmarks_dict_list.append(bookmarks_dict)
 	return bookmarks_dict_list
 
-def deleteUserBookmark(cur, user_id, bookmark_id):
-	pass
 
 		
