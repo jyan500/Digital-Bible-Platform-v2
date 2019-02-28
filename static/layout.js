@@ -11,6 +11,7 @@ $(document).ready(function(){
 			// delete all previous option nodes for the chapter
 			$("#chapterlist").empty();
 			// populate the drop down for chapters
+
 			$.ajax({
 				url: "/",
 				data:  {
@@ -112,6 +113,8 @@ $(document).ready(function(){
 				else{
 					$path = '/note_insert';
 				}
+
+				
 
 	    		$.ajax({
 					url: $path,

@@ -39,6 +39,7 @@
 						<label class = "form-label" for = "password_confirmation"> Please Re-type Password: </label>
 						<input type = "password" class = "form-control" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
 					</div>
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 					<button type="submit" class = "submit-button">Sign Up</button>	
 				</form>
 			</div>

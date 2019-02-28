@@ -1,21 +1,14 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
-from flask import Blueprint
-from flask_mysqldb import MySQL
-from werkzeug.security import generate_password_hash, check_password_hash
-import sys
-import json 
-import extensions
-from extensions import mysql 
+from extensions import * 
 
 bookmarks = Blueprint('bookmarks', __name__)
 
 @bookmarks.route("/bookmarks", methods=['GET', 'POST'])
 def bookmarks_page():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
-	user_id = extensions.getUserID(cur, str(session['username']))
+	user_id = getUserID(cur, str(session['username']))
 	bookmarks_list = getUserBookMarks(cur, user_id)
 
 	if request.method == 'GET':
@@ -24,11 +17,11 @@ def bookmarks_page():
 
 @bookmarks.route("/bookmarks_post", methods = ['POST'])
 def deleteUserBookmark():
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 
 	cur = mysql.connection.cursor()
-	user_id = extensions.getUserID(cur, str(session['username']))
+	user_id = getUserID(cur, str(session['username']))
 
 	if request.method == 'POST':
 		bookmark_id = request.form.get('id-to-submit')

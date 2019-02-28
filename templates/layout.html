@@ -13,7 +13,7 @@
 	<!-- <link rel = "stylesheet" href = "/static/sidebar.css"> -->
 	<script src = "/static/layout.js"></script>
 	<!-- <script src = "/static/sidebar.js"> </script> -->
-	
+
 
 </head>
 <html>
@@ -94,7 +94,7 @@
 							{% endif %}
 						{% endif %}
 						<button type = "submit" class = "submit-button">Submit</button>
-
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>
 				<!-- </div> -->
@@ -154,6 +154,7 @@
 										</textarea>
 										<button id = "submit-btn" type = "submit" class = "btn btn-sm save"> Save </button>
 										<input id = "verse-id_{{verses[2]}}" name = "verse-id" type = "hidden">
+										<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 									</form>
 									<button class = "btn btn-sm cancel"> Cancel </button>
 								</div>

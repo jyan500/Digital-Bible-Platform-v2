@@ -1,15 +1,9 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-from flask_mysqldb import MySQL
-import sys
-import json
-import datetime
-
 ## yaml reads in serialized information as a key-value pair
 import yaml
 
-## import our own mysql shared variable 
-import extensions
-from extensions import mysql
+from datetime import datetime 
+## import our own mysql shared variable and flask extensions
+from extensions import *
 
 ## import our login page blueprint variable
 from login import login
@@ -42,6 +36,9 @@ app.config['SECRET_KEY'] = config['secretkey']
 
 mysql.init_app(app)
 
+## register csrf protection
+csrf = CSRFProtect(app)
+
 ## Register the login controller ## 
 app.register_blueprint(login)
 
@@ -63,10 +60,10 @@ app.register_blueprint(memory_verse_controller)
 @app.route("/", methods=['GET', 'POST'])
 def index():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
-	user_id = extensions.getUserID(cur, session.get('username'))
+	user_id = getUserID(cur, session.get('username'))
 
 	## always populate the dropdown with available chapters in the Bible, then save it in session variable
 	if (session.get('booklistresult') == None):
@@ -89,11 +86,11 @@ def index():
 			selectedBook = request.form['booklist']
 			## the selectedChapter needs to be a string for the resultvalue, but passed in as an integer to the form
 			selectedChapter = request.form['chapterlist']
-			is_bookmark = extensions.isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
+			is_bookmark = isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
 			if (request.form.get('bookmark')):
 				ifBookmark = request.form['bookmark']
 				if (ifBookmark == '1'):
-					extensions.handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
+					handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
 					flash("Bookmarked Successfully!", "Success")
 					is_bookmark = True 
 
@@ -131,10 +128,10 @@ def index():
 def paginate():
 	if (request.method == "GET"):
 		cur = mysql.connection.cursor()
-		user_id = extensions.getUserID(cur, session.get('username'))
+		user_id = getUserID(cur, session.get('username'))
 		selectedBook = request.args.get('selectedBook')
 		selectedChapter = request.args.get('chapter')
-		is_bookmark = extensions.isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
+		is_bookmark = isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
 		print("selectedBook: " + selectedBook, file = sys.stderr)
 		print("selectedChapter: " + str(selectedChapter), file = sys.stderr)
 		resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
@@ -144,9 +141,9 @@ def paginate():
 			integerChapter = int(selectedChapter)
 			## render the template with the saved attributes and with the verses
 			if (session.get('booklistresult') == None):
-				session['booklistresult'] = extensions.getAllBooks(cur)
+				session['booklistresult'] = getAllBooks(cur)
 			if (session.get('chapterlistresult') == None):
-				session['chapterlistresult'] = extensions.getAllChaptersBook(cur, selectedBook)
+				session['chapterlistresult'] = getAllChaptersBook(cur, selectedBook)
 			return render_template("layout.html", bookOptions = session['booklistresult'] , chapterOptions =  session['chapterlistresult'], saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
@@ -160,12 +157,16 @@ def not_found(error):
 def utility_processor():
 
     def date_now(format="%d.m.%Y %H:%M:%S"):
-        return datetime.datetime.now().strftime(format)
+        return datetime.now().strftime(format)
 
     def name():
         return "BibleJourney"
 
     return dict(date_now=date_now, company=name)
+
+@app.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    return render_template('404.html')
 
 if __name__ == "__main__":
 	app.run(debug=True, host='0.0.0.0', port=5000)

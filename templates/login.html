@@ -38,6 +38,7 @@
 					</div>
 					<button type="submit" class = "submit-button">Login</button>
 					<a class = "submit-button link" href = "/signup">Signup</a>
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				</form>
 			</div>
 		</div>

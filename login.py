@@ -1,11 +1,6 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
-from flask import Blueprint
-from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-import sys
-
 ## own files
-from extensions import mysql 
+from extensions import * 
 
 login = Blueprint('login', __name__)
 

@@ -1,26 +1,14 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-from flask_mysqldb import MySQL
-from flask import Blueprint
 import time
 from datetime import datetime
 import bleach
-import sys
-import json
-import extensions
-
-
-## yaml reads in serialized information as a key-value pair
-import yaml
-
-## import our own mysql shared variable 
-from extensions import mysql
+from extensions import *
 
 note_process_controller = Blueprint('note_process_controller', __name__)
 
 @note_process_controller.route("/note_insert", methods = ["POST"])
 def insert():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 
 	if (request.method == "POST"):
@@ -60,7 +48,7 @@ def insert():
 @note_process_controller.route("/note_show", methods=["GET"])
 def show():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 
 	if (request.method == "GET"):
@@ -97,7 +85,7 @@ def show():
 @note_process_controller.route("/note_update", methods=["POST"])
 def update():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 		
 	if (request.method == "POST"):

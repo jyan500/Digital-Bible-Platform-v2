@@ -13,6 +13,7 @@
 					<button class = "cancel-modal submit-button"> Cancel </button>
 					<button class = "ok-modal submit-button" > OK </button>
 					<input class = "id-to-submit" name = "id-to-submit" type = "hidden" value = ""/>
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>					
 				</form>
 			</div>
 		</div>

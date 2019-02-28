@@ -53,6 +53,7 @@
 							{% endif %}
 						</div>
 					</div>
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				</form>
 				{% if selected_verses and saved_verse %}
 				<div class = 'select-flip'>

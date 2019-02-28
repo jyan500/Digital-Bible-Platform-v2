@@ -6,7 +6,7 @@ body{
 	/* dark purple */
 	background-color: var(--primary);
 	z-index: 1;
-	border-bottom: 5px solid var(--border-color);
+	border-bottom: 5px solid white;
 } 
 
 .mobile-sidebar{

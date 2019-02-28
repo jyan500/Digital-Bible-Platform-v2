@@ -1,17 +1,7 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-from flask_mysqldb import MySQL
-import sys
-import json
-
 ## only in this file so far
 import re
-
-from flask import Blueprint
-
-
 ## own files
-import extensions
-from extensions import mysql 
+from extensions import * 
 
 memory_verse_controller = Blueprint('memory_verse_controller', __name__)
 
@@ -19,11 +9,11 @@ memory_verse_controller = Blueprint('memory_verse_controller', __name__)
 def memory_verse_page():
 
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 	## establish connection with mysql
 	cur = mysql.connection.cursor()	
-	user_id = extensions.getUserID(cur, str(session['username']))
+	user_id = getUserID(cur, str(session['username']))
 
 	too_many_verses = ''' We are sorry, as can only provide flashcards with a maximum of 10 verses at a time.
 							Please save multiple flashcards to break the verses into smaller chunks '''
@@ -72,15 +62,15 @@ def memory_verse_page():
 					if (is_bookmark == '1'):
 						
 						is_memory_verse = True;
-						selectedVerse = extensions.handleBookmarks(cur, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
+						selectedVerse = handleBookmarks(cur, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
 						flash("Saved " + verse + " Successfully!", 'Success')
 						return render_template('memory_verse.html', saved_verse = verse, selected_verses = selectedVerse)
 					else:
 						flash("Oops something went wrong! Please Try Again", 'Error')
 						return redirect(url_for('memory_verse_controller.memory_verse_page'))
-				is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
+				is_bookmark = isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
 
-				verseBody = extensions.getVerseBody(cur, book, chapter, start_verse, end_verse)	
+				verseBody = getVerseBody(cur, book, chapter, start_verse, end_verse)	
 				if (verseBody):
 					return render_template('memory_verse.html', saved_verse = verse, selected_verses = verseBody, is_bookmark = is_bookmark)
 				else:
@@ -96,19 +86,19 @@ def memory_verse_page():
 def get_existing_memory_verse():
 
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 		
 	cur = mysql.connection.cursor()
-	user_id = extensions.getUserID(cur, str(session['username']))
+	user_id = getUserID(cur, str(session['username']))
 
 	book = request.args.get('book')
 	chapter = request.args.get('chapter')
 	start_verse = request.args.get('start_verse')
 	end_verse = request.args.get('end_verse')
 	print('start_verse: ', start_verse, 'end_verse: ' , end_verse, file =sys.stderr)
-	verse_body = extensions.getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
-	is_bookmark = extensions.isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
+	verse_body = getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
+	is_bookmark = isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
 	saved_verse = ''
 	print('end_verse in saved_memory_verse: ' , end_verse, file = sys.stderr)	
 	if (end_verse == '0'):
@@ -122,11 +112,11 @@ def get_existing_memory_verse():
 @memory_verse_controller.route("/memory_verse_post", methods = ["POST"])
 def memoryVerseDelete():
 	## users should be prompted to login before going to the index page 
-	if (not extensions.isUserLoggedIn()):
+	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
 
 	cur = mysql.connection.cursor()
-	user_id = extensions.getUserID(cur, str(session['username']))
+	user_id = getUserID(cur, str(session['username']))
 
 	if (request.method == "POST"):
 		memory_verse_id = request.form.get('id-to-submit')
