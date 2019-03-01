@@ -23,13 +23,13 @@ def getUserID(cur: 'mysql', username: str):
 	else:
 		return -1
 
-def handleBookmarks(cur: 'mysql', user_id: int, book: str, chapter: int, start_verse: int = 0, end_verse: int = 0, is_memory_verse: bool = False):
+def handleBookmarks(connection: 'mysql.connection', user_id: int, book: str, chapter: int, start_verse: int = 0, end_verse: int = 0, is_memory_verse: bool = False):
 	query = "INSERT INTO bookmarks (user_id, book, chapter, start_verse, end_verse, is_memory_verse) VALUES (%s, %s, %s, %s, %s, %s)"
 	if (is_memory_verse):
-		cur.execute(query, (str(user_id), book, str(chapter), str(start_verse), str(end_verse), str(1)))
+		connection.cursor().execute(query, (str(user_id), book, str(chapter), str(start_verse), str(end_verse), str(1)))
 	else:
-		cur.execute(query, (str(user_id), book, str(chapter), str(start_verse), str(end_verse), str(0)))
-	mysql.connection.commit()
+		connection.cursor().execute(query, (str(user_id), book, str(chapter), str(start_verse), str(end_verse), str(0)))
+	connection.commit()
 
 def isExistingBookmark(cur: 'mysql', user_id: int, book: str, chapter: int, start_verse: int = 0, end_verse: int = 0, is_memory_verse: bool = False):
 	query = 'SELECT count(*) as cnt FROM bookmarks WHERE user_id = %s AND book = %s AND chapter = %s AND start_verse = %s AND end_verse = %s AND is_memory_verse = %s'

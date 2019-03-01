@@ -57,22 +57,21 @@ def memory_verse_page():
 					return redirect(url_for('memory_verse_controller.memory_verse_page'));
 
 				## handle bookmarks 	
-				if (request.form.get('save-verse')):
-					print('is bookmark', file =sys.stderr)
-					is_bookmark = request.form['save-verse']
-					if (is_bookmark == '1'):
-						
-						is_memory_verse = True;
-						selectedVerse = handleBookmarks(cur, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
-						flash("Saved " + verse + " Successfully!", 'Success')
-						return render_template('memory_verse.html', saved_verse = verse, selected_verses = selectedVerse)
-					else:
-						flash("Oops something went wrong! Please Try Again", 'Error')
-						return redirect(url_for('memory_verse_controller.memory_verse_page'))
-				is_bookmark = isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
-
 				verseBody = getVerseBody(cur, book, chapter, start_verse, end_verse)	
-				if (verseBody):
+				if (verseBody):		
+					if (request.form.get('save-verse')):
+						print('is bookmark', file =sys.stderr)
+						is_bookmark_request = request.form['save-verse']
+						if (is_bookmark_request == '1'):
+							is_memory_verse = True;
+							selectedVerse = handleBookmarks(mysql.connection, user_id, book, chapter, start_verse, end_verse, is_memory_verse)
+							flash("Saved " + verse + " Successfully!", 'Success')
+							return render_template('memory_verse.html', saved_verse = verse, selected_verses = verseBody, is_bookmark = is_memory_verse)
+						else:
+							flash("Oops something went wrong! Please Try Again", 'Error')
+							return redirect(url_for('memory_verse_controller.memory_verse_page'))
+
+					is_bookmark = isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)	
 					return render_template('memory_verse.html', saved_verse = verse, selected_verses = verseBody, is_bookmark = is_bookmark)
 				else:
 					flash("Oops! We were not able to find " + verse + ", please try again", 'Error')

@@ -36,7 +36,7 @@ def index():
 			if (request.form.get('bookmark')):
 				ifBookmark = request.form['bookmark']
 				if (ifBookmark == '1'):
-					handleBookmarks(cur,  user_id, selectedBook, selectedChapter)
+					handleBookmarks(mysql.connection, user_id, selectedBook, selectedChapter)
 					flash("Bookmarked Successfully!", "Success")
 					is_bookmark = True 
 
