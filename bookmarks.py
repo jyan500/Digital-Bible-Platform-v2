@@ -1,8 +1,8 @@
 from extensions import * 
+from config import api_key, mysql
+bookmarks_controller = Blueprint('bookmarks', __name__)
 
-bookmarks = Blueprint('bookmarks', __name__)
-
-@bookmarks.route("/bookmarks", methods=['GET', 'POST'])
+@bookmarks_controller.route("/bookmarks", methods=['GET', 'POST'])
 def bookmarks_page():
 	## users should be prompted to login before going to the index page 
 	if (not isUserLoggedIn()):
@@ -15,7 +15,7 @@ def bookmarks_page():
 		## get the user's bookmarks
 		return render_template('bookmarks.html', bookmark_list = bookmarks_list)
 
-@bookmarks.route("/bookmarks_post", methods = ['POST'])
+@bookmarks_controller.route("/bookmarks_post", methods = ['POST'])
 def deleteUserBookmark():
 	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))

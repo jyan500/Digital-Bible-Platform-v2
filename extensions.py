@@ -1,14 +1,11 @@
 #### global imports ####
-from flask_mysqldb import MySQL
+
+## import our mysql connection and api key
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-from flask_wtf.csrf import CSRFProtect
-from flask_wtf.csrf import CSRFError
 from flask import Blueprint
 import json
+import requests
 import sys
-
-#### global variables ####
-mysql = MySQL()
 
 #### global functions ####
 
@@ -59,13 +56,14 @@ def getAllChaptersBook(cur: 'mysql', book: str):
 		# return [i for i in range(1, last_chapter+1)]
 
 ## get all books in the bible
-def getAllBooks(cur:'mysql'):
+def getAllBooks(cur: 'mysql'):
+
 	query = 'SELECT book FROM esv GROUP BY book ORDER BY id'
 	result_value = cur.execute(query)
 	if (result_value > 0):
 		results_tuple = cur.fetchall()
 		return results_tuple
-		# return [results_tuple[i] for i in range(len(results_tuple))]
+		return [results_tuple[i] for i in range(len(results_tuple))]
 
 ## get verse body
 def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, end_verse: int = 0):

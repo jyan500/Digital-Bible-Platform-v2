@@ -1,6 +1,7 @@
 import time
 from datetime import datetime
 import bleach
+from config import mysql
 from extensions import *
 
 note_process_controller = Blueprint('note_process_controller', __name__)

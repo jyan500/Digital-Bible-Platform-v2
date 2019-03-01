@@ -1,10 +1,10 @@
 ## own files
+from config import mysql
 from extensions import * 
 
-logout = Blueprint('logout', __name__)
+logout_controller = Blueprint('logout', __name__)
 
-@logout.route("/logout", methods = ["GET", "POST"])
-
+@logout_controller.route("/logout", methods = ["GET", "POST"])
 def logoutpage():
 	user = session.get('username')
 	session.clear()

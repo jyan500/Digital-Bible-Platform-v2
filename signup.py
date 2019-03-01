@@ -3,9 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 ## import our own mysql extension
 from extensions import * 
 
-signup = Blueprint('signup', __name__)
+signup_controller = Blueprint('signup', __name__)
 
-@signup.route("/signup", methods = ["GET", "POST"])
+@signup_controller.route("/signup", methods = ["GET", "POST"])
 def signuppage():
 	
 	if (request.method == "POST"):

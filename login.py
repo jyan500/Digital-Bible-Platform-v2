@@ -1,10 +1,11 @@
+from config import mysql
 from werkzeug.security import generate_password_hash, check_password_hash
 ## own files
 from extensions import * 
 
-login = Blueprint('login', __name__)
+login_controller = Blueprint('login', __name__)
 
-@login.route("/login", methods = ["GET", "POST"])
+@login_controller.route("/login", methods = ["GET", "POST"])
 def loginpage():
 	if (request.method == "POST"):
 		username = request.form['username']
@@ -28,7 +29,7 @@ def loginpage():
 				flash("Welcome " + username + "!", 'Success')
 				## store the username as a key, and value as boolean
 				session["username"] = username 
-				return redirect(url_for("index"))
+				return redirect(url_for("home_controller.index"))
 			else:
 				## if the password is wrong
 				flash("Invalid Username or Password", 'Error')

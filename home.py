@@ -1,63 +1,9 @@
-## yaml reads in serialized information as a key-value pair
-import yaml
-
 from datetime import datetime 
-## import our own mysql shared variable and flask extensions
+from config import api_key, mysql
 from extensions import *
+home_controller = Blueprint('home_controller', __name__)
 
-## import our login page blueprint variable
-from login import login
-
-## import our signup page blueprint variable
-from signup import signup
-
-## import our note_process_page 
-from note_process_controller import note_process_controller
-
-## import our logout page
-from logout import logout
-
-## import our bookmarks page
-from bookmarks import bookmarks
-
-## import our memory verse page
-from memory_verse_controller import memory_verse_controller
-
-
-## configurations
-config = yaml.load(open('config.yaml'))
-app = Flask(__name__)
-
-app.config['MYSQL_HOST'] = config['mysql_host']
-app.config['MYSQL_USER'] = config['mysql_user']
-app.config['MYSQL_PASSWORD'] = config['mysql_password']
-app.config['MYSQL_DB'] = config['mysql_db']
-app.config['SECRET_KEY'] = config['secretkey']
-
-mysql.init_app(app)
-
-## register csrf protection
-csrf = CSRFProtect(app)
-
-## Register the login controller ## 
-app.register_blueprint(login)
-
-## Register the logout controller ##
-app.register_blueprint(logout)
-## Register the signup controller ##
-app.register_blueprint(signup)
-
-## Register the note_process controller
-app.register_blueprint(note_process_controller)
-
-## Register the bookmarks controller
-app.register_blueprint(bookmarks)
-
-## Register the memory verse controller
-app.register_blueprint(memory_verse_controller)
-
-
-@app.route("/", methods=['GET', 'POST'])
+@home_controller.route("/", methods=['GET', 'POST'])
 def index():
 	## users should be prompted to login before going to the index page 
 	if (not isUserLoggedIn()):
@@ -124,7 +70,7 @@ def index():
 
 	return render_template("layout.html", bookOptions = session['booklistresult'])
 
-@app.route("/paginate", methods = ["GET"])
+@home_controller.route("/paginate", methods = ["GET"])
 def paginate():
 	if (request.method == "GET"):
 		cur = mysql.connection.cursor()
@@ -146,30 +92,6 @@ def paginate():
 				session['chapterlistresult'] = getAllChaptersBook(cur, selectedBook)
 			return render_template("layout.html", bookOptions = session['booklistresult'] , chapterOptions =  session['chapterlistresult'], saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
-
-
-@app.errorhandler(404)
-# function which takes error as parameter
-def not_found(error):
-	return render_template("404.html")
-
-@app.context_processor
-def utility_processor():
-
-    def date_now(format="%d.m.%Y %H:%M:%S"):
-        return datetime.now().strftime(format)
-
-    def name():
-        return "BibleJourney"
-
-    return dict(date_now=date_now, company=name)
-
-@app.errorhandler(CSRFError)
-def handle_csrf_error(e):
-    return render_template('404.html')
-
-if __name__ == "__main__":
-	app.run(debug=True, host='0.0.0.0', port=5000)
 
 
 
