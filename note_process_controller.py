@@ -17,9 +17,10 @@ def insert():
 		note_content = request.form['note-content']
 		verse_id = request.form['verse-id']
 		print(verse_id, file = sys.stderr)
+
 		## sanitize the text
 		bleach.clean(note_content)
-		## print(note_content, file=sys.stderr)
+		print(note_content, file=sys.stderr)
 		bleach.clean(verse_id)
 
 		ts = time.time()

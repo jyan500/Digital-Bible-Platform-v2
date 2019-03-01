@@ -1,3 +1,4 @@
+#### global imports ####
 from flask_mysqldb import MySQL
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
 from flask_wtf.csrf import CSRFProtect
@@ -8,6 +9,8 @@ import sys
 
 #### global variables ####
 mysql = MySQL()
+
+#### global functions ####
 
 def isUserLoggedIn():
 	## users should be prompted to login before going to the index page 
