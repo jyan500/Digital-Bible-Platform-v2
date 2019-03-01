@@ -83,14 +83,17 @@ def paginate():
 		resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
 		if (resultValue > 0):
 			selectedVerses = cur.fetchall()
+			print('session[chapterlistresult]: ', session['chapterlistresult'], file = sys.stderr);
 			print(selectedChapter, file = sys.stderr)
 			integerChapter = int(selectedChapter)
 			## render the template with the saved attributes and with the verses
-			if (session.get('booklistresult') == None):
-				session['booklistresult'] = getAllBooks(cur)
-			if (session.get('chapterlistresult') == None):
-				session['chapterlistresult'] = getAllChaptersBook(cur, selectedBook)
-			return render_template("layout.html", bookOptions = session['booklistresult'] , chapterOptions =  session['chapterlistresult'], saveSelectedBook = selectedBook, 
+			allBooks = getAllBooks(cur)
+			allChaptersForBook = getAllChaptersBook(cur, selectedBook)
+			# if (session.get('booklistresult') == None):
+			# 	session['booklistresult'] = getAllBooks(cur)
+			# if (session.get('chapterlistresult') == None):
+			# 	session['chapterlistresult'] = getAllChaptersBook(cur, selectedBook)
+			return render_template("layout.html", bookOptions = allBooks , chapterOptions =  allChaptersForBook, saveSelectedBook = selectedBook, 
 				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 

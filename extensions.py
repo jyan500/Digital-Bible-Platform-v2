@@ -51,6 +51,7 @@ def getAllChaptersBook(cur: 'mysql', book: str):
 		for tup in cur.fetchall():
 			## append all the chapter names to the list
 			listForJson.append(tup[0])
+		print('chapterlist in function: ' , listForJson, file =sys.stderr)
 		return listForJson
 		# last_chapter = cur.fetchall()[0][0]
 		# return [i for i in range(1, last_chapter+1)]
