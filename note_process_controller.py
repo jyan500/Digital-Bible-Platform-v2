@@ -16,13 +16,14 @@ def insert():
 		## create notes table
 		## take the text from the popover
 		note_content = request.form['note-content']
-		verse_id = request.form['verse-id']
-		print(verse_id, file = sys.stderr)
+		verse = request.form['verse']
+		chapter = request.form['chapter']
+		book = request.form['book']
 
 		## sanitize the text
 		bleach.clean(note_content)
 		print(note_content, file=sys.stderr)
-		bleach.clean(verse_id)
+		bleach.clean(verse)
 
 		ts = time.time()
 		timestamp = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
@@ -30,16 +31,11 @@ def insert():
 		cur = mysql.connection.cursor()
 		## get the uid of the user who is logged on
 		print(session['username'], file = sys.stderr)
-		resultValue = cur.execute("SELECT uid FROM users WHERE username = %s", (session['username'], ))
-		uid = 0
-		if resultValue > 0:
-			uid = cur.fetchall()[0][0]
-			print(uid, file = sys.stderr)
-
+		uid = getUserID(cur, session['username']) 
 		## insert into database
 		if (uid != 0):
 			print(note_content, file = sys.stderr)
-			cur.execute("INSERT INTO note (verse_id, note_content, date, uid) VALUES (%s, %s, %s, %s)", (verse_id, note_content, timestamp, uid))
+			cur.execute("INSERT INTO note (verse, chapter, book,  note_content, date, uid) VALUES (%s, %s, %s, %s, %s, %s)", (str(verse), chapter, book, note_content, timestamp, uid))
 			mysql.connection.commit()
 			##flash("Note saved successfully!", "Success")
 			return json.dumps({'status':'OK'});
@@ -56,22 +52,20 @@ def show():
 	if (request.method == "GET"):
 		## show Notes 
 		## take the text from the popover
-		if (request.args.get('verse-id') != None):
-			verse_id = request.args.get('verse-id')
-			print("verseid in show: " + verse_id, file = sys.stderr)
-
+		if (request.args.get('verse') != None):
+			# verse_id = request.args.get('verse-id')
+			verse = request.args.get('verse')
+			chapter = request.args.get('chapter')
+			book = request.args.get('book')
 			cur = mysql.connection.cursor()
 			## get the uid of the user who is logged on
-			print(session['username'], file = sys.stderr)
-			resultValue = cur.execute("SELECT uid FROM users WHERE username = %s", (session['username'], ))
-			uid = 0
-			if resultValue > 0:
-				uid = cur.fetchall()[0][0]
-				print(uid, file = sys.stderr)
-
+			uid = getUserID(cur, session['username'])
+			print('verse: ', verse, 'chapter: ', chapter, 'book: ', book)
 			## select from database
 			if (uid != 0):
-				resultValue = cur.execute("SELECT note_content FROM note WHERE note.verse_id = %s AND note.uid = %s", (verse_id, uid))
+				## resultValue = cur.execute("SELECT note_content FROM note WHERE note.verse_id = %s AND note.uid = %s", (verse_id, uid))
+				query = "SELECT note_content FROM note WHERE note.verse = %s AND note.uid = %s AND note.book = %s AND note.chapter = %s"
+				resultValue = cur.execute(query, (verse, uid, book, chapter))
 				##flash("Note saved successfully!", "Success")
 				if (resultValue > 0):
 					note = cur.fetchall()[0][0]	
@@ -94,35 +88,32 @@ def update():
 		## create notes table
 		## take the text from the popover
 		note_content = request.form['note-content']
-		verse_id = request.form['verse-id']
-		print(verse_id, file = sys.stderr)
+		verse = request.form['verse']
+		chapter = request.form['chapter']
+		book = request.form['book']
 		## sanitize the text
 		bleach.clean(note_content)
 		## print(note_content, file=sys.stderr)
-		bleach.clean(verse_id)
+		bleach.clean(verse)
 
 		ts = time.time()
 		timestamp = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
 		cur = mysql.connection.cursor()
 		## get the uid of the user who is logged on
-		print(session['username'], file = sys.stderr)
-		resultValue = cur.execute("SELECT uid FROM users WHERE username = %s", (session['username'], ))
-		uid = 0
-		if resultValue > 0:
-			uid = cur.fetchall()[0][0]
-			print(uid, file = sys.stderr)
-
+		uid = getUserID(cur, session['username'])
 		## check to see if there's an existing note
-		resultValue = cur.execute("SELECT id FROM note WHERE uid = %s AND verse_id = %s", (uid, verse_id, ))
+		resultValue = cur.execute("SELECT id FROM note WHERE uid = %s AND verse = %s AND chapter = %s AND book = %s", (uid, verse, chapter, book ))
 		existingNoteID = 0
 		if (resultValue > 0):
-			print("existing Note Id: " + str(cur.fetchall()[0][0]), file = sys.stderr)
+			# print("existing Note Id: " + str(cur.fetchall()[0][0]), file = sys.stderr)
+			existingNoteID = cur.fetchall()[0][0]
+			print('existingNoteID: ', str(existingNoteID))
 
 		## insert into database
 		if (uid != 0 and resultValue > 0):
 			print("note_content: " + note_content, file = sys.stderr)
-			cur.execute("UPDATE note set note_content = %s, date = NOW() where verse_id = %s AND uid = %s", (note_content, verse_id, uid))
+			cur.execute("UPDATE note set note_content = %s, date = NOW() where id = %s AND uid = %s", (note_content, existingNoteID, uid))
 			mysql.connection.commit()
 			##flash("Note saved successfully!", "Success")
 			return json.dumps({'status':'OK'});

@@ -11,21 +11,13 @@ def index():
 	cur = mysql.connection.cursor()
 	user_id = getUserID(cur, session.get('username'))
 
-	## always populate the dropdown with available chapters in the Bible, then save it in session variable
-	if (session.get('booklistresult') == None):
-		## resultValue is an integer 
-		resultValue = cur.execute("SELECT book from esv group by book order by id")
-		if (resultValue > 0):
-			## booklistresult is a list of tuples
-			session['booklistresult'] = cur.fetchall()
-			print(session['booklistresult'], file = sys.stderr)
+	allBooks = getAllBooks(cur)
 
 	## if user submits a form, send back response
 	## TODO: turn the requesting chapters into ajax calls, so whenever user makes a selection in the book dropdown, the chapter dropdown
 	## should update itself accordingly so user doesn't go out of bounds 
 	if (request.method == "POST"):
 		## if user has selected a book..
-		## if user has selected a book and chapter, 
 		is_bookmark = False
 		if (request.form.get('booklist') != None and request.form.get('chapterlist') != None):
 
@@ -40,17 +32,19 @@ def index():
 					flash("Bookmarked Successfully!", "Success")
 					is_bookmark = True 
 
-			print(selectedBook, file = sys.stderr)
+			print('book: ' , selectedBook, file = sys.stderr)
+			print('chapter: ' ,selectedChapter, file = sys.stderr)
 
 			## you have to pass the parameter values as a tuple for the execute statement
 			## pass the chapter in for now
-			resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
-			if (resultValue > 0):
-				selectedVerses = cur.fetchall()
-				print(selectedChapter, file = sys.stderr)
-				integerChapter = int(selectedChapter)
+			selectedVerses = getVerseBodyRequest(selectedBook, selectedChapter)
+			# resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
+			# if (resultValue > 0):
+			# 	selectedVerses = cur.fetchall()
+			# 	print(selectedChapter, file = sys.stderr)
+			integerChapter = int(selectedChapter)
 				## render the template with the saved attributes and with the verses
-				return render_template("layout.html", bookOptions = session['booklistresult'], chapterOptions = session['chapterlistresult'], saveSelectedBook = selectedBook, saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
+			return render_template("layout.html", bookOptions = allBooks, chapterOptions = getAllChaptersBook(cur, selectedBook), saveSelectedBook = selectedBook, saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 	## for the AJAX request to get the chapters within each book			
 	if request.method == "GET":
@@ -58,17 +52,17 @@ def index():
 		if (request.args.get('selectedbook') != None):
 			selectedBook = request.args.get('selectedbook')
 			print(selectedBook, file = sys.stderr)
-			resultValue = cur.execute("SELECT chapter from esv where book = %s group by chapter", (selectedBook, ))
-			if (resultValue > 0):
-				## save the selected chapters to avoid repeating the sql query
-				listForJson = []
-				for tup in cur.fetchall():
-					## append all the chapter names to the list
-					listForJson.append(tup[0])
-				session['chapterlistresult'] = listForJson
-				return json.dumps({"chapterlist": listForJson}) 
+			# resultValue = cur.execute("SELECT chapter from esv where book = %s group by chapter", (selectedBook, ))
+			# if (resultValue > 0):
+			# 	## save the selected chapters to avoid repeating the sql query
+			# 	listForJson = []
+			# 	for tup in cur.fetchall():
+			# 		## append all the chapter names to the list
+			# 		listForJson.append(tup[0])
+			# 	session['chapterlistresult'] = listForJson
+			return json.dumps({"chapterlist": getAllChaptersBook(cur, selectedBook)}) 
 
-	return render_template("layout.html", bookOptions = session['booklistresult'])
+	return render_template("layout.html", bookOptions = allBooks)
 
 @home_controller.route("/paginate", methods = ["GET"])
 def paginate():
@@ -77,24 +71,20 @@ def paginate():
 		user_id = getUserID(cur, session.get('username'))
 		selectedBook = request.args.get('selectedBook')
 		selectedChapter = request.args.get('chapter')
+		selectedVerses = getVerseBodyRequest(selectedBook, selectedChapter)
 		is_bookmark = isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
 		print("selectedBook: " + selectedBook, file = sys.stderr)
 		print("selectedChapter: " + str(selectedChapter), file = sys.stderr)
-		resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
-		if (resultValue > 0):
-			selectedVerses = cur.fetchall()
-			print('session[chapterlistresult]: ', session['chapterlistresult'], file = sys.stderr);
-			print(selectedChapter, file = sys.stderr)
-			integerChapter = int(selectedChapter)
-			## render the template with the saved attributes and with the verses
-			allBooks = getAllBooks(cur)
-			allChaptersForBook = getAllChaptersBook(cur, selectedBook)
-			# if (session.get('booklistresult') == None):
-			# 	session['booklistresult'] = getAllBooks(cur)
-			# if (session.get('chapterlistresult') == None):
-			# 	session['chapterlistresult'] = getAllChaptersBook(cur, selectedBook)
-			return render_template("layout.html", bookOptions = allBooks , chapterOptions =  allChaptersForBook, saveSelectedBook = selectedBook, 
-				saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
+		# resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
+		# if (resultValue > 0):
+		# 	selectedVerses = cur.fetchall()
+		print(selectedChapter, file = sys.stderr)
+		integerChapter = int(selectedChapter)
+		## render the template with the saved attributes and with the verses
+		allBooks = getAllBooks(cur)
+		allChaptersForBook = getAllChaptersBook(cur, selectedBook)
+		return render_template("layout.html", bookOptions = allBooks , chapterOptions =  allChaptersForBook, saveSelectedBook = selectedBook, 
+			saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 
 

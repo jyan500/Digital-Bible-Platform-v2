@@ -45,21 +45,26 @@ $(document).ready(function(){
 	$('[id*="popover"]').popover({
 		html : true,
 		content : function(){
-			var $verseID = this.getAttribute('data-verse');
-	    	$("#verse-id-" + $verseID).val("" + $verseID);
-		    console.log("" + $verseID);
+			// var $verseID = this.getAttribute('data-verse');
+			let verse = this.getAttribute('data-verse');
+			let chapter = this.getAttribute('data-chapter');
+			let book = this.getAttribute('data-book');	
+	    	// $("#verse-id-" + $verseID).val("" + $verseID);
 		    // show the note from the DB
 		    $.ajax({
 		    	url: '/note_show',
 		    	dataType: 'json',
 		    	data: {
-		    		'verse-id': $verseID,	
+		    		// 'verse-id': $verseID,	
+		    		'verse' : verse,
+		    		'chapter' : chapter,
+		    		'book' : book
 		    	},
 		    	type : "GET",
 		    	success: function(response){
 		    		if (response){
 		    			console.log(response['note_content']);
-		    			$("#existing_notes_" + $verseID).text(response['note_content']);
+		    			$("#existing_notes_" + verse).text(response['note_content']);
 		    		}
 		    	},
 		    	error : function(error){
@@ -68,23 +73,25 @@ $(document).ready(function(){
 
 
 		    });
-			return $('#popover_content_' + $verseID).html();
+			return $('#popover_content_' + verse).html();
 		}
 		}).on('shown.bs.popover', function(e) {
 		    //get the actual shown popover
 
 		    var $popover = $(this).data('bs.popover').tip();
 		   	var $hasText = false;	
-		   	var $verseID = this.getAttribute('data-verse'); 
-		   	console.log("verseID here within shown.bs.popover: " + $verseID);
+		   	var $verse = this.getAttribute('data-verse'); 
+	   		let $chapter = this.getAttribute('data-chapter');
+			let $book = this.getAttribute('data-book');	
+		   	console.log("verse here within shown.bs.popover: " + $verse);
 		    $popover.find('.edit').click(function(){
 		    	// existing notes should show in the text area upon clicking edit
-		    	console.log("verseID within edit: " + $verseID);
-		    	var notes = $("#existing_notes_" + $verseID).text();
-		    	$("#note_section_" + $verseID).val(notes);
-		    	$("#existing_notes_section_" + $verseID).hide();
-		    	$("#form_section_" + $verseID).show();
-		    	$("#note_section_" + $verseID).show();
+		    	console.log("verseID within edit: " + $verse);
+		    	var notes = $("#existing_notes_" + $verse).text();
+		    	$("#note_section_" + $verse).val(notes);
+		    	$("#existing_notes_section_" + $verse).hide();
+		    	$("#form_section_" + $verse).show();
+		    	$("#note_section_" + $verse).show();
 
 	    	});
 	    	console.log('existing notes: ' + $('#existing_notes').text());
@@ -92,9 +99,9 @@ $(document).ready(function(){
 	    		e.preventDefault();	
 	    		// check to make sure user doesn't save an empty note
 		    	console.log('existing notes in save: ' + $('#existing_notes').text());
-		    	var $existingNotes = $('#existing_notes_' + $verseID).text();
+		    	var $existingNotes = $('#existing_notes_' + $verse).text();
 
-		    	var $noteContent = $("#note_section_" + $verseID).val();
+		    	var $noteContent = $("#note_section_" + $verse).val();
 	    		if ($noteContent == ""){
 					$("#errorbar").addClass("show");
 					setTimeout(function(){
@@ -119,7 +126,9 @@ $(document).ready(function(){
 	    		$.ajax({
 					url: $path,
 					data: {
-						'verse-id': $verseID,
+						'verse': $verse,
+						'book': $book,
+						'chapter': $chapter,
 						'note-content': $noteContent			
 					},
 					type: 'POST',

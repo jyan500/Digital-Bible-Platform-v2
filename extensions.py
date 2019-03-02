@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from flask import Blueprint
 import json
 import requests
+import re
 import sys
 
 #### global functions ####
@@ -44,22 +45,19 @@ def isExistingBookmark(cur: 'mysql', user_id: int, book: str, chapter: int, star
 ## get all chapters for one book 
 def getAllChaptersBook(cur: 'mysql', book: str):
 	## get the last chapter
-	query = 'SELECT chapter FROM esv WHERE book = %s GROUP BY chapter'
+	query = 'SELECT num_chapters FROM book_ref WHERE book = %s'
 	result_value = cur.execute(query, (book,))
 	if (result_value > 0):
-		listForJson = []
-		for tup in cur.fetchall():
-			## append all the chapter names to the list
-			listForJson.append(tup[0])
-		print('chapterlist in function: ' , listForJson, file =sys.stderr)
-		return listForJson
-		# last_chapter = cur.fetchall()[0][0]
-		# return [i for i in range(1, last_chapter+1)]
+		# for tup in cur.fetchall():
+		# 	## append all the chapter names to the list
+		# 	listForJson.append(tup[0])
+		num_chapters = cur.fetchall()[0][0]
+		return [i for i in range(1, num_chapters+1)]
 
 ## get all books in the bible
 def getAllBooks(cur: 'mysql'):
 
-	query = 'SELECT book FROM esv GROUP BY book ORDER BY id'
+	query = 'SELECT book FROM book_ref ORDER BY id'
 	result_value = cur.execute(query)
 	if (result_value > 0):
 		results_tuple = cur.fetchall()
@@ -94,3 +92,34 @@ def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, en
 			verses_dict['verse_id'] = selectedVerse[i][2]
 			assoc.append(verses_dict)
 	return assoc 
+
+
+def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '', end_verse: str = ''):
+	## if start verse and end verse are provided
+	API_URL = 'https://bible-api.com/'
+	sanitize_chapter = chapter.strip()
+	sanitize_book = book.strip()
+	sanitize_start_verse = start_verse.strip()
+	sanitize_end_verse = start_verse.strip()
+	if (start_verse != '' and end_verse != ''):
+		query_string = '{} {}:{}-{}'.format(sanitize_book, sanitize_chapter, sanitize_start_verse, sanitize_end_verse)	
+	## if just start verse
+	if (start_verse != ''):
+		query_string = '{} {}:{}'.format(sanitize_book, sanitize_chapter)	
+	else:
+		query_string = '{} {}'.format(book, chapter)
+
+	
+
+	API_URL += query_string
+	print(API_URL, file =sys.stderr)
+	response = requests.get(API_URL)
+	passages = response.json()
+	print(passages ,file=sys.stderr)
+	try:
+		return passages['verses']
+	except:
+		return passages['error'] 
+	# a = re.split(r"\[\d+\]", passages[0].strip())
+	## print('split_passage without strip: ' , passages[0].split('\n'))
+	# split_passage = passages[0].strip().split('\n')
