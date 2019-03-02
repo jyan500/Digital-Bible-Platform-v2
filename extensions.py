@@ -64,55 +64,56 @@ def getAllBooks(cur: 'mysql'):
 		return results_tuple
 		return [results_tuple[i] for i in range(len(results_tuple))]
 
-## get verse body
-def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, end_verse: int = 0):
-	rangeQuery = ''
-	query = 'SELECT ESV, verse, id from esv WHERE book = %s AND chapter = %s'
-	param_list = [book, chapter]
-	assoc = []
-	if (start_verse != 0 and end_verse != 0):
-		range_query = ' AND verse BETWEEN %s AND %s'
-		param_list.append(start_verse)
-		param_list.append(end_verse)
-	elif (start_verse != 0):
-		range_query = ' AND verse = %s'
-		param_list.append(start_verse)
+## get verse body (Currently not in use)
+# def getVerseBody(cur: 'mysql', book: str, chapter: int, start_verse: int = 0, end_verse: int = 0):
+# 	rangeQuery = ''
+# 	query = 'SELECT ESV, verse, id from esv WHERE book = %s AND chapter = %s'
+# 	param_list = [book, chapter]
+# 	assoc = []
+# 	if (start_verse != 0 and end_verse != 0):
+# 		range_query = ' AND verse BETWEEN %s AND %s'
+# 		param_list.append(start_verse)
+# 		param_list.append(end_verse)
+# 	elif (start_verse != 0):
+# 		range_query = ' AND verse = %s'
+# 		param_list.append(start_verse)
 
-	if (range_query != ''):
-		query += range_query
+# 	if (range_query != ''):
+# 		query += range_query
 
-	resultValue = cur.execute(query, tuple(param_list))
-	if (resultValue > 0):
-		selectedVerse = cur.fetchall()
-		print(selectedVerse, file = sys.stderr)
-		for i in range(len(selectedVerse)):
-			verses_dict = dict()
-			verses_dict['body'] = selectedVerse[i][0]
-			verses_dict['verse_num'] = selectedVerse[i][1]
-			verses_dict['verse_id'] = selectedVerse[i][2]
-			assoc.append(verses_dict)
-	return assoc 
+# 	resultValue = cur.execute(query, tuple(param_list))
+# 	if (resultValue > 0):
+# 		selectedVerse = cur.fetchall()
+# 		print(selectedVerse, file = sys.stderr)
+# 		for i in range(len(selectedVerse)):
+# 			verses_dict = dict()
+# 			verses_dict['body'] = selectedVerse[i][0]
+# 			verses_dict['verse_num'] = selectedVerse[i][1]
+# 			verses_dict['verse_id'] = selectedVerse[i][2]
+# 			assoc.append(verses_dict)
+# 	return assoc 
 
 
-def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '', end_verse: str = ''):
+def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '0', end_verse: str = '0'):
 	## if start verse and end verse are provided
 	API_URL = 'https://bible-api.com/'
 	sanitize_chapter = chapter.strip()
 	sanitize_book = book.strip()
 	sanitize_start_verse = start_verse.strip()
-	sanitize_end_verse = start_verse.strip()
-	if (start_verse != '' and end_verse != ''):
+	sanitize_end_verse = end_verse.strip()
+	print('book: ' , sanitize_book, 'chapter: ' , sanitize_chapter, 'start_verse: ', sanitize_start_verse, 'end_verse: ', sanitize_end_verse, file = sys.stderr)
+	if (start_verse != '0' and end_verse != '0'):
 		query_string = '{} {}:{}-{}'.format(sanitize_book, sanitize_chapter, sanitize_start_verse, sanitize_end_verse)	
 	## if just start verse
-	if (start_verse != ''):
-		query_string = '{} {}:{}'.format(sanitize_book, sanitize_chapter)	
+	elif (start_verse != '0'):
+		query_string = '{} {}:{}'.format(sanitize_book, sanitize_chapter, sanitize_start_verse)	
 	else:
-		query_string = '{} {}'.format(book, chapter)
-
+		query_string = '{} {}'.format(sanitize_book, sanitize_chapter)
 	
+	print(API_URL, file =sys.stderr)
 
 	API_URL += query_string
-	print(API_URL, file =sys.stderr)
+
 	response = requests.get(API_URL)
 	passages = response.json()
 	print(passages ,file=sys.stderr)
@@ -120,6 +121,3 @@ def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '', end_vers
 		return passages['verses']
 	except:
 		return passages['error'] 
-	# a = re.split(r"\[\d+\]", passages[0].strip())
-	## print('split_passage without strip: ' , passages[0].split('\n'))
-	# split_passage = passages[0].strip().split('\n')

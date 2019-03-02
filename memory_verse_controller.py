@@ -57,7 +57,7 @@ def memory_verse_page():
 					return redirect(url_for('memory_verse_controller.memory_verse_page'));
 
 				## handle bookmarks 	
-				verseBody = getVerseBody(cur, book, chapter, start_verse, end_verse)	
+				verseBody = getVerseBodyRequest(book, chapter, str(start_verse), str(end_verse))
 				if (verseBody):		
 					if (request.form.get('save-verse')):
 						print('is bookmark', file =sys.stderr)
@@ -85,6 +85,7 @@ def memory_verse_page():
 @memory_verse_controller.route("/saved_memory_verse", methods = ["GET"])
 def get_existing_memory_verse():
 
+	print('--------------- get_existing_memory_verse --------------', file = sys.stderr)
 	## users should be prompted to login before going to the index page 
 	if (not isUserLoggedIn()):
 		return redirect(url_for('login.loginpage'))
@@ -97,7 +98,7 @@ def get_existing_memory_verse():
 	start_verse = request.args.get('start_verse')
 	end_verse = request.args.get('end_verse')
 	print('start_verse: ', start_verse, 'end_verse: ' , end_verse, file =sys.stderr)
-	verse_body = getVerseBody(cur, book, chapter, int(start_verse), int(end_verse))
+	verse_body = getVerseBodyRequest(book, chapter, str(start_verse), str(end_verse))
 	is_bookmark = isExistingBookmark(cur, user_id, book, chapter, start_verse, end_verse, True)
 	saved_verse = ''
 	print('end_verse in saved_memory_verse: ' , end_verse, file = sys.stderr)	

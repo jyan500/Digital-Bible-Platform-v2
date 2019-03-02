@@ -66,6 +66,7 @@ def index():
 
 @home_controller.route("/paginate", methods = ["GET"])
 def paginate():
+	print('------------ paginate -------------', file = sys.stderr)
 	if (request.method == "GET"):
 		cur = mysql.connection.cursor()
 		user_id = getUserID(cur, session.get('username'))

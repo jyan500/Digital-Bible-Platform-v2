@@ -65,8 +65,8 @@
 							</div>
 							<div class = "flippable-card-face back">
 								{% for verses in selected_verses %}
-									<span class = 'verse-number'> {{verses['verse_num']}} </span>
-									<span class = 'individual-verse'> {{ verses['body'] }} </span>
+									<span class = 'verse-number'> {{verses.verse}} </span>
+									<span class = 'individual-verse'> {{ verses.text }} </span>
 								{% endfor %}	
 							</div>
 						</div>
