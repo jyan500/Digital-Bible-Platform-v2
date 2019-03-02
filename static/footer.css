@@ -8,6 +8,15 @@
 	font-size: 1.5em;
 	text-align: center;
 }
+.credit{
+	font-size: .8em;
+}
+.credit > a {
+	text-decoration: none;
+}
+.credit > a:hover{
+	color: var(--hover);
+}
 .social-media{
 	text-align: center;
 }

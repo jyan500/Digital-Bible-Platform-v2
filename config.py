@@ -14,14 +14,10 @@ app.config['MYSQL_USER'] = config['mysql_user']
 app.config['MYSQL_PASSWORD'] = config['mysql_password']
 app.config['MYSQL_DB'] = config['mysql_db']
 app.config['SECRET_KEY'] = config['secretkey']
-app.config['API_KEY'] = config['apikey']
-
 #### global variables ####
 mysql = MySQL()
 
 mysql.init_app(app)
-
-api_key = app.config['API_KEY']
 
 ## import our login page blueprint variable
 from home import home_controller
@@ -43,6 +39,8 @@ from bookmarks import bookmarks_controller
 
 ## import our memory verse page
 from memory_verse_controller import memory_verse_controller
+
+from note_show_controller import note_show_controller
 
 ## register csrf protection
 csrf = CSRFProtect(app)
@@ -68,8 +66,8 @@ app.register_blueprint(bookmarks_controller)
 ## Register the memory verse controller
 app.register_blueprint(memory_verse_controller)
 
-
-
+## Register the note show controller
+app.register_blueprint(note_show_controller)
 
 @app.errorhandler(404)
 # function which takes error as parameter

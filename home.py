@@ -1,5 +1,5 @@
 from datetime import datetime 
-from config import api_key, mysql
+from config import mysql
 from extensions import *
 home_controller = Blueprint('home_controller', __name__)
 
@@ -10,12 +10,8 @@ def index():
 		return redirect(url_for('login.loginpage'))
 	cur = mysql.connection.cursor()
 	user_id = getUserID(cur, session.get('username'))
-
 	allBooks = getAllBooks(cur)
-
 	## if user submits a form, send back response
-	## TODO: turn the requesting chapters into ajax calls, so whenever user makes a selection in the book dropdown, the chapter dropdown
-	## should update itself accordingly so user doesn't go out of bounds 
 	if (request.method == "POST"):
 		## if user has selected a book..
 		is_bookmark = False
@@ -34,16 +30,8 @@ def index():
 
 			print('book: ' , selectedBook, file = sys.stderr)
 			print('chapter: ' ,selectedChapter, file = sys.stderr)
-
-			## you have to pass the parameter values as a tuple for the execute statement
-			## pass the chapter in for now
 			selectedVerses = getVerseBodyRequest(selectedBook, selectedChapter)
-			# resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, selectedChapter))
-			# if (resultValue > 0):
-			# 	selectedVerses = cur.fetchall()
-			# 	print(selectedChapter, file = sys.stderr)
 			integerChapter = int(selectedChapter)
-				## render the template with the saved attributes and with the verses
 			return render_template("layout.html", bookOptions = allBooks, chapterOptions = getAllChaptersBook(cur, selectedBook), saveSelectedBook = selectedBook, saveSelectedChapter = integerChapter, selectedVerses = selectedVerses, is_bookmark = is_bookmark) 
 
 	## for the AJAX request to get the chapters within each book			
@@ -52,14 +40,6 @@ def index():
 		if (request.args.get('selectedbook') != None):
 			selectedBook = request.args.get('selectedbook')
 			print(selectedBook, file = sys.stderr)
-			# resultValue = cur.execute("SELECT chapter from esv where book = %s group by chapter", (selectedBook, ))
-			# if (resultValue > 0):
-			# 	## save the selected chapters to avoid repeating the sql query
-			# 	listForJson = []
-			# 	for tup in cur.fetchall():
-			# 		## append all the chapter names to the list
-			# 		listForJson.append(tup[0])
-			# 	session['chapterlistresult'] = listForJson
 			return json.dumps({"chapterlist": getAllChaptersBook(cur, selectedBook)}) 
 
 	return render_template("layout.html", bookOptions = allBooks)
@@ -74,14 +54,12 @@ def paginate():
 		selectedChapter = request.args.get('chapter')
 		selectedVerses = getVerseBodyRequest(selectedBook, selectedChapter)
 		is_bookmark = isExistingBookmark(cur, user_id, selectedBook, selectedChapter)
+
 		print("selectedBook: " + selectedBook, file = sys.stderr)
 		print("selectedChapter: " + str(selectedChapter), file = sys.stderr)
-		# resultValue = cur.execute("SELECT ESV, verse, id from esv where book = %s and chapter = %s", (selectedBook, str(selectedChapter)))
-		# if (resultValue > 0):
-		# 	selectedVerses = cur.fetchall()
 		print(selectedChapter, file = sys.stderr)
+		
 		integerChapter = int(selectedChapter)
-		## render the template with the saved attributes and with the verses
 		allBooks = getAllBooks(cur)
 		allChaptersForBook = getAllChaptersBook(cur, selectedBook)
 		return render_template("layout.html", bookOptions = allBooks , chapterOptions =  allChaptersForBook, saveSelectedBook = selectedBook, 

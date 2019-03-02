@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<head>
+	<meta charset = "utf-8">
+	<!-- responsive -->
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<title> Notes </title>
+	{% include 'external_includes.html' %}
+	<!-- Note: css files go in the static folder in the root folder -->
+	<link rel="stylesheet" href="/static/snackbar.css">
+	<!-- shared includes styling to body and main -->
+	<link rel = "stylesheet" href = "/static/shared.css">
+</head>
+<html>
+	<body>
+		{% include 'modal.html' %}	
+		{% include 'navbar.html' %}
+		<div class = "main">
+			{% include 'sidebar.html' %}	
+			<div class = "wrapper">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							{% if category == "Error" %}
+								<div class="alert-panel error shadow fade-in">
+							{% elif category == "Success" %}
+								<div class="alert-panel success shadow fade-in">
+							{% endif %}
+								<strong> {{ category }}! </strong>{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}	
+				<h2> Notes </h2>
+			</div>
+		</div>
+		{% include 'footer.html' %}
+	</body>	
+</html>

@@ -1,5 +1,5 @@
 from extensions import * 
-from config import api_key, mysql
+from config import mysql
 bookmarks_controller = Blueprint('bookmarks', __name__)
 
 @bookmarks_controller.route("/bookmarks", methods=['GET', 'POST'])

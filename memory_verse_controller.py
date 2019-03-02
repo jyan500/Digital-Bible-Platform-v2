@@ -1,7 +1,7 @@
 ## only in this file so far
 import re
 ## own files
-from config import api_key, mysql
+from config import mysql
 from extensions import * 
 
 memory_verse_controller = Blueprint('memory_verse_controller', __name__)
