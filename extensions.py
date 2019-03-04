@@ -94,9 +94,11 @@ def getAllBooks(cur: 'mysql'):
 # 	return assoc 
 
 
-def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '0', end_verse: str = '0'):
+## version is world english bible by default until different versions are supported
+def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '0', end_verse: str = '0', version: str = 'web'):
 	## if start verse and end verse are provided
-	API_URL = 'https://bible-api.com/'
+	## world english bible api id: 9879dbb7cfe39e4d-01
+	API_URL = 'https://getbible.net/json?passage='
 	sanitize_chapter = chapter.strip()
 	sanitize_book = book.strip()
 	sanitize_start_verse = start_verse.strip()
@@ -110,14 +112,61 @@ def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '0', end_ver
 	else:
 		query_string = '{} {}'.format(sanitize_book, sanitize_chapter)
 	
+	API_URL = 'https://getbible.net/json?passage={}&version={}'.format(query_string, version)
 	print(API_URL, file =sys.stderr)
-
-	API_URL += query_string
-
 	response = requests.get(API_URL)
-	passages = response.json()
-	print(passages ,file=sys.stderr)
-	try:
-		return passages['verses']
-	except:
-		return passages['error'] 
+	## trim the outer parenthesis to convert from jsonp to json
+	data = response.text.split("(", 1)[1].strip(");")
+	json_data = json.loads(data)
+	## json response for the api changes depending on whether th e 
+	# print(json_data, file = sys.stderr)
+	if (start_verse != '0'):
+		## current response: { book: [] }
+		outer_list = json_data['book']
+		chapter_data = outer_list[0]['chapter']
+	else:
+		chapter_data = json_data['chapter']
+	# print(chapter_data, file =sys.stderr)
+	verses_dict_list = []
+	for verses_key in chapter_data:
+		verses_dict = dict()
+		verses_dict['book'] = sanitize_book
+		verses_dict['chapter'] = sanitize_chapter
+		verses_dict['verse'] = verses_key
+		verses_dict['text'] = chapter_data[verses_key]['verse']
+		verses_dict_list.append(verses_dict)
+	return verses_dict_list
+	# print(response.json(), file = sys.stderr)
+	## convert from jsonp to json
+	# try:
+	# 	return passages['verses']
+	# except:
+	# 	return passages['error'] 
+
+def getExistingNotes(cur: 'mysql', user_id: int, book_filter: str = '', chapter_filter: int = 0):
+	condition = ''
+	params = [user_id] 
+	if (book_filter != ''):
+		condition += ' AND book_filter = %s '
+		params.append(book_filter)
+	if (chapter_filter != 0):
+		condition += ' AND chapter_filter = %s '
+		params.append(chapter_filter)
+	query = "SELECT note_content, date, book, chapter, verse FROM note WHERE uid = %s"
+	query += condition
+	result_value = cur.execute(query, tuple(params))
+	resultsAssocList = []
+	if (result_value > 0):
+		results = cur.fetchall()
+		for i in range(len(results)):
+			resultsAssoc = dict()
+			resultsAssoc['note_content'] = results[i][0]
+			resultsAssoc['date'] = results[i][1]
+			resultsAssoc['book'] = results[i][2]
+			resultsAssoc['chapter'] = results[i][3]
+			resultsAssoc['verse'] = results[i][4]
+			resultsAssocList.append(resultsAssoc)
+	return resultsAssocList
+
+
+

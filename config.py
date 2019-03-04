@@ -14,10 +14,12 @@ app.config['MYSQL_USER'] = config['mysql_user']
 app.config['MYSQL_PASSWORD'] = config['mysql_password']
 app.config['MYSQL_DB'] = config['mysql_db']
 app.config['SECRET_KEY'] = config['secretkey']
+app.config['API_KEY'] = config['apikey']
 #### global variables ####
 mysql = MySQL()
 
 mysql.init_app(app)
+api_key = app.config['API_KEY']
 
 ## import our login page blueprint variable
 from home import home_controller

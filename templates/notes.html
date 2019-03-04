@@ -8,11 +8,12 @@
 	<!-- Note: css files go in the static folder in the root folder -->
 	<link rel="stylesheet" href="/static/snackbar.css">
 	<!-- shared includes styling to body and main -->
+	<link rel = "stylesheet" href = "/static/notes.css">
 	<link rel = "stylesheet" href = "/static/shared.css">
 </head>
 <html>
 	<body>
-		{% include 'modal.html' %}	
+	<!-- 	{% include 'modal.html' %}	 -->
 		{% include 'navbar.html' %}
 		<div class = "main">
 			{% include 'sidebar.html' %}	
@@ -31,6 +32,40 @@
 					{% endif %}
 				{% endwith %}	
 				<h2> Notes </h2>
+				<ul>
+					{% for note in notes %}
+						<li class = "shadow">
+							<div>
+								<h2> {{note['book']}} {{note['chapter']}}:{{note['verse']}} </h2>							
+								<p> {{note['note_content']}} </p>
+							</div>	
+						</li>	
+					{% endfor %}
+					<!-- <li class = "shadow">
+						<a href = "#">
+							<h2> Title #</h2>							
+							<p> Text Content </p>
+						</a>	
+					</li>	
+					<li class = "shadow">
+						<a href = "#">
+							<h2> Title # </h2>	
+							<p> Text Content </p>
+						</a>
+					</li>
+					<li class = "shadow">
+						<a href = "#">
+							<h2> Title # </h2>	
+							<p> Text Content </p>
+						</a>
+					</li>
+					<li class = "shadow">
+						<a href = "#">
+							<h2> Title # </h2>	
+							<p> Text Content </p>
+						</a>
+					</li> -->
+				</ul>
 			</div>
 		</div>
 		{% include 'footer.html' %}
