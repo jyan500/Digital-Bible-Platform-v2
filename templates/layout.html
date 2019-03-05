@@ -18,7 +18,6 @@
 </head>
 <html>
 	<body>
-		{% include 'navbar.html' %}	
 		<!-- the main content of each page has the class 'main' -->
 		<div class = "main">
 			{% include 'sidebar.html' %}
@@ -75,7 +74,7 @@
 							{% if saveSelectedChapter%}
 								{% for chapter in chapterOptions %}
 									{% if saveSelectedChapter == chapter %}
-										<option value = "{saveSelectedChapter}}" selected> {{saveSelectedChapter}} </option>
+										<option value = "{{saveSelectedChapter}}" selected> {{saveSelectedChapter}} </option>
 									{% else %}
 										<option value = "{{chapter}}"> {{chapter}} </option>
 									{% endif %}

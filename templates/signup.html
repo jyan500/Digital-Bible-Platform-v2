@@ -4,9 +4,8 @@
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
 	<title> Signup </title>
-	{% include 'external_includes.html' %}
-	<link rel="stylesheet" href="/static/signup.css">
-	<link rel = "stylesheet" href = "/static/shared.css">	
+	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
+	<link rel = "stylesheet" href = "/static/signup.css">
 </head>
 <html>
 	<body>
@@ -21,7 +20,8 @@
 				{% endfor %}
 			{% endif %}
 		{% endwith %}
-		<div class = "signup-main">
+		{% include '/welcome_pages/welcome_nav.html' %}
+		<main>
 			<div class = "signup-card">
 				<h2>
 					Welcome, please enter the following information to make a user account 	
@@ -43,6 +43,7 @@
 					<button type="submit" class = "submit-button">Sign Up</button>	
 				</form>
 			</div>
-		</div>
+		</main>
+		{% include '/welcome_pages/welcome_footer.html' %}
 	</body>
 </html>

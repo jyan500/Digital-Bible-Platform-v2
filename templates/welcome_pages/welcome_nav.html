@@ -1,0 +1,62 @@
+<style>
+	nav {
+		margin-top: 30px;
+		margin-left: var(--left);
+		display: flex;
+	}
+	nav > a {
+		padding-right: 40px;
+		text-decoration: none;
+		color: white;
+		font-size: 1.5em;
+	}
+	nav > a:hover{
+		color: var(--light-blue-secondary);
+	}
+	.hamburger{
+		display: none;
+	}
+	.show-sidebar{
+		display: none;
+		border: 0;
+		background-color: transparent;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		outline: none;
+		cursor: pointer;
+		margin: 15px;
+		-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+	}
+	.show-sidebar > span{
+		display: block;
+		background-color: black; 
+	    height:3px; 
+	    width:26px; 
+	    margin:0 auto 5px;
+	}
+	@media only screen and (max-width: 500px){
+		nav {
+			display: none;
+		}
+		.hamburger{
+			display: flex;
+		}
+		.show-sidebar{
+			display:block;	
+			font-size: 2em;
+		}
+	}	
+</style>
+<div class = "hamburger">
+	<button class = "show-sidebar">
+		<span></span>
+		<span></span>
+		<span></span>
+	</button>
+</div>
+<nav>
+	<a href = "/home">Home</a>
+	<a href = "/about">About</a>
+	<a href = "/signup">Signup</a>
+	<a href = "/login">Login</a>
+</nav>

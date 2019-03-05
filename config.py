@@ -24,6 +24,9 @@ api_key = app.config['API_KEY']
 ## import our login page blueprint variable
 from home import home_controller
 
+## import our landing page blueprint
+from welcome import welcome_controller
+
 ## import our login page blueprint variable
 from login import login_controller
 
@@ -50,6 +53,9 @@ csrf = CSRFProtect(app)
 ## Register the home controller 
 app.register_blueprint(home_controller)
 
+## Register the landing page 
+app.register_blueprint(welcome_controller)
+
 ## Register the login controller ## 
 app.register_blueprint(login_controller)
 
@@ -70,6 +76,7 @@ app.register_blueprint(memory_verse_controller)
 
 ## Register the note show controller
 app.register_blueprint(note_show_controller)
+
 
 @app.errorhandler(404)
 # function which takes error as parameter

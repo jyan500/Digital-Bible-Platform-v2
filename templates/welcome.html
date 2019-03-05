@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+	<meta charset = "utf-8">
+	<!-- responsive -->
+	<title> Welcome </title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">	
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<link rel = "stylesheet" href = "../static/welcome_pages/welcome_shared.css">
+</head>
+<style>
+	.left > h1 {
+		font-size: 4em;
+		margin-bottom: -20px;
+	}
+	.image{
+		border: 10px solid var(--light-blue-secondary);
+		background-size: cover;
+		background-position: bottom;
+		background-image: url("../static/bible_ipod_compressed.jpg");
+		height: 50vh;
+		width: 100vh;
+		border-radius: 10px;
+	}
+
+	.description {
+		max-width: 50vh;	
+	}
+	.right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center
+	}
+	@media only screen and (max-width: 1300px){
+		main {
+			margin-top: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+	}
+	@media only screen and (max-width: 800px){
+		main {
+			margin-left: 5px;
+			margin-top: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.image {
+			background-image: url("../static/bible_ipod_compressed_small.jpg");	
+			width: 50vh;
+			height: 25vh;
+		}	
+	}
+	@media only screen and (max-width: 500px){
+		.image {
+			background-image: url("../static/bible_ipod_compressed_small.jpg");	
+			width: 50vh;
+			height: 25vh;
+		}
+		footer {
+			margin-left: 20px;
+			margin-top: 20px;
+		}
+		.left > h1 {
+			font-size: 3em;
+			margin-bottom: -20px;
+		}
+	}
+</style>
+<body>
+	{% include '/welcome_pages/welcome_nav.html' %}		
+	<main>
+		<div class = "left">
+			<h1> BibleJourney </h1>	
+			<h2> A Bible Notetaking Website </h2>
+			<p class = "description"> 
+			</p>	
+		</div>
+		<div class = "right">
+			<div class = "image"></div>
+		</div>
+	</main>
+	{% include '/welcome_pages/welcome_footer.html' %}
+
+</body>

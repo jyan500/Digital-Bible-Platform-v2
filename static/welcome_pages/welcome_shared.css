@@ -1,0 +1,21 @@
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	--light-blue: #00A1CD;
+	--light-blue-secondary: #98CCE1;
+	background-color: var(--light-blue);
+	color: white;
+	font-family: 'Source Sans Pro', sans-serif;
+	--left: 80px;
+	box-sizing: border-box;
+}
+
+main {
+	display: flex;
+	flex: 1 0 auto;
+	min-height: 100vh;
+	margin-left: var(--left);
+	margin-top: 100px;
+}

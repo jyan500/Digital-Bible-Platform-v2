@@ -4,10 +4,9 @@
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
 	<title> Login </title>
-	{% include 'external_includes.html' %}
 	<!-- Note: css files go in the static folder in the root folder -->
-	<link rel="stylesheet" href="/static/login.css">
-	<link rel = "stylesheet" href = "/static/shared.css">	
+	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
+	<link rel = "stylesheet" href = "/static/login.css">
 </head>
 <html>
 	<body>
@@ -24,7 +23,8 @@
 				{% endfor %}
 			{% endif %}
 		{% endwith %}
-		<div class = "login-main">
+		{% include '/welcome_pages/welcome_nav.html' %}
+		<main>
 			<div class = "login-card">
 				<h2> Welcome to {{ company() }}, Please Login </h2>
 				<form action = "/login" method = "POST">
@@ -41,6 +41,7 @@
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				</form>
 			</div>
-		</div>
+		</main>
+		{% include '/welcome_pages/welcome_footer.html' %}
 	</body>
 </html>

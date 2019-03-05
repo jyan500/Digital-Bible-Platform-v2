@@ -7,7 +7,7 @@ home_controller = Blueprint('home_controller', __name__)
 def index():
 	## users should be prompted to login before going to the index page 
 	if (not isUserLoggedIn()):
-		return redirect(url_for('login.loginpage'))
+		return redirect(url_for('welcome_controller.landing_page'))
 	cur = mysql.connection.cursor()
 	user_id = getUserID(cur, session.get('username'))
 	allBooks = getAllBooks(cur)
