@@ -4,8 +4,10 @@
 	<!-- responsive -->
 	<title> Welcome </title>
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">	
+	{% include 'external_includes.html' %}
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 	<link rel = "stylesheet" href = "../static/welcome_pages/welcome_shared.css">
+
 </head>
 <style>
 	.left > h1 {
@@ -71,19 +73,21 @@
 		}
 	}
 </style>
-<body>
-	{% include '/welcome_pages/welcome_nav.html' %}		
-	<main>
-		<div class = "left">
-			<h1> BibleJourney </h1>	
-			<h2> A Bible Notetaking Website </h2>
-			<p class = "description"> 
-			</p>	
-		</div>
-		<div class = "right">
-			<div class = "image"></div>
-		</div>
-	</main>
-	{% include '/welcome_pages/welcome_footer.html' %}
+<html>
+	<body>
+		{% include '/welcome_pages/welcome_nav.html' %}		
+		<main>
+			<div class = "left">
+				<h1> BibleJourney </h1>	
+				<h2> A Bible Notetaking Website </h2>
+				<p class = "description"> 
+				</p>	
+			</div>
+			<div class = "right">
+				<div class = "image"></div>
+			</div>
+		</main>
+		{% include '/welcome_pages/welcome_footer.html' %}
 
-</body>
+	</body>
+</html>

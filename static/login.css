@@ -1,31 +1,49 @@
-.login-main{
+.login-main {
+	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.form-label{
-	color: var(--hover); 
+	height: 50vh;
+}				
+label{
+	font-size: 1.2em;
 }
 .login-card{
-	margin-top: 20px;
-	padding: 40px;
-	background-color: var(--primary);
+	padding: 30px;
+	background-color: var(--light-blue-secondary);
 	border-radius: 10px;
+	width: 100vh;
+	height: 50vh;
 }
 .login-card > h2{
 	font-family: 'Merriweather', sans-serif;
 	text-align: center;
-	color: var(--hover);
 }
 .login-card > h3{
 	font-family: 'Merriweather', sans-serif;
-	color: var(--hover);
 }
-.link:hover{
-	text-decoration: none;
-	color: var(--background);
+input[type=text], input[type=password]{
+	width: 100%;
+	padding: 10px 10px;
+	display: inline-block;
+	border: 1px solid #CCC;
+	color: black;
+	box-sizing: border-box;
+	margin-bottom: 5px;
+} 
+button {
+	margin-top: 15px;
+	background: var(--light-blue);	
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1.2em;
+	width: 100%;
+	text-align: center;
 }
-
+button:hover{
+	opacity: .8;
+}
 @media only screen and (max-width: 800px){
 	.login-card{
 		margin: 20px 20px 20px 20px;

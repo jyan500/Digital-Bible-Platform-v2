@@ -1,3 +1,7 @@
+html {
+	margin: 0;
+	padding: 0;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -5,6 +9,8 @@ body {
 	height: 100%;
 	--light-blue: #00A1CD;
 	--light-blue-secondary: #98CCE1;
+	--lime-green: #8EE918;
+	--error-red: #FF2B34;
 	background-color: var(--light-blue);
 	color: white;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -15,7 +21,39 @@ body {
 main {
 	display: flex;
 	flex: 1 0 auto;
-	min-height: 100vh;
+	min-height: 80vh;
 	margin-left: var(--left);
 	margin-top: 100px;
+}
+
+.alert-panel{
+	padding: 15px;
+	margin-bottom:20px;
+	text-align:center;
+	border-radius:5px;
+}
+.success{
+	/* lime green */
+	background-color: var(--lime-green);
+}
+
+.error{
+	/* red */
+	background-color: var(--error-red);
+}
+
+input[type=text], input[type=password]{
+
+	width: 100%;
+	padding: 10px 10px;
+	display: inline-block;
+	border: 1px solid #DDD;
+	color: black;
+	box-sizing: border-box;
+	margin-bottom: 5px;
+	outline: none;
+} 
+input[type=text]:focus, input[type=password]:focus{
+	border: 1px solid rgba(81, 203, 238, 1);	
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }

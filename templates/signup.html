@@ -4,6 +4,7 @@
 	<!-- responsive -->
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">
 	<title> Signup </title>
+	{% include 'external_includes.html' %}
 	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
 	<link rel = "stylesheet" href = "/static/signup.css">
 </head>
@@ -13,7 +14,7 @@
 			{% if messages %}
 				{% for category, message in messages %}
 					{% if category == "Error" %}
-						<div class="alert alert-danger text-center fade-in">
+						<div class="alert-panel error">
 							<strong> Error! </strong>{{message}}
 						</div>
 					{% endif %}
@@ -22,26 +23,22 @@
 		{% endwith %}
 		{% include '/welcome_pages/welcome_nav.html' %}
 		<main>
-			<div class = "signup-card">
-				<h2>
-					Welcome, please enter the following information to make a user account 	
-				</h2>
-				<form action = "/signup" method = "POST">
-					<div class = "form-group">
-						<label class = "form-label" for = "Username">Username: </label>
-						<input type = "username" class = "form-control" name = "username" id = "username" placeholder = "Username">
-					</div>
-					<div class = "form-group">
-						<label class = "form-label" for = "password">Password: </label>
-						<input type="password" class = "form-control" name = "password" id = "password" placeholder = "Password">
-					</div>
-					<div class = "form-group">
-						<label class = "form-label" for = "password_confirmation"> Please Re-type Password: </label>
-						<input type = "password" class = "form-control" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
-					</div>
-					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-					<button type="submit" class = "submit-button">Sign Up</button>	
-				</form>
+			<div class = "signup-main">
+				<div class = "signup-card">
+					<h2>
+						Signup
+					</h2>
+					<form action = "/signup" method = "POST">
+						<label for = "Username">Username: </label>
+						<input type = "text" name = "username" id = "username" placeholder = "Username">
+						<label for = "password">Password: </label>
+						<input type="password"  name = "password" id = "password" placeholder = "Password">
+						<label for = "password_confirmation"> Please Re-type Password: </label>
+						<input type = "password" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+						<button type="submit" class = "submit-button">Sign Up</button>	
+					</form>
+				</div>	
 			</div>
 		</main>
 		{% include '/welcome_pages/welcome_footer.html' %}
