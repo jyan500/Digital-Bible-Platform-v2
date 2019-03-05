@@ -137,7 +137,7 @@
 					 				<br>
 								{%endif%}
 								<!-- display the verse number as a bootstrap popover -->
-								<button id = "popover_{{verses.verse}}" class = "verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses.verse}}" data-toggle="popover" data-placement="top" data-book = "{{ verses.book_name }}" data-chapter = "{{ verses.chapter }}" data-verse= "{{ verses.verse }}">{{verses.verse}}</button>
+								<button id = "popover_{{verses.verse}}" class = "verse_btn" title = "your note for {{saveSelectedBook}} {{ saveSelectedChapter}}:{{verses.verse}}" data-toggle="popover" data-placement="top" data-book = "{{ verses.book }}" data-chapter = "{{ verses.chapter }}" data-verse= "{{ verses.verse }}">{{verses.verse}}</button>
 								<!-- display the verse itself -->
 								<span class= "indiv_verse">{{ verses.text }}</span>
 
@@ -153,7 +153,7 @@
 										</textarea>
 										<button id = "submit-btn" type = "submit" class = "btn btn-sm save"> Save </button>
 										<input id = "verse-id_{{verses.verse}}" name = "verse-id" type = "hidden">
-										<input id = "verses-book-{{verses.book_name}}" name = "verse-book" type = "hidden">
+										<input id = "verses-book-{{verses.book}}" name = "verse-book" type = "hidden">
 										<input id = "verses-chapter-{{verses.chapter}}" name = "verses-chapter" type = "hidden">
 										<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 									</form>

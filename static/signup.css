@@ -21,7 +21,7 @@ label{
 	color: var(--hover);
 }
 
-button {
+.signup-button {
 	margin-top: 15px;
 	background: var(--light-blue);	
 	border: none;
@@ -31,7 +31,7 @@ button {
 	width: 100%;
 	text-align: center;
 }
-button:hover{
+.signup-button:hover{
 	opacity: .8;
 }
 

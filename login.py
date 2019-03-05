@@ -7,6 +7,11 @@ login_controller = Blueprint('login', __name__)
 
 @login_controller.route("/login", methods = ["GET", "POST"])
 def loginpage():
+
+	cur = mysql.connection.cursor()
+	if (request.method == "GET"):
+		if (isUserLoggedIn()):
+			return redirect(url_for('home_controller.index'))
 	if (request.method == "POST"):
 		username = request.form['username']
 		password = request.form['password']
@@ -17,7 +22,6 @@ def loginpage():
 			username = username.strip()
 			password = password.strip()
 
-		cur = mysql.connection.cursor()
 		## check if user exists
 		resultValue1 = cur.execute("SELECT USERNAME, PASSWORD_HASH from USERS where USERNAME = %s", (username, ))
 		if (resultValue1 > 0):

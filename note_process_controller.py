@@ -20,6 +20,7 @@ def insert():
 		chapter = request.form['chapter']
 		book = request.form['book']
 
+		print('note_content: ', note_content, 'book: ' , book, 'chapter: ' , chapter, 'verse: ', verse, file =sys.stderr)
 		## sanitize the text
 		bleach.clean(note_content)
 		print(note_content, file=sys.stderr)

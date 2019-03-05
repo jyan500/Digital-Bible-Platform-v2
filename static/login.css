@@ -22,16 +22,8 @@ label{
 .login-card > h3{
 	font-family: 'Merriweather', sans-serif;
 }
-input[type=text], input[type=password]{
-	width: 100%;
-	padding: 10px 10px;
-	display: inline-block;
-	border: 1px solid #CCC;
-	color: black;
-	box-sizing: border-box;
-	margin-bottom: 5px;
-} 
-button {
+
+.login-button {
 	margin-top: 15px;
 	background: var(--light-blue);	
 	border: none;
@@ -41,9 +33,10 @@ button {
 	width: 100%;
 	text-align: center;
 }
-button:hover{
+.login-button:hover{
 	opacity: .8;
 }
+
 @media only screen and (max-width: 800px){
 	.login-card{
 		margin: 20px 20px 20px 20px;
