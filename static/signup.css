@@ -36,7 +36,15 @@ label{
 }
 
 @media only screen and (max-width: 800px){
+	label{
+		font-size: 1em;
+	}
+	.signup-card > h2{
+		font-size: 1.5em;
+	}
 	.signup-card{
-		margin: 20px 20px 20px 20px;
+		padding: 10px 20px 0px 20px;
+		width: 50vh;
+		height: 75vh;
 	}	
 }
