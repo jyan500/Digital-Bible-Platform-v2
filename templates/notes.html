@@ -8,8 +8,8 @@
 	<!-- Note: css files go in the static folder in the root folder -->
 	<link rel="stylesheet" href="/static/snackbar.css">
 	<!-- shared includes styling to body and main -->
-	<link rel = "stylesheet" href = "/static/notes.css">
 	<link rel = "stylesheet" href = "/static/shared.css">
+	<link rel = "stylesheet" href = "/static/notes.css">
 </head>
 <html>
 	<body>
@@ -31,9 +31,9 @@
 					{% endif %}
 				{% endwith %}	
 				<h2> Notes </h2>
-				<ul>
+				<ul class = "note-card-body">
 					{% for note in notes %}
-						<li class = "shadow">
+						<li class = "note-card shadow">
 							<div>
 								<h2> {{note['book']}} {{note['chapter']}}:{{note['verse']}} </h2>							
 								<p> {{note['note_content']}} </p>

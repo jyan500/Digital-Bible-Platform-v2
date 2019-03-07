@@ -20,12 +20,13 @@
 		background-position: bottom;
 		background-image: url("../static/bible_ipod_compressed.jpg");
 		height: 50vh;
-		width: 100vh;
+		width: 50vw;
+		max-width: 100%;
 		border-radius: 10px;
 	}
 
 	.description {
-		max-width: 50vh;	
+		max-width: 50%;	
 	}
 	.right {
 		flex: 1;
@@ -41,6 +42,10 @@
 			align-items: center;
 			flex-direction: column;
 		}
+		.image {
+			height: 50vh;
+			width: 75vw;
+		}
 	}
 	@media only screen and (max-width: 800px){
 		main {
@@ -52,15 +57,13 @@
 			flex-direction: column;
 		}
 		.image {
-			background-image: url("../static/bible_ipod_compressed_small.jpg");	
-			width: 50vh;
-			height: 25vh;
+			width: 75vw;
+			height: 50vh;
 		}	
 	}
 	@media only screen and (max-width: 500px){
 		.image {
-			background-image: url("../static/bible_ipod_compressed_small.jpg");	
-			width: 50vh;
+			width: 75vw;
 			height: 25vh;
 		}
 		footer {
@@ -72,11 +75,17 @@
 			margin-bottom: -20px;
 		}
 	}
+	@media only screen and (max-height: 500px){
+		.image {
+			width: 75vw;
+			height: 50vh;
+		}	
+	}
 </style>
 <html>
 	<body>
 		{% include '/welcome_pages/welcome_nav.html' %}		
-		<main>
+		<main class = 'fade-in'>
 			<div class = "left">
 				<h1> BibleJourney </h1>	
 				<h2> A Bible Notetaking Website </h2>

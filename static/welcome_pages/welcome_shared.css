@@ -11,6 +11,8 @@ body {
 	--light-blue-secondary: #98CCE1;
 	--lime-green: #8EE918;
 	--error-red: #FF2B34;
+	--fade-in-time: 1.1s;
+
 	background-color: var(--light-blue);
 	color: white;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -42,11 +44,18 @@ main {
 	background-color: var(--error-red);
 }
 
+.fade-in{
+	animation: fadeIn var(--fade-in-time) ease forwards;
+	-webkit-animation: fadeIn var(--fade-in-time) ease forwards;
+ 	-moz-animation: fadeIn var(--fade-in-time) ease forwards;
+ 	-o-animation: fadeIn var(--fade-in-time) ease forwards;
+ 	-ms-animation: fadeIn var(--fade-in-time) ease forwards;
+}
+
 input[type=text], input[type=password]{
 
 	width: 100%;
 	padding: 10px 10px;
-	display: inline-block;
 	border: 1px solid #DDD;
 	color: black;
 	box-sizing: border-box;
@@ -82,4 +91,56 @@ input[type=text]:focus, input[type=password]:focus{
 		align-items: center;
 		flex-direction: column;
 	}
+}
+
+/* landscape mode for most devices */
+@media only screen and (max-height:500px){
+	main {
+	}
+}
+
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }

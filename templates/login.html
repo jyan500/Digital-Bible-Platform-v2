@@ -26,7 +26,7 @@
 		{% endwith %}
 		{% include '/welcome_pages/welcome_nav.html' %}
 		<main>
-			<div class = "login-main">
+			<div class = "login-main fade-in">
 				<div class = "login-card">
 					<h2> Login </h2>
 					<form action = "/login" method = "POST">
@@ -34,7 +34,7 @@
 						<input type = "text" name = "username" placeholder = "Username">
 						<label for = "password"><b>Password:</b></label>
 						<input type="password" name = "password" placeholder = "Password">
-						<button class = "login-button" type="submit" >Login</button>
+						<button class = "login-button" type="submit" >Submit</button>
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 					</form>
 				</div>

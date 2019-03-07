@@ -8,10 +8,41 @@
 	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
 </head>
 <style>
+	.left {
+		width: 50vw;
+	}
+	.left > h1{
+		font-size: 4em;
+	}
+	.description{
+		font-size: 1.4em;
+	}
+	.disclaimer {
+		font-size: 1.2em;
+	}
+	.disclaimer > a{
+		color: white;
+		text-decoration :none;
+	}
+	.disclaimer > a:hover{
+		color: var(--light-blue-secondary);
+	}
+	.disclaimer > a:visited{
+		text-decoration: none;
+	}
 	@media only screen and (max-width: 800px){
+		.left > h1{
+			font-size: 3em;
+		}
+		.description {
+			font-size: 1em;
+		}
+		.disclaimer {
+			font-size: 1em;
+		}
 		.left {
-			height: 60vh;
-			margin-left: 20px;
+			width: 100%;
+			padding: 10px;
 		}
 	}
 }
@@ -19,14 +50,26 @@
 <html>
 	<body>
 		{% include '/welcome_pages/welcome_nav.html' %}
-		<main>
+		<main class = "fade-in">
 			<div class = "left">
 				<h1> About {{ company() }} </h1>	
-				<h2> {{ company() }} is a personal project of Jansen Yan </h2>
+				<hr>
 				<p class = "description"> 
+					The goal of BibleJourney is to provide an accessible Bible Study experience.
+					Current features include:
+						<ul>
+							<li> The Old and New Testament available in WEB (World English Bible) Translation. </li>
+							<li> Note taking </li>
+							<li> Bookmarks </li>
+							<li> Memory Verse Flash Cards </li>
+						</ul>
 				</p>	
-			</div>
-			<div class = "right">
+				<p class = 'disclaimer'>
+					BibleJourney is currently maintained by <a href = "https://jyan500.github.io/portfolio">Jansen Yan. </a> If you'd like to contribute or if you
+					see an error on the site, please feel free to let me know, or visit the <a href = "https://github.com/jyan500/BibleJourney"> Github Repo </a> and 
+					submit a pull request. It would be greatly appreciated! 						
+				</p>
+
 			</div>
 		</main>
 		{% include '/welcome_pages/welcome_footer.html' %}

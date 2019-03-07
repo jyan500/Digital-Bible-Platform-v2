@@ -1,14 +1,8 @@
-html, body {
-	margin: 0;
-	padding: 0;
-	font-family: arial, sans-serif;
-	font-size: 100%;
-}
-ul{
+.note-card-body{
 	list-style: none;
 	padding: 3em;
 }
-li {
+.note-card {
 	display: inline-block;
 	width: 30%;
 	background-color: #ffc;
@@ -19,34 +13,34 @@ li {
 	-o-transition:-o-transform .15s linear;
 	-webkit-transition:-webkit-transform .15s linear;
 }
-li:hover{
+.note-card:hover{
 	-webkit-transform: scale(1.25);	
 	-moz-transform: scale(1.25);
 	-o-transform: scale(1.25);
 	z-index: 5;
 }
-ul>li:nth-child(even){
+.note-card-body > .note-card:nth-child(even){
 	background-color: #ccf;
 }
-ul>li:nth-child(3n){
+.note-card-body > .note-card:nth-child(3n){
 	background-color: #cfc;
 }
 @media only screen and (max-width: 1300px){
-	li{
+	.note-card{
 		width: 100%;
 	}
 }
 @media only screen and (max-width: 800px){
-	ul{
+	.note-card-body{
 		padding: 1em;
 	}
-	li {
+	.note-card {
 		display: block;
 		padding: 1em;
 		margin-top: 1em;
 		width: 95%;
 	}
-	li:hover{
+	.note-card:hover{
 		-webkit-transform: scale(1);
 		-moz-transform: scale(1);
 		-o-transform: scale(1);

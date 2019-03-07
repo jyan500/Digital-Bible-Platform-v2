@@ -23,7 +23,7 @@
 		{% endwith %}
 		{% include '/welcome_pages/welcome_nav.html' %}
 		<main>
-			<div class = "signup-main">
+			<div class = "signup-main fade-in">
 				<div class = "signup-card">
 					<h2>
 						Signup
@@ -36,7 +36,7 @@
 						<label for = "password_confirmation"> Please Re-type Password: </label>
 						<input type = "password" name = "password_conf" id = "password_conf" placeholder = "Re-type Password">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-						<button type="submit" class = "signup-button">Sign Up</button>	
+						<button type="submit" class = "signup-button">Submit</button>	
 					</form>
 				</div>	
 			</div>
