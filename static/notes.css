@@ -31,7 +31,11 @@ ul>li:nth-child(even){
 ul>li:nth-child(3n){
 	background-color: #cfc;
 }
-
+@media only screen and (max-width: 1300px){
+	li{
+		width: 100%;
+	}
+}
 @media only screen and (max-width: 800px){
 	ul{
 		padding: 1em;
@@ -44,7 +48,7 @@ ul>li:nth-child(3n){
 	}
 	li:hover{
 		-webkit-transform: scale(1);
-		-moz-transform: scale(1.25);
-		-o-transform: scale(1.25);
+		-moz-transform: scale(1);
+		-o-transform: scale(1);
 	}
 }
