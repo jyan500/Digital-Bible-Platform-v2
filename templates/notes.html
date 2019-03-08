@@ -10,10 +10,11 @@
 	<!-- shared includes styling to body and main -->
 	<link rel = "stylesheet" href = "/static/shared.css">
 	<link rel = "stylesheet" href = "/static/notes.css">
+	<script src = "/static/notes.js"></script>
 </head>
 <html>
 	<body>
-	<!-- 	{% include 'modal.html' %}	 -->
+		{% include 'modal.html' %}	
 		<div class = "main">
 			{% include 'sidebar.html' %}	
 			<div class = "wrapper">
@@ -37,6 +38,7 @@
 							<div>
 								<h2> {{note['book']}} {{note['chapter']}}:{{note['verse']}} </h2>							
 								<p> {{note['note_content']}} </p>
+								<span id = "{{note['id']}}" class = "delete-verse"> &times;</span>
 							</div>	
 						</li>	
 					{% endfor %}

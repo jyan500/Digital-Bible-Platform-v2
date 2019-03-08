@@ -12,6 +12,9 @@ $(document).ready(function(){
 		else if ($('.id-to-submit').hasClass('modal-memory-verse')){
 			path = '/memory_verse_post';
 		}
+		else if ($('.id-to-submit').hasClass('modal-notes')){
+			path = '/note_delete';	
+		}
 		console.log("clicked on modal-bookmark");
 		$('.submit-modal').attr('action', path);
 		$('.submit-modal').submit();

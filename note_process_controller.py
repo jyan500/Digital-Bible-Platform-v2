@@ -122,3 +122,23 @@ def update():
 			##flash("You must be a registered user to save notes!", "Error")
 			return json.dumps({'status':'Error'});
 
+@note_process_controller.route("/note_delete", methods=["POST"])
+def delete():
+	if (not isUserLoggedIn()):
+		return redirect(url_for('login.loginpage'))
+
+	cur = mysql.connection.cursor()
+	user_id = getUserID(cur, str(session['username']))	
+
+	if (request.method == "POST"):
+		note_id = request.form.get('id-to-submit')
+		if (note_id != None and note_id.isdigit()):
+			query = "DELETE FROM note WHERE note.id = %s AND note.uid = %s"	
+			print('delete note query: ' , query, file = sys.stderr)
+			result_value = cur.execute(query, (note_id, user_id))
+			mysql.connection.commit()
+			if (result_value > 0):
+				flash("Deleted Successfully", "Success")
+			else:
+				flash("Failed to delete", "Error")
+	return redirect(url_for('note_show_controller.note_show_page'))

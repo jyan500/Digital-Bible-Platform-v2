@@ -12,18 +12,30 @@
 	-moz-transition:-moz-transform .15s linear;
 	-o-transition:-o-transform .15s linear;
 	-webkit-transition:-webkit-transform .15s linear;
+	position: relative;
 }
 .note-card:hover{
 	-webkit-transform: scale(1.25);	
 	-moz-transform: scale(1.25);
 	-o-transform: scale(1.25);
-	z-index: 5;
+	z-index: 1;
 }
 .note-card-body > .note-card:nth-child(even){
 	background-color: #ccf;
 }
 .note-card-body > .note-card:nth-child(3n){
 	background-color: #cfc;
+}
+.delete-verse{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.8em;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.delete-verse:hover{
+	color: var(--hover);
 }
 @media only screen and (max-width: 1300px){
 	.note-card{

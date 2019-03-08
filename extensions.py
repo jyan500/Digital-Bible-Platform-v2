@@ -152,7 +152,7 @@ def getExistingNotes(cur: 'mysql', user_id: int, book_filter: str = '', chapter_
 	if (chapter_filter != 0):
 		condition += ' AND chapter_filter = %s '
 		params.append(chapter_filter)
-	query = "SELECT note_content, date, book, chapter, verse FROM note WHERE uid = %s"
+	query = "SELECT id, note_content, date, book, chapter, verse FROM note WHERE uid = %s"
 	query += condition
 	result_value = cur.execute(query, tuple(params))
 	resultsAssocList = []
@@ -160,11 +160,12 @@ def getExistingNotes(cur: 'mysql', user_id: int, book_filter: str = '', chapter_
 		results = cur.fetchall()
 		for i in range(len(results)):
 			resultsAssoc = dict()
-			resultsAssoc['note_content'] = results[i][0]
-			resultsAssoc['date'] = results[i][1]
-			resultsAssoc['book'] = results[i][2]
-			resultsAssoc['chapter'] = results[i][3]
-			resultsAssoc['verse'] = results[i][4]
+			resultsAssoc['id'] = results[i][0]
+			resultsAssoc['note_content'] = results[i][1]
+			resultsAssoc['date'] = results[i][2]
+			resultsAssoc['book'] = results[i][3]
+			resultsAssoc['chapter'] = results[i][4]
+			resultsAssoc['verse'] = results[i][5]
 			resultsAssocList.append(resultsAssoc)
 	return resultsAssocList
 
