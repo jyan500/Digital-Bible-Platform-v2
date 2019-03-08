@@ -33,6 +33,9 @@ label{
 .signup-button:hover{
 	opacity: .8;
 }
+.g-recaptcha {
+	margin-top: 20px;
+}
 
 @media only screen and (max-width: 800px){
 	label{

@@ -170,4 +170,14 @@ def getExistingNotes(cur: 'mysql', user_id: int, book_filter: str = '', chapter_
 	return resultsAssocList
 
 
+def verifyRecaptcha(secret_key: str, response_token: str):
+	API_URL = 'https://www.google.com/recaptcha/api/siteverify'
+	params = {'secret' : secret_key, 'response' : response_token}
+	response = requests.post(API_URL, params)
+	json = response.json()
+	return json['success']
+
+
+
+
 

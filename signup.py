@@ -8,11 +8,16 @@ signup_controller = Blueprint('signup', __name__)
 @signup_controller.route("/signup", methods = ["GET", "POST"])
 def signuppage():
 	
-	print('site key: ' , recaptcha_site_key, file =sys.stderr)
 	if (request.method == "POST"):
 		username = request.form['username']
 		password = request.form['password']
 		password_conf = request.form['password_conf']
+		recaptcha_response = request.form['g-recaptcha-response']
+		## check recaptcha
+		is_valid_recaptcha = verifyRecaptcha(recaptcha_private_key, recaptcha_response)
+		if (not is_valid_recaptcha):
+			flash("Please fill out reCAPTCHA again and wait for reCAPTCHA to finish verification before submitting", "Error")
+			return redirect(url_for('signup.signuppage'))
 		if not (username and password and password_conf):
 			flash("Username or Password cannot be empty.", "Error")
 			return redirect(url_for('signup.signuppage'))
@@ -37,7 +42,7 @@ def signuppage():
 			mysql.connection.commit()
 			flash("User account has been created. Please login", "Success")	
 			return redirect(url_for('login.loginpage'))
-	return render_template("signup.html")
+	return render_template("signup.html", recaptcha_site_key = recaptcha_site_key)
 
 
 

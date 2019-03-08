@@ -14,13 +14,13 @@ $(document).ready(function(){
 	document.getElementsByTagName('body')[0].onresize = function (){
 		console.log("resized");
 		if (window.matchMedia("(max-width: 800px)").matches){
-			console.log("less than 800px");
+			// console.log("less than 800px");
 			$('.mobile-sidebar').hide();
 			$('.hamburger').show();
 			$('.sidebar').hide();
 		}
 		else{
-			console.log("greater than 800px");
+			// console.log("greater than 800px");
 			$('.sidebar').show();
 			$('.mobile-sidebar').hide();
 			$('.hamburger').hide();
