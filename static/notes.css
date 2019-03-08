@@ -4,7 +4,6 @@
 }
 .note-card {
 	display: inline-block;
-	width: 30%;
 	background-color: #ffc;
 	padding: 1em;
 	margin: 1em;
@@ -15,9 +14,9 @@
 	position: relative;
 }
 .note-card:hover{
-	-webkit-transform: scale(1.25);	
-	-moz-transform: scale(1.25);
-	-o-transform: scale(1.25);
+	-webkit-transform: scale(1.2);	
+	-moz-transform: scale(1.2);
+	-o-transform: scale(1.2);
 	z-index: 1;
 }
 .note-card-body > .note-card:nth-child(even){

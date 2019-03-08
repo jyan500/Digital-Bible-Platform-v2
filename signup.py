@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from config import mysql
+from config import mysql, recaptcha_private_key, recaptcha_site_key
 ## import our own mysql extension
 from extensions import * 
 
@@ -8,6 +8,7 @@ signup_controller = Blueprint('signup', __name__)
 @signup_controller.route("/signup", methods = ["GET", "POST"])
 def signuppage():
 	
+	print('site key: ' , recaptcha_site_key, file =sys.stderr)
 	if (request.method == "POST"):
 		username = request.form['username']
 		password = request.form['password']

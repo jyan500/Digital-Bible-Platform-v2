@@ -14,12 +14,14 @@ app.config['MYSQL_USER'] = config['mysql_user']
 app.config['MYSQL_PASSWORD'] = config['mysql_password']
 app.config['MYSQL_DB'] = config['mysql_db']
 app.config['SECRET_KEY'] = config['secretkey']
-app.config['API_KEY'] = config['apikey']
+app.config['RECAPTCHA_PRIVATE'] = config['recaptcha_private']
+app.config['RECAPTCHA_PUBLIC'] = config['recaptcha_public']
 #### global variables ####
 mysql = MySQL()
 
 mysql.init_app(app)
-api_key = app.config['API_KEY']
+recaptcha_private_key = app.config['RECAPTCHA_PRIVATE']
+recaptcha_site_key = app.config['RECAPTCHA_PUBLIC']
 
 ## import our login page blueprint variable
 from home import home_controller

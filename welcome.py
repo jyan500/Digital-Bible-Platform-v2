@@ -1,5 +1,5 @@
 from datetime import datetime 
-from config import mysql, api_key
+from config import mysql
 from extensions import *
 welcome_controller = Blueprint('welcome_controller', __name__)
 

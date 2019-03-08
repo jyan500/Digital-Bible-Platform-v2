@@ -7,6 +7,7 @@
 	{% include 'external_includes.html' %}
 	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
 	<link rel = "stylesheet" href = "/static/signup.css">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <html>
 	<body>
@@ -29,6 +30,7 @@
 						Signup
 					</h2>
 					<form action = "/signup" method = "POST">
+						<div class = "g-recaptcha" data-sitekey = "{{recaptcha_site_key}}"></div>
 						<label for = "Username">Username: </label>
 						<input type = "text" name = "username" id = "username" placeholder = "Username">
 						<label for = "password">Password: </label>
