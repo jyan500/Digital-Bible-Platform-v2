@@ -23,7 +23,7 @@ def memory_verse_page():
 		return render_template('memory_verse.html', memory_dict = assoc)
 	if (request.method == "POST"):
 		## regex format: James 1:2-2
-		regex = re.compile('^(\\d?\\s[a-zA-Z]+)(\\s\\d+)([:]?\\d+)?([-]?\\d+)?$')
+		regex = re.compile('^(\\d?\\s?[a-zA-Z]+)(\\s\\d+)([:]?\\d+)?([-]?\\d+)?$')
 		verse = request.form.get('verse-input')
 		print(request.form, file = sys.stderr)
 		print('Within post method', file = sys.stderr)
