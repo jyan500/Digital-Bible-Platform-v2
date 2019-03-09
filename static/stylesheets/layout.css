@@ -1,0 +1,112 @@
+/* variables */
+label {
+  margin: 16px 0px 16px 0px;
+}
+
+option[selected] {
+  font-weight: bold;
+}
+
+/* By ID */
+#chaptername {
+  text-align: center;
+}
+
+#verses {
+  margin: 0px 50px 20px 50px;
+  padding-top: 30px;
+}
+
+#prev {
+  margin: 30px 65px;
+}
+
+#next {
+  float: right;
+  margin: 30px 0px 0px 65px;
+}
+
+/* By class */
+.select-card {
+  margin: 10px 50px 0px 50px;
+  padding: 20px;
+}
+
+.text-display-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.text-display-header h2 {
+  font-family: "Merriweather", sans-serif;
+}
+
+[id*=popover_content] {
+  display: none;
+}
+
+[id*=form_section] {
+  display: none;
+}
+
+.verse_btn {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: super;
+  border: none;
+}
+.verse_btn :hover {
+  background-color: #25BBFF;
+}
+.verse_btn :active {
+  background-color: #25BBFF;
+}
+
+.indiv_verse {
+  line-height: 2;
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.edit {
+  float: left;
+  margin-right: 15px;
+}
+
+.save {
+  float: left;
+  margin-right: 15px;
+}
+
+.note-text-area {
+  width: 100%;
+}
+
+/* Media Queries */
+@media screen and (max-width: 800px) {
+  .select-card {
+    margin: 0;
+  }
+
+  #verses {
+    margin: 0px 5px 0px 5px;
+    /*margin-left: 20px;
+    margin-right:20px;*/
+  }
+
+  #prev {
+    margin-left: 15px;
+  }
+
+  #next {
+    margin-right: 15px;
+  }
+}
+
+/*# sourceMappingURL=layout.css.map */

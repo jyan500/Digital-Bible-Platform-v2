@@ -1,0 +1,63 @@
+@import 'variables';
+@import 'mixins';
+$light-yellow : #ffc;
+$note-light-blue: #ccf;
+$note-light-green: #cfc;
+
+.note-card-body{
+	list-style: none;
+	padding: 3em;
+	.note-card {
+		display: inline-block;
+		/* light yellow */
+		background-color: $light-yellow;
+		padding: 1em;
+		margin: 1em;
+		word-wrap: break-word;
+		@include transition_transform(.15s);
+		position: relative;
+		:hover{
+			@include transition_scale(1.2);
+			z-index: 1;
+		}
+		:nth-child(even){
+			/* light blue */
+			background-color: $note-light-blue;
+		}
+		:nth-child(3n){
+			/* light blue */
+			background-color: $note-light-green;
+		}	
+	}
+}
+.delete-verse{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.8em;
+	margin-right: 10px;
+	cursor: pointer;
+	:hover{
+		color: $hover;
+	}
+}
+
+@media only screen and (max-width: $breakpoint_width_1){
+	.note-card{
+		width: 100%;
+	}
+}
+@media only screen and (max-width: $breakpoint_width_2){
+	.note-card-body{
+		padding: 1em;
+	}
+	.note-card {
+		display: block;
+		padding: 1em;
+		margin-top: 1em;
+		width: 95%;
+		:hover{
+			@include transition_scale(1);
+		}
+	}
+}

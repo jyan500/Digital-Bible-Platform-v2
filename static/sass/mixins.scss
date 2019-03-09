@@ -1,0 +1,81 @@
+@mixin mobile-tap($color){
+	-webkit-tap-highlight-color: $color; 
+	-ms-tap-highlight-color:  $color; 
+	-moz-tap-highlight-color:  $color; 	
+}
+
+@mixin transition_visibility($time){
+	$trans : visibility $time linear, opacity $time linear;
+	-moz-transition: $trans;
+	-o-transition: $trans;
+	-webkit-transition: $trans;
+}
+
+@mixin transition_transform($time){
+	-moz-transition:-moz-transform $time linear;
+	-o-transition:-o-transform $time linear;
+	-webkit-transition:-webkit-transform $time linear;
+}
+
+@mixin transition_scale($scale_factor){
+	-webkit-transform: scale($scale_factor);	
+	-moz-transform: scale($scale_factor);
+	-o-transform: scale($scale_factor);
+}
+
+@mixin gradient($color_start, $color_end){
+	background: -webkit-linear-gradient(to bottom, $color_start 0% , $color_end 30%);
+	background: -o-linear-gradient(to bottom, $color_start 0%,  $color_end 30% );
+	background: linear-gradient(to bottom, $color_start 0%, $color_end 30%);
+}
+@mixin fade_in($fade_in_time){
+	animation: fadeIn var($fade_in_time) ease forwards;
+	-webkit-animation: fadeIn var($fade_in_time) ease forwards;
+ 	-moz-animation: fadeIn var($fade_in_time) ease forwards;
+ 	-o-animation: fadeIn var($fade_in_time) ease forwards;
+ 	-ms-animation: fadeIn var($fade_in_time) ease forwards;
+	@keyframes fadeIn{
+	  0% {
+	    opacity:0;
+	  }
+	  100% {
+	    opacity:1;
+	  }
+	}
+
+	@-moz-keyframes fadeIn {
+	  0% {
+	    opacity:0;
+	  }
+	  100% {
+	    opacity:1;
+	  }
+	}
+
+	@-webkit-keyframes fadeIn {
+	  0% {
+	    opacity:0;
+	  }
+	  100% {
+	    opacity:1;
+	  }
+	}
+
+	@-o-keyframes fadeIn {
+	  0% {
+	    opacity:0;
+	  }
+	  100% {
+	    opacity:1;
+	  }
+	}
+
+	@-ms-keyframes fadeIn {
+	  0% {
+	    opacity:0;
+	  }
+	  100% {
+	    opacity:1;
+	  }
+	}
+}
