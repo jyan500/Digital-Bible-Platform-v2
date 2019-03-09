@@ -1,0 +1,67 @@
+@import '_variables';
+@import '_mixins';
+.signup-main{
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50%;
+}
+label{
+	font-size: 1.2em;
+}
+.signup-card{
+	padding: 30px;
+	background-color: $welcome_primary;
+	border-radius: 10px;
+	width: 50%;
+	h2 {
+		text-align: center;
+		color: $hover;
+	}
+}
+.signup-card > h2{
+	/*font-family: 'Merriweather', sans-serif;*/
+	text-align: center;
+	color: $hover;
+}
+
+.signup-button {
+	margin-top: 15px;
+	background: $welcome_primary;	
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1.2em;
+	width: 100%;
+	text-align: center;
+	:hover{
+		opacity: .8;
+	}
+}
+.g-recaptcha {
+	margin-top: 20px;
+}
+
+@media only screen and (max-width: $breakpoint_width_mobile){
+	label{
+		font-size: 1em;
+	}
+	.signup-card > h2{
+		font-size: 1.5em;
+	}
+	.signup-card{
+		width: 100%;
+		height: 100%;
+	}	
+}
+@media only screen and (max-height: $breakpoint_height_mobile){
+	.signup-main {
+		width: 75%;
+		height: 100%;
+	}
+	.signup-card {
+		width: 100%;
+		height: 100%;
+	}
+}

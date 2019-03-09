@@ -42,12 +42,12 @@ $note-light-green: #cfc;
 	}
 }
 
-@media only screen and (max-width: $breakpoint_width_1){
+@media only screen and (max-width: $breakpoint_width_tablet){
 	.note-card{
 		width: 100%;
 	}
 }
-@media only screen and (max-width: $breakpoint_width_2){
+@media only screen and (max-width: $breakpoint_width_mobile){
 	.note-card-body{
 		padding: 1em;
 	}

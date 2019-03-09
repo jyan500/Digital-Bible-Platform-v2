@@ -1,0 +1,45 @@
+/* create snackbar at the bottom of the screen 
+	reference from w3 schools */
+.snackbar {
+	visibility: hidden;
+	min-width: 300px;
+	margin-left: -150px; /* set a default minimum width */
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	left: 50%;
+	top: 10px; /* 30px from the top*/
+}
+
+/* snackbar class that's added with javascript */
+.snackbar.show {
+	visibility: visible;	
+
+	/* animation: takes .5 seconds to fade in and out. 
+	Box should stay for 2.5 seconds before fading out */
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+	from {top: 0; opacity: 0;}
+	to {top: 10px; opacity: 1;}
+}
+
+@keyframes fadein {
+	from {top: 0; opacity:0;}	
+	to {top: 10px; opacity:1;}
+}
+
+@-webkit-keyframes fadeout{
+	from {top:10px; opacity:1;}
+	to {top: 0; opacity:0;}
+}
+
+@keyframes fadeout{
+	from {top: 10px; opacity: 1;}	
+	to {top: 0; opacity: 0;}
+}

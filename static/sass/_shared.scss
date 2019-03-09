@@ -1,0 +1,47 @@
+@import '_variables';
+@import '_mixins';
+
+/* apply shadow to elements */
+.shadow{
+	@include shadow(rgba(168, 168, 168, 0.53));
+}
+
+.alert-panel{
+	padding: 15px;
+	margin-bottom:20px;
+	text-align:center;
+	border-radius:5px;
+	
+}
+.disabled{
+	opacity: .5;
+}
+.submit-button{
+	display: inline-block;
+	padding: 5px 10px 5px 10px;
+	margin: 0;
+	border: 0;
+	color: $background;
+	border-radius: 4px;
+	background: $primary;
+	outline: none;
+	:not(.disabled):hover{
+		background: $button-hover;
+	}	
+}
+.success{
+	/* lime green */
+	background-color: $lime-green;
+}
+
+.error{
+	/* red */
+	background-color: $error-red;
+}
+
+
+.fade-in{
+	@include fade_in($fade-in-time);
+}
+
+

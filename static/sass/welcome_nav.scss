@@ -1,0 +1,71 @@
+@import '_variables';
+@import '_mixins';
+
+nav {
+	margin-top: 30px;
+	margin-left: $left;
+	display: flex;
+	a {
+		padding-right: 40px;
+		text-decoration: none;
+		color: white;
+		font-size: 1.5em;	
+	}
+	a:hover{
+		color: $welcome-secondary;
+		text-decoration: none;
+	}
+	a:visited{
+		text-decoration: none;
+	}
+}
+.hamburger{
+	display: none;
+}
+.show-sidebar{
+	display: none;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	outline: none;
+	cursor: pointer;
+	margin: 15px;
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+	span {
+		display: block;
+		background-color: black; 
+	    height:3px; 
+	    width:26px; 
+	    margin:0 auto 5px;
+	}
+}
+.mobile-sidebar{
+	display: none;
+}
+@media only screen and (max-width: $breakpoint_width_mobile){
+	nav {
+		display: none;
+	}
+	.hamburger{
+		display: flex;
+	}
+	.show-sidebar{
+		display:block;	
+		font-size: 2em;
+	}
+	.mobile-sidebar{
+		a {
+			text-align: center;
+			font-size: 1.5em;
+			color: white;
+			display: block;
+			text-decoration: none;	
+			padding: 10px;
+		}
+		a:hover{
+			text-decoration: none;	
+			color: $welcome-secondary;
+		}
+	}
+}	

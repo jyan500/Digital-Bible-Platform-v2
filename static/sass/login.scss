@@ -1,3 +1,6 @@
+@import '_mixins';
+@import '_variables';
+
 .login-main {
 	flex: 1;
 	display: flex;
@@ -10,43 +13,40 @@ label{
 }
 .login-card{
 	padding: 30px;
-	background-color: var(--light-blue-secondary);
+	background-color: $welcome_secondary;
 	border-radius: 10px;
 	width: 50%;
-}
-.login-card > h2{
-	font-family: 'Merriweather', sans-serif;
-	text-align: center;
-}
-.login-card > h3{
-	font-family: 'Merriweather', sans-serif;
+	h2 {
+		font-family: $header_font;
+		text-align: center;
+	}
+	h3 {
+		font-family: $header_font;
+	}
 }
 
 .login-button {
 	margin-top: 15px;
-	background: var(--light-blue);	
+	background: $welcome_primary;	
 	border: none;
 	padding: 5px;
 	border-radius: 5px;
 	font-size: 1.2em;
 	width: 100%;
 	text-align: center;
+	:hover{
+		opacity: .8;
+	}
 }
-.login-button:hover{
-	opacity: .8;
-}
-
-@media only screen and (max-width: $breakpoint_width_mobile ){
+@media only screen and (max-width: $breakpoint_width_mobile){
 	label{
 		font-size: 1em;
 	}
-	.login-card{
-	}	
 	.login-card > h2{
 		font-size: 1.5em;
 	}
 }
-@media only screen and (max-height: $breakpoint_height_mobile ){
+@media only screen and (max-height: $breakpoint_height_mobile){
 	.login-main {
 		width: 75%;
 		height: 100%;
@@ -56,7 +56,3 @@ label{
 		height: 100%;
 	}
 }
-
-
-
-

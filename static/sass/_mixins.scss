@@ -28,6 +28,12 @@
 	background: -o-linear-gradient(to bottom, $color_start 0%,  $color_end 30% );
 	background: linear-gradient(to bottom, $color_start 0%, $color_end 30%);
 }
+
+@mixin shadow($color){
+	-webkit-box-shadow: 8px 7px 7px 1px $color;
+	-moz-box-shadow: 8px 7px 7px 1px $color;
+	box-shadow: 8px 7px 7px 1px $color;
+}
 @mixin fade_in($fade_in_time){
 	animation: fadeIn var($fade_in_time) ease forwards;
 	-webkit-animation: fadeIn var($fade_in_time) ease forwards;

@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
 /* variables */
+/* welcome page variables */
 .note-card-body {
   list-style: none;
   padding: 3em;
@@ -42,7 +45,7 @@
   color: #25BBFF;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1000px) {
   .note-card {
     width: 100%;
   }

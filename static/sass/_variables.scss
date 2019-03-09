@@ -1,0 +1,27 @@
+@import '_breakpoints';
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
+/* variables */
+$lime-green: #8EE918;
+$error-red: #FF2B34;
+$light-blue: #5EE1D9;
+$dark-blue: #292E4C;
+$hover: #25BBFF;
+$primary: #044F7A;
+$secondary: #4A26FD;
+$background: #EEEEEE;
+$tertiary: #E0E0E0;
+$border-color: #7e7e7e;
+$button-hover: #066FAB;
+$gradient-top: #DCEBF1;
+$general-font: "Sans Serif";
+$fade-in-time: .8s;
+
+/* welcome page variables */
+
+$welcome_primary : #00A1CD;
+$welcome_secondary: #98CCE1;
+$welcome_font: 'Source Sans Pro', sans-serif;
+$header_font: 'Merriweather', sans-serif;
+$left : 80px;
+$input-border-color: rgba(81, 203, 238, 1);

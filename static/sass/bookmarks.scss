@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@import '_variables';
+@import '_mixins';
 
 .bookmarks-list{
 	margin-top:30px;
@@ -41,7 +41,7 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: $breakpoint_width_2){
+@media screen and (max-width: $breakpoint_width_mobile){
 	.bookmarks-list > form{
 		display: block;
 		width: 95%;

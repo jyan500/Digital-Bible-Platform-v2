@@ -1,0 +1,33 @@
+@import '_variables';
+@import '_mixins';
+@import '_shared';
+
+html, body{
+	min-height: 100vh;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	font-family: $general-font; 
+	box-sizing: border-box;
+}
+.main{
+	display: flex;
+	flex: 1 0 auto;
+	min-height: 100vh;
+} 
+.wrapper {
+	@include gradient($gradient-top, $background);
+	padding: 10px;
+	flex: 2;	
+}
+
+/* Media Queries */
+@media screen and (max-width: $breakpoint_width_mobile){
+	.main{
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+}
+

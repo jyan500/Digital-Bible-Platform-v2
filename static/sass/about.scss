@@ -1,0 +1,39 @@
+@import '_variables';
+@import '_mixins';
+.left {
+	width: 50vw;
+	h1 {
+		font-size: 4em;
+	}
+}
+.description{
+	font-size: 1.4em;
+}
+.disclaimer {
+	font-size: 1.2em;
+	a {
+		color: white;	
+		text-decoration: none;
+	}
+	a:hover{
+		color: $welcome-primary;	
+	}
+	a:visited {
+		text-decoration: none;
+	}
+}
+@media only screen and (max-width: $breakpoint_width_mobile){
+	.description {
+		font-size: 1em;
+	}
+	.disclaimer {
+		font-size: 1em;
+	}
+	.left {
+		width: 100%;
+		padding: 10px;
+		h1 {
+			font-size: 3em;
+		}
+	}
+}

@@ -83,7 +83,7 @@ option[selected] {
 }
 
 /* Media Queries */
-@media screen and (max-width: $breakpoint_width_2){
+@media screen and (max-width: $breakpoint_width_mobile){
 	.select-card{
 		margin: 0;
 	}

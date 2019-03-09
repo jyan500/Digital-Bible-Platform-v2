@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
+/* variables */
+/* welcome page variables */
+.left {
+  width: 50vw;
+}
+.left h1 {
+  font-size: 4em;
+}
+
+.description {
+  font-size: 1.4em;
+}
+
+.disclaimer {
+  font-size: 1.2em;
+}
+.disclaimer a {
+  color: white;
+  text-decoration: none;
+}
+.disclaimer a:hover {
+  color: #00A1CD;
+}
+.disclaimer a:visited {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .description {
+    font-size: 1em;
+  }
+
+  .disclaimer {
+    font-size: 1em;
+  }
+
+  .left {
+    width: 100%;
+    padding: 10px;
+  }
+  .left h1 {
+    font-size: 3em;
+  }
+}
+
+/*# sourceMappingURL=about.css.map */
