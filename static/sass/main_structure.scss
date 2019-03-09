@@ -22,6 +22,9 @@ body {
 	flex: 2;	
 }
 
+.fade-in{
+	@include fade_in($fade-in-time);
+}
 /* Media Queries */
 @media screen and (max-width: $breakpoint_width_mobile){
 	.main{

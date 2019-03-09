@@ -16,19 +16,13 @@ label {
 
 .signup-card {
   padding: 30px;
-  background-color: #00A1CD;
+  background-color: #98CCE1;
   border-radius: 10px;
   width: 50%;
 }
 .signup-card h2 {
   text-align: center;
-  color: #25BBFF;
-}
-
-.signup-card > h2 {
-  /*font-family: 'Merriweather', sans-serif;*/
-  text-align: center;
-  color: #25BBFF;
+  color: white;
 }
 
 .signup-button {

@@ -39,7 +39,6 @@
 	background-color: $error-red;
 }
 
-
 .fade-in{
 	@include fade_in($fade-in-time);
 }

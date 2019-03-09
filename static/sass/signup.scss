@@ -12,18 +12,13 @@ label{
 }
 .signup-card{
 	padding: 30px;
-	background-color: $welcome_primary;
+	background-color: $welcome_secondary;
 	border-radius: 10px;
 	width: 50%;
 	h2 {
 		text-align: center;
-		color: $hover;
+		color: white;
 	}
-}
-.signup-card > h2{
-	/*font-family: 'Merriweather', sans-serif;*/
-	text-align: center;
-	color: $hover;
 }
 
 .signup-button {

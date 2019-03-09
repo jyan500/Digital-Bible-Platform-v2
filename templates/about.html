@@ -5,48 +5,9 @@
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">	
 	<title> About </title>
 	{% include 'external_includes.html' %}
-	<link rel = "stylesheet" href = "/static/welcome_pages/welcome_shared.css">
+	<link rel = "stylesheet" href = "/static/stylesheets/welcome_shared.css">
+	<link rel = "stylesheet" href = "/static/stylesheets/about.css">
 </head>
-<style>
-	.left {
-		width: 50vw;
-	}
-	.left > h1{
-		font-size: 4em;
-	}
-	.description{
-		font-size: 1.4em;
-	}
-	.disclaimer {
-		font-size: 1.2em;
-	}
-	.disclaimer > a{
-		color: white;
-		text-decoration :none;
-	}
-	.disclaimer > a:hover{
-		color: var(--light-blue-secondary);
-	}
-	.disclaimer > a:visited{
-		text-decoration: none;
-	}
-	@media only screen and (max-width: 800px){
-		.left > h1{
-			font-size: 3em;
-		}
-		.description {
-			font-size: 1em;
-		}
-		.disclaimer {
-			font-size: 1em;
-		}
-		.left {
-			width: 100%;
-			padding: 10px;
-		}
-	}
-}
-</style>
 <html>
 	<body>
 		{% include '/welcome_pages/welcome_nav.html' %}

@@ -34,6 +34,10 @@ input[type=text], input[type=password]{
 	}	
 } 
 
+.fade-in{
+	@include fade_in($welcome-fade-in-time);
+}
+
 @media only screen and (max-width: $breakpoint_width_desktop){
 	main {
 		margin-top: 30px;

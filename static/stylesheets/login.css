@@ -21,11 +21,7 @@ label {
   width: 50%;
 }
 .login-card h2 {
-  font-family: "Merriweather", sans-serif;
   text-align: center;
-}
-.login-card h3 {
-  font-family: "Merriweather", sans-serif;
 }
 
 .login-button {

@@ -121,6 +121,54 @@ body {
   flex: 2;
 }
 
+.fade-in {
+  animation: fadeIn var(0.8s) ease forwards;
+  -webkit-animation: fadeIn var(0.8s) ease forwards;
+  -moz-animation: fadeIn var(0.8s) ease forwards;
+  -o-animation: fadeIn var(0.8s) ease forwards;
+  -ms-animation: fadeIn var(0.8s) ease forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Media Queries */
 @media screen and (max-width: 800px) {
   .main {
