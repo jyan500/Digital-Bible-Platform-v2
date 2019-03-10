@@ -92,7 +92,7 @@ option[selected] {
 }
 
 /* Media Queries */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .select-card {
     margin: 0;
   }

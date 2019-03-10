@@ -48,54 +48,6 @@
   background-color: #FF2B34;
 }
 
-.fade-in {
-  animation: fadeIn var(0.8s) ease forwards;
-  -webkit-animation: fadeIn var(0.8s) ease forwards;
-  -moz-animation: fadeIn var(0.8s) ease forwards;
-  -o-animation: fadeIn var(0.8s) ease forwards;
-  -ms-animation: fadeIn var(0.8s) ease forwards;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 html, body {
   min-height: 100vh;
 }
@@ -120,13 +72,16 @@ body {
   padding: 10px;
   flex: 2;
 }
+.wrapper h2 {
+  text-align: center;
+}
 
 .fade-in {
-  animation: fadeIn var(0.8s) ease forwards;
-  -webkit-animation: fadeIn var(0.8s) ease forwards;
-  -moz-animation: fadeIn var(0.8s) ease forwards;
-  -o-animation: fadeIn var(0.8s) ease forwards;
-  -ms-animation: fadeIn var(0.8s) ease forwards;
+  animation: fadeIn 0.8s ease forwards;
+  -webkit-animation: fadeIn 0.8s ease forwards;
+  -moz-animation: fadeIn 0.8s ease forwards;
+  -o-animation: fadeIn 0.8s ease forwards;
+  -ms-animation: fadeIn 0.8s ease forwards;
 }
 @keyframes fadeIn {
   0% {
@@ -170,7 +125,7 @@ body {
 }
 
 /* Media Queries */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .main {
     display: flex;
     flex-direction: column;

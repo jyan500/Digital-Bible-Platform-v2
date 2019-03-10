@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
 /* variables */
+/* welcome page variables */
 .search-bar-section {
   margin-top: 20px;
 }
@@ -120,7 +123,7 @@
 
 .memory-verse-button {
   text-align: center;
-  background-color: var(--primary);
+  background-color: #044F7A;
   width: 100%;
   height: 100px;
   color: white;
@@ -133,6 +136,58 @@
   -ms-tap-highlight-color: rgba(255, 255, 255, 0);
   -moz-tap-highlight-color: rgba(255, 255, 255, 0);
   position: relative;
+}
+.memory-verse-button :hover {
+  background-color: #066FAB;
+}
+.memory-verse-button .delete-verse {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.8em;
+  margin-right: 10px;
+}
+.memory-verse-button .delete-verse :hover {
+  color: #25BBFF;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .search-bar-section {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .search-icon {
+    display: none;
+  }
+
+  .search-bar {
+    left: 0;
+    font-size: 1em;
+    width: 100%;
+  }
+
+  .memory-card {
+    display: block;
+    width: 100%;
+  }
+
+  .memory-verse-cards > form {
+    width: 95%;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .search-sbt {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .flip-container {
+    margin: 0;
+    padding: 20px;
+  }
 }
 
 /*# sourceMappingURL=memory_verse.css.map */

@@ -38,16 +38,24 @@ label{
 	label{
 		font-size: 1em;
 	}
+	// .login-main {
+	// 	width: 100%;
+	// 	height: 100%;
+	// }
+	.login-card{
+		width: 100%;
+		height: 100%;
+	}
 	.login-card > h2{
 		font-size: 1.5em;
 	}
 }
 @media only screen and (max-height: $breakpoint_height_mobile){
-	.login-main {
-		width: 75%;
-		height: 100%;
-	}
-	.signup-card {
+	// .login-main {
+	// 	width: 100%;
+	// 	height: 100%;
+	// }
+	.login-card {
 		width: 100%;
 		height: 100%;
 	}

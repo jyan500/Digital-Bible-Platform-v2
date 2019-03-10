@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@import '_variables';
+@import '_mixins';
 .search-bar-section{
 	margin-top: 20px;
 }
@@ -108,7 +108,7 @@
 
 .memory-verse-button{
 	text-align: center;
-	background-color: var(--primary);
+	background-color: $primary;
 	width: 100%;
 	height: 100px;
 	color: white;
@@ -119,4 +119,53 @@
 	border-radius: 15px;
 	@include mobile-tap(rgba(255, 255, 255, 0));
 	position: relative;
+	:hover{
+		background-color: $button-hover;
+	}
+
+	.delete-verse{
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 1.8em;
+		margin-right: 10px;
+		:hover{
+			color: $hover;
+		}
+	}
+}
+
+
+
+@include mobile_portrait{
+	.search-bar-section{
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	.search-icon{
+		display: none;
+	}
+	.search-bar{
+		left: 0;
+		font-size: 1em;
+		width: 100%;
+	}
+	.memory-card{
+		display: block;
+		width: 100%;
+	}
+	.memory-verse-cards > form{
+		width: 95%;
+		display: block;
+		margin: 10px;
+		padding: 10px;
+	}
+	.search-sbt{
+		margin-top:10px;
+		margin-left:10px;
+	}
+	.flip-container {
+		margin: 0;
+		padding: 20px;
+	}
 }

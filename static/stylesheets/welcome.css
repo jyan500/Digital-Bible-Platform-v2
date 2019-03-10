@@ -8,7 +8,7 @@
 }
 
 .image {
-  border: 10px solid var(--light-blue-secondary);
+  border: 10px solid #98CCE1;
   background-size: cover;
   background-position: bottom;
   background-image: url("../bible_ipod_compressed.jpg");
@@ -29,7 +29,7 @@
   align-items: center;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1280px) {
   main {
     margin-top: 30px;
     display: flex;
@@ -43,7 +43,7 @@
     width: 75vw;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   main {
     margin-left: 5px;
     margin-top: 10px;
@@ -58,7 +58,7 @@
     height: 50vh;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 481px) {
   .image {
     width: 75vw;
     height: 25vh;

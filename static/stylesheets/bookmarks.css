@@ -45,7 +45,7 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .bookmarks-list > form {
     display: block;
     width: 95%;

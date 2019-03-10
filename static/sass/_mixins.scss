@@ -1,3 +1,4 @@
+@import '_breakpoints';
 @mixin mobile-tap($color){
 	-webkit-tap-highlight-color: $color; 
 	-ms-tap-highlight-color:  $color; 
@@ -35,11 +36,11 @@
 	box-shadow: 8px 7px 7px 1px $color;
 }
 @mixin fade_in($fade_in_time){
-	animation: fadeIn var($fade_in_time) ease forwards;
-	-webkit-animation: fadeIn var($fade_in_time) ease forwards;
- 	-moz-animation: fadeIn var($fade_in_time) ease forwards;
- 	-o-animation: fadeIn var($fade_in_time) ease forwards;
- 	-ms-animation: fadeIn var($fade_in_time) ease forwards;
+	animation: fadeIn $fade_in_time ease forwards;
+	-webkit-animation: fadeIn $fade_in_time ease forwards;
+ 	-moz-animation: fadeIn $fade_in_time ease forwards;
+ 	-o-animation: fadeIn $fade_in_time ease forwards;
+ 	-ms-animation: fadeIn $fade_in_time ease forwards;
 	@keyframes fadeIn{
 	  0% {
 	    opacity:0;
@@ -85,3 +86,43 @@
 	  }
 	}
 }
+
+$breakpoint_width_desktop: 1280px;
+$breakpoint_width_tablet: 1024px;
+$breakpoint_width_mobile: 768px;
+$breakpoint_width_mobile_2: 481px;
+$breakpoint_width_mobile_3: 320px;
+
+$breakpoint_height_mobile: 500px;
+
+@mixin desktop {
+	@media (min-width: #{$breakpoint_width_tablet + 1} ) and (max-width: #{$breakpoint_width_desktop}){
+		@content;	
+	}
+}
+
+@mixin tablet_portrait {
+	@media (min-width: #{$breakpoint_width_mobile}) and (max-width: #{$breakpoint_width_tablet}){
+		@content;	
+	}
+}
+
+@mixin tablet_landscape {
+	@media (min-width: #{$breakpoint_width_mobile}) and (max-width: #{$breakpoint_width_tablet}) and (orientation: landscape){
+		@content;	
+	}
+}
+
+@mixin mobile_landscape {
+	@media (min-width: #{$breakpoint_width_mobile_2}) and (max-width: #{$breakpoint_width_mobile - 1}){
+		@content;
+	}
+}
+
+@mixin mobile_portrait {
+	@media (min-width: #{$breakpoint_width_mobile_3} ) and (max-width: #{$breakpoint_width_mobile_2 - 1}){
+		@content;
+	}		
+}
+
+

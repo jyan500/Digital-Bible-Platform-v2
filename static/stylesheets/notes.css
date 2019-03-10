@@ -6,7 +6,8 @@
   list-style: none;
   padding: 3em;
 }
-.note-card-body .note-card {
+
+.note-card {
   display: inline-block;
   /* light yellow */
   background-color: #ffc;
@@ -18,19 +19,12 @@
   -webkit-transition: -webkit-transform 0.15s linear;
   position: relative;
 }
-.note-card-body .note-card :hover {
+
+.note-card:hover {
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -o-transform: scale(1.2);
   z-index: 1;
-}
-.note-card-body .note-card :nth-child(even) {
-  /* light blue */
-  background-color: #ccf;
-}
-.note-card-body .note-card :nth-child(3n) {
-  /* light blue */
-  background-color: #cfc;
 }
 
 .delete-verse {
@@ -45,12 +39,12 @@
   color: #25BBFF;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1024px) {
   .note-card {
     width: 100%;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .note-card-body {
     padding: 1em;
   }
