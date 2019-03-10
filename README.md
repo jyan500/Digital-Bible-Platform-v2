@@ -8,6 +8,7 @@ NOTE: Updated the previous Digital Bible Platform by moving over to Flask from P
 	<li> Bootstrap </li>
 	<li> MySQLdb  </li>
 	<li> Flask    </li>
+	<li> SASS    </li>
 </ul>
 
 ## Image Credits ##
@@ -16,3 +17,4 @@ NOTE: Updated the previous Digital Bible Platform by moving over to Flask from P
 	<li> Icon: https://www.freeiconspng.com/img/7860 </li>
 	<li> Design: https://dribbble.com/shots/6107427-Co-op-Long-Service-Proposal/attachments </li>
 </ul>
+
