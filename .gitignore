@@ -3,4 +3,5 @@
 *.yaml
 *.pem
 static/stylesheets/
+static/old_css
 unused/
