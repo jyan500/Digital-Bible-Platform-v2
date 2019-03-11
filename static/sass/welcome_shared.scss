@@ -28,7 +28,7 @@ input[type=text], input[type=password]{
 	box-sizing: border-box;
 	margin-bottom: 5px;
 	outline: none;
-	:focus{
+	&:focus{
 		border: 1px solid $input-border-color;	
 		box-shadow: 0 0 5px $input-border-color;
 	}	
