@@ -87,13 +87,13 @@
 	}
 }
 
-// $breakpoint_width_desktop: 1280px;
-// $breakpoint_width_tablet: 1024px;
-// $breakpoint_width_mobile: 768px;
-// $breakpoint_width_mobile_2: 481px;
-// $breakpoint_width_mobile_3: 320px;
-
-// $breakpoint_height_mobile: 500px;
+@mixin fade_in_obj($object_to_fade, $fade_in_time){
+	transition: $object_to_fade $fade_in_time;
+	-webkit-transition: $object_to_fade $fade_in_time;
+ 	-moz-transition: $object_to_fade $fade_in_time;
+ 	-o-transition: $object_to_fade $fade_in_time;
+ 	-ms-transition: $object_to_fade $fade_in_time;
+}
 
 @mixin desktop {
 	@media (min-width: #{$breakpoint_width_tablet + 1} ) and (max-width: #{$breakpoint_width_desktop}){

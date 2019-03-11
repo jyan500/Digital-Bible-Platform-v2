@@ -47,7 +47,7 @@ nav {
 			text-decoration: none;
 			border-bottom: 1px solid transparent;
 			color: white;
-			transition: border-bottom 300ms;
+			@include fade_in_obj(border-bottom, .5s);
 		}
 		a:hover{
 			text-decoration: none;
