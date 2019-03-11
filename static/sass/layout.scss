@@ -57,12 +57,12 @@ option[selected] {
 	text-decoration: none;
 	vertical-align: super;
 	border: none;
-	:hover{
-		background-color: $hover;
-	}	
-	:active{
-		background-color: $hover;
-	}
+}
+.verse_btn:hover{
+	background-color: $hover;
+}
+.verse_btn:active{
+	background-color: $hover;
 }
 .indiv_verse{
 	line-height: 2;

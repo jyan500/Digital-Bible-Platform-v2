@@ -11,8 +11,8 @@
 </head>
 <html>
 	<body>
+		{% include 'navbar.html' %}
 		<div class = "main">
-			{% include "sidebar.html" %}
 			<div class = "wrapper">
 				<h1> Oops! Looks like the page doesn't exist. </h1>
 				<a href = "{{ url_for('home_controller.index') }}"> Back to Home </a>

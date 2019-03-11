@@ -19,7 +19,7 @@ body {
 .wrapper {
 	@include gradient($gradient-top, $background);
 	padding: 10px;
-	flex: 2;	
+	flex: 1;	
 	h2 {
 		text-align: center;
 	}
