@@ -25,7 +25,7 @@
 	border-radius: 4px;
 	background: $primary;
 	outline: none;
-	:not(.disabled):hover{
+	&:not(.disabled):hover{
 		background: $button-hover;
 	}	
 }

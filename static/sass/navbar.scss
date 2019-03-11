@@ -42,18 +42,18 @@ nav {
 	font-size: 1.3em;
 	position: relative;
 	padding: 5px;
-		a {
-			padding: 10px 20px;
-			text-decoration: none;
-			border-bottom: 1px solid transparent;
-			color: white;
-			@include fade_in_obj(border-bottom, .5s);
-		}
-		a:hover{
+	a {
+		padding: 10px 20px;
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		color: white;
+		@include fade_in_obj(border-bottom, .5s);
+		&:hover{
 			text-decoration: none;
 			border-bottom: 1px solid white;	
 		}
 	}
+}
 
 
 

@@ -20,10 +20,10 @@ $note-light-green: #cfc;
 	word-wrap: break-word;
 	@include transition_transform(.15s);
 	position: relative;
-}
-.note-card:hover{
-	@include transition_scale(1.2);
-	z-index: 1;
+	&:hover{
+		@include transition_scale(1.2);
+		z-index: 1;
+	}
 }
 .delete-verse{
 	position: absolute;
@@ -32,7 +32,7 @@ $note-light-green: #cfc;
 	font-size: 1.8em;
 	margin-right: 10px;
 	cursor: pointer;
-	:hover{
+	&:hover{
 		color: $hover;
 	}
 }
@@ -50,7 +50,7 @@ $note-light-green: #cfc;
 		padding: 1em;
 		margin-top: 1em;
 		width: 95%;
-		:hover{
+		&:hover{
 			@include transition_scale(1);
 		}
 	}

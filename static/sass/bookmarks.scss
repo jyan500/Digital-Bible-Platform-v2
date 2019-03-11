@@ -22,11 +22,11 @@
 	border-radius: 10px;
 	@include mobile_tap(rgba(255,255,255,0));
 	position: relative;
-	:hover{
-		color: $button-hover;
-	}
-	i{
+	i {
 		margin-right: 15px;
+	}	
+	&:hover{
+		background-color: $button-hover;
 	}
 }
 .delete-bookmark{
@@ -35,7 +35,7 @@
 	right: 0;
 	font-size: 1.8em;
 	margin-right: 10px;
-	:hover{
+	&:hover{
 		color: $hover;
 	}
 }
