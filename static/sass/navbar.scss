@@ -103,7 +103,7 @@ nav {
 		text-decoration: none;
 	}
 }
-@include tablet_portrait{
+@mixin mobile_layout(){
 	.hamburger {
 		display: block;
 	}
@@ -116,37 +116,24 @@ nav {
 		.nav-list {
 			display: none;
 		}
-	}
+	}	
+}
+@include tablet_landscape {
+	@include mobile_layout();
+}
+@include tablet_portrait{
+	@include mobile_layout();
 }
 @include mobile_landscape {
-	.hamburger {
-		display: block;
-	}
-	.show-navbar {
-		display: block;
-	}
-	nav {
-		flex-direction: column;
-		padding: 0;
-		.nav-list{
-			display: none;
-		}
-	}	
+	@include mobile_layout();
 }
 @include mobile_portrait {
-	.hamburger {
-		display: block;
-	}
-	.show-navbar {
-		display: block;
-	}
+	@include mobile_layout();
 	nav {
-		flex-direction: column;
-		padding: 0;
-		.nav-list{
-			display: none;
+		.logo {
+			margin-top: 20px;
 		}
-	}	
+	}
 }
 
 
