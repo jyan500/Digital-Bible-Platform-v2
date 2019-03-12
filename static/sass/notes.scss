@@ -36,12 +36,19 @@ $note-light-green: #cfc;
 		color: $hover;
 	}
 }
-@media only screen and (max-width: $breakpoint_width_tablet){
+@include tablet_portrait {
+	.note-card-body {
+		padding: 1em;
+	}
 	.note-card{
-		width: 100%;
+		width: 95%;
+		&:hover{
+			@include transition_scale(1);
+		}
 	}
 }
-@media only screen and (max-width: $breakpoint_width_mobile){
+@include mobile_landscape {
+	
 	.note-card-body{
 		padding: 1em;
 	}
@@ -49,7 +56,22 @@ $note-light-green: #cfc;
 		display: block;
 		padding: 1em;
 		margin-top: 1em;
-		width: 95%;
+		width: 90%;
+		&:hover{
+			@include transition_scale(1);
+		}
+	}
+}
+@include mobile_portrait{
+
+	.note-card-body{
+		padding: 1em;
+	}
+	.note-card {
+		display: block;
+		padding: 1em;
+		margin-top: 1em;
+		width: 90%;
 		&:hover{
 			@include transition_scale(1);
 		}
