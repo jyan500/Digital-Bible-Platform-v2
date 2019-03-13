@@ -1,1 +1,1 @@
-web: gunicorn biblejourney:run
+web: gunicorn run:app
