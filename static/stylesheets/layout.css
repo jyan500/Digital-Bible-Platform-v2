@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
+/* variables */
+/* welcome page variables */
+label {
+  margin: 16px 0px 16px 0px;
+}
+
+option[selected] {
+  font-weight: bold;
+}
+
+/* By ID */
+#chaptername {
+  text-align: center;
+}
+
+#verses {
+  margin: 0px 50px 20px 50px;
+  padding-top: 30px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 65px;
+  margin-right: 65px;
+}
+
+/* By class */
+.select-card {
+  margin: 10px 50px 0px 50px;
+  padding: 20px;
+}
+
+.text-display-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.text-display-header h2 {
+  font-family: "Merriweather", sans-serif;
+}
+
+[id*=popover_content] {
+  display: none;
+}
+
+[id*=form_section] {
+  display: none;
+}
+
+.verse_btn {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: super;
+  border: none;
+}
+
+.verse_btn:hover {
+  background-color: #25BBFF;
+}
+
+.verse_btn:active {
+  background-color: #25BBFF;
+}
+
+.indiv_verse {
+  line-height: 2;
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.edit {
+  float: left;
+  margin-right: 15px;
+}
+
+.save {
+  float: left;
+  margin-right: 15px;
+}
+
+.note-text-area {
+  width: 100%;
+}
+
+/* Media Queries */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .select-card {
+    margin: 0;
+  }
+
+  #verses {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #pagination {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .select-card {
+    margin: 0;
+  }
+
+  #verses {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #pagination {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .select-card {
+    margin: 0;
+  }
+
+  #verses {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #pagination {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .select-card {
+    margin: 0;
+  }
+
+  #verses {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #pagination {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+/*# sourceMappingURL=layout.css.map */
