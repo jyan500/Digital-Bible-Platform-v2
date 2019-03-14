@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-import yaml
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_wtf.csrf import CSRFError
