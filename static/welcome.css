@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
-@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Merriweather");
+
 /* variables */
 /* welcome page variables */
 .left > h1 {
@@ -11,7 +10,7 @@
   border: 10px solid #98CCE1;
   background-size: cover;
   background-position: bottom;
-  background-image: url("../bible_ipod_compressed.jpg");
+  background-image: url("bible_ipod_compressed.jpg");
   height: 50vh;
   width: 50vw;
   max-width: 100%;
