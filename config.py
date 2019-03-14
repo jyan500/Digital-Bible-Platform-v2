@@ -5,8 +5,13 @@ from flask_wtf.csrf import CSRFProtect
 from flask_wtf.csrf import CSRFError
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+import sys
 ## configurations
 # config = yaml.load(open('config.yaml'))
+
+## load env file
+load_dotenv(verbose = True)
 app = Flask(__name__)
 
 # app.config['MYSQL_HOST'] = config['mysql_host']
@@ -16,13 +21,15 @@ app = Flask(__name__)
 # app.config['SECRET_KEY'] = config['secretkey']
 # app.config['RECAPTCHA_PRIVATE'] = config['recaptcha_private']
 # app.config['RECAPTCHA_PUBLIC'] = config['recaptcha_public']
-app.config['MYSQL_HOST'] = os.environment.get('MYSQL_HOST')
-app.config['MYSQL_USER'] = os.environment.get('MYSQL_USER')
-app.config['MYSQL_PASSWORD'] = os.environment.get('MYSQL_PASSWORD')
-app.config['MYSQL_DB'] = os.environment.get('MYSQL_DB')
-app.config['SECRET_KEY'] = os.environment.get('SECRET_KEY')
-app.config['RECAPTCHA_PRIVATE'] = os.environment.get('RECAPTCHA_PRIVATE')
-app.config['RECAPTCHA_PUBLIC'] = os.environment.get('RECAPTCHA_PUBLIC')
+
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['RECAPTCHA_PRIVATE'] = os.environ.get('RECAPTCHA_PRIVATE')
+app.config['RECAPTCHA_PUBLIC'] = os.environ.get('RECAPTCHA_PUBLIC')
+
 #### global variables ####
 mysql = MySQL()
 
