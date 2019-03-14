@@ -5,8 +5,8 @@
 	<title> Welcome </title>
 	<meta name = "viewport" content = "width=device-width, initial-scale=1">	
 	{% include 'external_includes.html' %}
-	<link type = "text/css" href = "static/welcome_shared.css">
-	<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='welcome.css') }}">
+	<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static/stylesheets', filename = 'welcome_shared.css') }}">
+	<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static/stylesheets', filename='welcome.css') }}">
 </head>
 <html>
 	<body>
