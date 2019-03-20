@@ -58,7 +58,7 @@ def memory_verse_page():
 
 				## handle bookmarks 	
 				verseBody = getVerseBodyRequest(book, chapter, str(start_verse), str(end_verse))
-				if (verseBody):		
+				if (len(verseBody) > 0):		
 					if (request.form.get('save-verse')):
 						print('is bookmark', file =sys.stderr)
 						is_bookmark_request = request.form['save-verse']

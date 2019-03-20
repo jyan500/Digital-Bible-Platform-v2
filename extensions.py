@@ -120,22 +120,25 @@ def getVerseBodyRequest(book: str, chapter: str, start_verse: str = '0', end_ver
 	json_data = json.loads(data)
 	## json response for the api changes depending on whether th e 
 	# print(json_data, file = sys.stderr)
-	if (start_verse != '0'):
-		## current response: { book: [] }
-		outer_list = json_data['book']
-		chapter_data = outer_list[0]['chapter']
-	else:
-		chapter_data = json_data['chapter']
-	# print(chapter_data, file =sys.stderr)
-	verses_dict_list = []
-	for verses_key in chapter_data:
-		verses_dict = dict()
-		verses_dict['book'] = sanitize_book
-		verses_dict['chapter'] = sanitize_chapter
-		verses_dict['verse'] = verses_key
-		verses_dict['text'] = chapter_data[verses_key]['verse']
-		verses_dict_list.append(verses_dict)
-	return verses_dict_list
+	try:
+		if (start_verse != '0'):
+			## current response: { book: [] }
+			outer_list = json_data['book']
+			chapter_data = outer_list[0]['chapter']
+		else:
+			chapter_data = json_data['chapter']
+		# print(chapter_data, file =sys.stderr)
+		verses_dict_list = []
+		for verses_key in chapter_data:
+			verses_dict = dict()
+			verses_dict['book'] = sanitize_book
+			verses_dict['chapter'] = sanitize_chapter
+			verses_dict['verse'] = verses_key
+			verses_dict['text'] = chapter_data[verses_key]['verse']
+			verses_dict_list.append(verses_dict)
+		return verses_dict_list
+	except:
+		return [] 
 	# print(response.json(), file = sys.stderr)
 	## convert from jsonp to json
 	# try:
